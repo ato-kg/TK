@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="max-w-lg mx-auto">
+    <div class="bg-white p-4 rounded shadow relative">
+        {% if image_url %}
+            <img src="{{ image_url }}" alt="Infobox Image" class="w-full h-auto rounded">
+        {% else %}
+            <div class="relative">
+                <!-- Gambar Default -->
+                <img src="{% static 'images/default.png' %}" alt="Default Image" class="w-full h-auto rounded">
+
+                <!-- Teks "Tidak Ditemukan" -->
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <p class="text-white font-bold text-lg bg-black bg-opacity-50 px-4 py-2 rounded">
+                        Ga dpt web fandomnya anjir
+                    </p>
+                </div>
+            </div>
+        {% endif %}
+
+        <!-- IMDb Rating dan Link -->
+        <div class="mt-4">
+            {% if imdb_url and rating %}
+                <p class="text-center text-gray-800 text-lg">
+                    IMDb Rating: 
+                    <a href="{{ imdb_url }}" target="_blank" class="text-blue-500 underline hover:text-blue-700">
+                        {{ rating }}
+                    </a>
+                </p>
+            {% elif imdb_url %}
+                <p class="text-center text-gray-800 text-lg">
+                    <a href="{{ imdb_url }}" target="_blank" class="text-blue-500 underline hover:text-blue-700">
+                        Visit IMDb
+                    </a>
+                </p>
+            {% else %}
+                <p class="text-center text-gray-600 italic">IMDb information not available.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
