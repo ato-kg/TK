@@ -21,7 +21,10 @@ def get_attribute(eps_uri, atr):
     LIMIT 1
     """
     results = rdf_manager.query(sparql_query)
-    return results[0]['o']['value']
+    if results:
+        return results[0]['o']['value']
+    else:
+        return None
 
 def episode_view(request, nama_episode : str):
     print(nama_episode)
@@ -44,23 +47,23 @@ def episode_view(request, nama_episode : str):
     if results:
         eps_uri = results[0]['s']['value']
         eps_wd = get_attribute(eps_uri, "hasWikidata")
-        print(eps_wd)
-        
-        results = wikidata_manager.get_attribute(eps_wd, "http://www.wikidata.org/prop/direct/P345")
-        if not results:
-            results = wikidata_manager.get_attribute(eps_wd, "http://www.wikidata.org/prop/direct/P361")
+        imdb_id = None
+        imdb_url = None
+        rating = None
+        if eps_wd:
+            results = wikidata_manager.get_attribute(eps_wd, "http://www.wikidata.org/prop/direct/P345")
+            if not results:
+                results = wikidata_manager.get_attribute(eps_wd, "http://www.wikidata.org/prop/direct/P361")
+                if results:
+                    full_eps_wd = results[0]['object']['value']
+                    print(full_eps_wd)
+                    results = wikidata_manager.get_attribute(full_eps_wd, "http://www.wikidata.org/prop/direct/P345")
             if results:
-                full_eps_wd = results[0]['object']['value']
-                print(full_eps_wd)
-                results = wikidata_manager.get_attribute(full_eps_wd, "http://www.wikidata.org/prop/direct/P345")
-        if results:
-            imdb_id = results[0]['object']['value']
-            imdb_url = f"https://www.imdb.com/title/{imdb_id}/"
-        else:
-            imdb_id = None
-            imdb_url = None
-        rating = get_imdb_rating(imdb_id)
-        print(f"IMDb Rating for {imdb_id}: {rating}")
+                imdb_id = results[0]['object']['value']
+                imdb_url = f"https://www.imdb.com/title/{imdb_id}/"
+                
+            rating = get_imdb_rating(imdb_id)
+            print(f"IMDb Rating for {imdb_id}: {rating}")
 
         url = "https://spongebob.fandom.com/wiki/" + nama_episode.replace(" ", "_")
         response = requests.get(url)
