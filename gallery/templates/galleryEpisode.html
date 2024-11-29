@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Episode Gallery</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .gallery-image {
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .gallery-image:hover {
+            transform: scale(1.05);
+        }
+        .modal-image {
+            max-width: 100%;
+            max-height: 80vh;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid py-4">
+        <h1 class="text-center mb-4">{{ nama_episode }} Gallery</h1>
+        
+        <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
+            {% for image in images %}
+            <div class="col">
+                <div class="card h-100">
+                    <img src="{{ image.link }}" 
+                         class="card-img-top gallery-image" 
+                         alt="{{ image.caption }}"
+                         data-bs-toggle="modal" 
+                         data-bs-target="#imageModal{{ forloop.counter }}"
+                    >
+                    <div class="card-body">
+                        <p class="card-text text-center">{{ image.caption }}</p>
+                    </div>
+                </div>
+
+                <!-- Modal for each image -->
+                <div class="modal fade" id="imageModal{{ forloop.counter }}" tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered modal-xl">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">{{ image.caption }}</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body text-center">
+                                <img src="{{ image.link }}" class="modal-image" alt="{{ image.caption }}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12">
+                <div class="alert alert-info text-center" role="alert">
+                    No images available for this episode.
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

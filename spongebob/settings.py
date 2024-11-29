@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'rdfapp',
     'episode',
     'search',
+    'gallery',
 ]
 
 MIDDLEWARE = [
