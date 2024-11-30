@@ -40,7 +40,7 @@ SELECT ?subject ?name ?url
                 FILTER(contains(lcase(?name), lcase("{query}")))
             }}
 LIMIT 10
-"""
+""" 
             sparql_wrapper = rdf_manager.sparql
             sparql_wrapper.setQuery(sparql_query)
             sparql_wrapper.setReturnFormat(JSON)
