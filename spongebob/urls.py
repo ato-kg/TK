@@ -22,4 +22,5 @@ urlpatterns = [
     path('rdf/', include('rdfapp.urls')),
     path('episode/', include('episode.urls')),
     path('search/', include('search.urls')),
+    path('webpage/', include('webpage.urls')),
 ]

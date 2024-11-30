@@ -36,11 +36,10 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 SELECT ?subject ?name ?url
             WHERE {{
                 ?subject exv:name ?name .
-                OPTIONAL {{ ?subject ?p ?url . }}
+                ?subject exv:hasUrl ?url .
                 FILTER(contains(lcase(?name), lcase("{query}")))
             }}
-LIMIT 10
-""" 
+"""
             sparql_wrapper = rdf_manager.sparql
             sparql_wrapper.setQuery(sparql_query)
             sparql_wrapper.setReturnFormat(JSON)
@@ -53,18 +52,21 @@ LIMIT 10
             print(bindings)
             print("gyatt")
             for binding in bindings:
-                subject_uri = binding['name']['value']
+                subject_uri = binding["subject"]["value"]
                 for uri, prefix in prefix_mapping.items():
                     if subject_uri.startswith(uri):
                         subject_prefixed = subject_uri.replace(uri, prefix)
                         break
                 else:
                     subject_prefixed = subject_uri
-                
-                results.append({
-                    'name': subject_prefixed,
-                    'url': binding['url']['value'],
-                })
+
+                results.append(
+                    {
+                        "subject": subject_prefixed,
+                        "name": binding["name"]["value"],
+                        "url": binding["url"]["value"],
+                    }
+                )
         return JsonResponse({"results": results})
     context = {"query": query, "results": []}
 
