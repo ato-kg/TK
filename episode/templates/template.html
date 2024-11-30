@@ -1,42 +1,305 @@
 {% extends "base.html" %}
 {% load static %}
-{% block content %}
-<div class="max-w-lg mx-auto">
-    <div class="bg-white p-4 rounded shadow relative">
-        {% if image_url %}
-            <img src="{{ image_url }}" alt="Infobox Image" class="w-full h-auto rounded">
-        {% else %}
-            <div class="relative">
-                <!-- Gambar Default -->
-                <img src="{% static 'images/default.png' %}" alt="Default Image" class="w-full h-auto rounded">
 
-                <!-- Teks "Tidak Ditemukan" -->
-                <div class="absolute inset-0 flex items-center justify-center">
-                    <p class="text-white font-bold text-lg bg-black bg-opacity-50 px-4 py-2 rounded">
-                        Ga dpt web fandomnya anjir
-                    </p>
+{% block content %}
+<div class="max-w-7xl mx-auto p-4">
+    <!-- Main Content -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <!-- Left Section: Title and Description -->
+        <div>
+            <h1 class="text-4xl font-bold text-gray-800 mb-4">
+                {% if eps_wd %}
+                    <a href="{{ eps_wd }}" target="_blank" class="hover:underline">
+                        {{ title }}
+                    </a>
+                {% else %}
+                    {{ title }}
+                {% endif %}
+            </h1>
+            
+            <hr class="border-t-2 border-gray-300 mb-6">  <!-- Pembatas -->
+            <p class="text-gray-700 mb-6">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum. 
+                Donec vitae eros ligula. Aenean vehicula ac nisi sed tincidunt. Morbi convallis dui ligula, at 
+                elementum libero eleifend sit amet. Etiam lacinia sapien at nisi cursus, ac efficitur mi varius. 
+                Curabitur convallis vestibulum risus. Sed ut turpis vitae velit euismod blandit.
+            </p>
+            <p class="text-gray-700 mb-6">
+                Curabitur mollis viverra orci, a tempus magna dapibus non. Mauris sed magna vitae lorem euismod 
+                interdum. Donec gravida nunc vitae ante hendrerit, a dapibus nunc aliquam. Integer nec sem id urna 
+                malesuada iaculis. Nulla facilisi. In hac habitasse platea dictumst.
+            </p>
+            <p class="text-gray-700">
+                Fusce bibendum euismod massa, sed fermentum nisl euismod ac. Integer vehicula turpis id risus volutpat 
+                maximus. Fusce tincidunt felis nec vehicula posuere. Nulla euismod orci at risus iaculis, vel aliquet 
+                metus aliquam.
+            </p>
+            <div class="mt-6">
+                <h2 class="text-xl font-semibold text-gray-700 border-b pb-2 mb-4">Characters</h2>
+                <ul class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 text-gray-600">
+                    {% if characters  %}
+                        {% for character in characters %}
+                            {% if character.image %}
+                            <div class="character-box mb-4 p-4 border rounded-lg">
+                                
+                                    <img src="{{ character.image }}" alt="{{ character.name }}" class="character-image mb-2 w-full h-auto object-cover rounded">
+                                
+                                <p class="text-center font-semibold text-xl">{{ character.name }}</p>
+                            </div>
+                            {% endif %}
+                        {% endfor %}
+                    {% else %}
+                        <li class="text-center text-gray-500 col-span-full">No characters available.</li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-4xl mx-auto p-4">
+            <div class="bg-white p-6 rounded-lg shadow-xl">
+
+                <!-- Image Section -->
+                {% if image_url %}
+                    <img src="{{ image_url }}" alt="{{ title }}" class="w-full h-auto rounded-lg">
+                {% else %}
+                    <div class="relative">
+                        <img src="{% static 'images/default.png' %}" alt="Default Image" class="w-full h-auto rounded-lg">
+                        <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                            <p class="text-white font-semibold text-lg px-4 py-2 rounded">
+                                Image not available
+                            </p>
+                        </div>
+                    </div>
+                {% endif %}
+
+                <!-- Title -->
+                <div class="text-center mt-4">
+                    {% if eps_wd %}
+                        <a href="{{ eps_wd }}" target="_blank" class="text-3xl font-bold text-gray-800 hover:underline">
+                            {{ title }}
+                        </a>
+                    {% else %}
+                        <h1 class="text-3xl font-bold text-gray-800">
+                            {{ title }}
+                        </h1>
+                    {% endif %}
+                </div>
+
+                <!-- Episode Info -->
+                <div class="mt-6">
+                    <h2 class="text-xl font-semibold text-gray-700 border-b pb-2 mb-4">Episode Info</h2>
+                    <ul class="space-y-2 text-gray-600">
+                        {% if air_date %}<li><strong class="font-medium">Air Date:</strong> <span class="ml-2">{{ air_date }}</span></li>{% endif %}
+                        {% if episode_no %}<li><strong class="font-medium">Episode No:</strong> <span class="ml-2">{{ episode_no }}</span></li>{% endif %}
+                        {% if season_no %}<li><strong class="font-medium">Season No:</strong> <span class="ml-2">{{ season_no }}</span></li>{% endif %}
+                        {% if production_codes %}
+                            <li><strong class="font-medium">Production Codes:</strong>
+                                {% if production_codes|length == 1 %}
+                                    <span class="ml-2">{{ production_codes.0 }}</span>
+                                {% else %}
+                                    <ul class="list-disc pl-6 space-y-1">
+                                        {% for code in production_codes %}
+                                            <li>{{ code }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                {% endif %}
+                            </li>
+                        {% endif %}
+                        {% if running_time %}
+                            <li><strong class="font-medium">Running Time:</strong>
+                                {% if running_time|length == 1 %}
+                                    <span class="ml-2">{{ running_time.0 }}</span>
+                                {% else %}
+                                    <ul class="list-disc pl-6 space-y-1">
+                                        {% for time in running_time %}
+                                            <li>{{ time }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                {% endif %}
+                            </li>
+                        {% endif %}
+                        
+                        {% if premier_time %}
+                            <li><strong class="font-medium">Premier Time:</strong>
+                                {% if premier_time|length == 1 %}
+                                    <span class="ml-2">{{ premier_time.0 }}</span>
+                                {% else %}
+                                    <ul class="list-disc pl-6 space-y-1">
+                                        {% for time in premier_time %}
+                                            <li>{{ time }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                {% endif %}
+                            </li>
+                        {% endif %}
+
+                        {% if copyright_year %}
+                            <li><strong class="font-medium">Copyright Year:</strong>
+                                {% if copyright_year|length == 1 %}
+                                    <span class="ml-2">{{ copyright_year.0 }}</span>
+                                {% else %}
+                                    <ul class="list-disc pl-6 space-y-1">
+                                        {% for year in copyright_year %}
+                                            <li>{{ year }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                {% endif %}
+                            </li>
+                        {% endif %}
+                        
+                        {% if viewers %}
+                            <li><strong class="font-medium">Viewers (million):</strong>
+                                {% if viewers|length == 1 %}
+                                    <span class="ml-2">{{ viewers.0 }}</span>
+                                {% else %}
+                                    <ul class="list-disc pl-6 space-y-1">
+                                        {% for viewer in viewers %}
+                                            <li>{{ viewer }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                {% endif %}
+                            </li>
+                        {% endif %}
+                        
+                        {% if prev_episode %}
+                            <li>
+                                <strong class="font-medium">Previous Episode:</strong> 
+                                <a href="{% url 'episode_detail' prev_episode %}" class="ml-2 text-blue-500 hover:text-blue-700">
+                                    {{ prev_episode }}
+                                </a>
+                            </li>
+                        {% endif %}
+                        {% if next_episode %}
+                            <li>
+                                <strong class="font-medium">Next Episode:</strong> 
+                                <a href="{% url 'episode_detail' next_episode %}" class="ml-2 text-blue-500 hover:text-blue-700">
+                                    {{ next_episode }}
+                                </a>
+                            </li>
+                        {% endif %}
+                        <!-- Sister Episodes -->
+                        {% if sister_episodes %}
+                            <li><strong class="font-medium">Sister Episodes:</strong>
+                                {% if sister_episodes|length == 1 %}
+                                    <a href="{% url 'episode_detail' sister_episodes.0 %}" class="ml-2 text-blue-500 hover:text-blue-700">
+                                        {{ sister_episodes.0 }}
+                                    </a>
+                                {% else %}
+                                    <ul class="list-disc pl-6 space-y-1">
+                                        {% for sister_episode in sister_episodes %}
+                                            <li>
+                                                <a href="{% url 'episode_detail' sister_episode %}" class="ml-2 text-blue-500 hover:text-blue-700">
+                                                    {{ sister_episode }}
+                                                </a>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                {% endif %}
+                            </li>
+                        {% endif %}
+
+                        <!-- IMDb Rating -->
+                        {% if imdb_url and rating %}
+                        <li>
+                            <strong class="font-medium">IMDb Rating:</strong> 
+                            <a href="{{ imdb_url }}" class="ml-2 text-blue-500 hover:text-blue-700">
+                                {{ rating }}
+                            </a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+
+                <!-- Credits Section -->
+                <div class="mt-6">
+                    <h2 class="text-xl font-semibold text-gray-700 border-b pb-2 mb-4">Credits</h2>
+                    <ul class="space-y-2 text-gray-600">
+                        {% if creative %}<li><strong class="font-medium">Creative:</strong> <span class="ml-2">{{ creative }}</span></li>{% endif %}
+                        
+                        {% if animators %}
+                            <li><strong class="font-medium">Animators:</strong>
+                                {% if animators|length == 1 %}
+                                    <span class="ml-2">{{ animators.0 }}</span>
+                                {% else %}
+                                    <ul class="list-disc pl-6 space-y-1">
+                                        {% for animator in animators %}
+                                            <li>{{ animator }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                {% endif %}
+                            </li>
+                        {% endif %}
+                        
+                        {% if storyboard_artists %}
+                            <li><strong class="font-medium">Storyboard Artists:</strong>
+                                {% if storyboard_artists|length == 1 %}
+                                    <span class="ml-2">{{ storyboard_artists.0 }}</span>
+                                {% else %}
+                                    <ul class="list-disc pl-6 space-y-1">
+                                        {% for storyboard_artist in storyboard_artists %}
+                                            <li>{{ storyboard_artist }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                {% endif %}
+                            </li>
+                        {% endif %}
+                        {% if storyboard %}
+                            <li><strong class="font-medium">Storyboard:</strong>
+                                {% if storyboard|length == 1 %}
+                                    <span class="ml-2">{{ storyboard.0 }}</span>
+                                {% else %}
+                                    <ul class="list-disc pl-6 space-y-1">
+                                        {% for sb in storyboard %}
+                                            <li>{{ sb }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                {% endif %}
+                            </li>
+                        {% endif %}
+                            
+                        {% if writers %}
+                            <li><strong class="font-medium">Writers:</strong>
+                                {% if writers|length == 1 %}
+                                    <span class="ml-2">{{ writers.0 }}</span>
+                                {% else %}
+                                    <ul class="list-disc pl-6 space-y-1">
+                                        {% for writer in writers %}
+                                            <li>{{ writer }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                {% endif %}
+                            </li>
+                        {% endif %}
+                        
+                        {% if contributors %}
+                            <li><strong class="font-medium">Main Contributors:</strong>
+                                {% if contributors|length == 1 %}
+                                    <span class="ml-2">{{ contributors.0 }}</span>
+                                {% else %}
+                                    <ul class="list-disc pl-6 space-y-1">
+                                        {% for contributor in contributors %}
+                                            <li>{{ contributor }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                {% endif %}
+                            </li>
+                        {% endif %}
+                        
+                        {% if supervising_producers %}
+                            <li><strong class="font-medium">Supervising Producers:</strong>
+                                {% if supervising_producers|length == 1 %}
+                                    <span class="ml-2">{{ supervising_producers.0 }}</span>
+                                {% else %}
+                                    <ul class="list-disc pl-6 space-y-1">
+                                        {% for producer in supervising_producers %}
+                                            <li>{{ producer }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                {% endif %}
+                            </li>
+                        {% endif %}
+                    </ul>
                 </div>
             </div>
-        {% endif %}
-
-        <!-- IMDb Rating dan Link -->
-        <div class="mt-4">
-            {% if imdb_url and rating %}
-                <p class="text-center text-gray-800 text-lg">
-                    IMDb Rating: 
-                    <a href="{{ imdb_url }}" target="_blank" class="text-blue-500 underline hover:text-blue-700">
-                        {{ rating }}
-                    </a>
-                </p>
-            {% elif imdb_url %}
-                <p class="text-center text-gray-800 text-lg">
-                    <a href="{{ imdb_url }}" target="_blank" class="text-blue-500 underline hover:text-blue-700">
-                        Visit IMDb
-                    </a>
-                </p>
-            {% else %}
-                <p class="text-center text-gray-600 italic">IMDb information not available.</p>
-            {% endif %}
         </div>
     </div>
 </div>

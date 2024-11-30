@@ -50,43 +50,6 @@ class WikidataManager:
                     raise
 
     @lru_cache(maxsize=100)
-    def get_attributes(self, entity_uri):
-        """
-        Get all attributes (predicate-object pairs) of a given Wikidata entity with caching.
-
-        :param entity_uri: Full URI of the Wikidata entity (e.g., "http://www.wikidata.org/entity/Q20439681")
-        :return: List of attributes as dictionaries {"property": <property_name>, "value": <value>, "value_label": <label>}
-        """
-        entity_id = entity_uri.split("/")[-1]  # Extract QID (e.g., "Q20439681")
-
-        # SPARQL query to fetch all attributes
-        sparql_query = f"""
-        PREFIX wd: <http://www.wikidata.org/entity/>
-        PREFIX wdt: <http://www.wikidata.org/prop/direct/>
-        PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-
-        SELECT ?property ?value ?valueLabel
-        WHERE {{
-            wd:{entity_id} ?p ?value .
-            ?p rdfs:label ?property .
-            OPTIONAL {{ ?value rdfs:label ?valueLabel . FILTER(LANG(?valueLabel) = "en") }}
-            FILTER(LANG(?property) = "en")
-        }}
-        LIMIT 100
-        """
-        results = self.query(sparql_query)
-
-        # Parse results into a list of dictionaries
-        return [
-            {
-                "property": binding["property"]["value"],
-                "value": binding["value"]["value"],
-                "value_label": binding.get("valueLabel", {}).get("value", None)
-            }
-            for binding in results
-        ]
-
-    @lru_cache(maxsize=100)
     def get_specific_attributes(self, entity_uri, attributes):
         """
         Fetch specific attributes from a Wikidata entity.
