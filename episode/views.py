@@ -76,7 +76,7 @@ def episode_view(request, nama_episode : str):
         context['image_url'] = image_url
         context['imdb_url'] = imdb_url
         context['rating'] = rating
-        return render(request, 'template.html', context)
+        return render(request, 'template.html', context), context
     else:
         return HttpResponseNotFound(f"Episode '{nama_episode}' tidak ditemukan.")
 
