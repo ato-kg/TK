@@ -9,5 +9,5 @@ class RdfappConfig(AppConfig):
     name = 'rdfapp'
     def ready(self):
         global rdf_manager, wikidata_manager
-        rdf_manager = RDFManager("http://localhost:7200/repositories/TK")
+        rdf_manager = RDFManager("http://localhost:7200//repositories/TK")
         wikidata_manager = WikidataManager()

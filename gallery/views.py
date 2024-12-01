@@ -12,6 +12,8 @@ wikidata_manager = WikidataManager()
 ### LOGIC ###
 
 def get_attribute(eps_uri, atr):
+    print(eps_uri)
+    print(atr)
     sparql_query = f"""
     PREFIX exv: <http://example.org/vocab#>
 
@@ -22,6 +24,7 @@ def get_attribute(eps_uri, atr):
     LIMIT 1
     """
     results = rdf_manager.query(sparql_query)
+    print(results)
     return results[0]['o']['value']
 
 def get_eps_fandom_page(nama_episode : str):
