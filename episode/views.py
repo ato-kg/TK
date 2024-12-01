@@ -269,9 +269,10 @@ def episode_view(request, nama_episode : str):
         context['guests'] = guests
         
         # IMAGE
-        url = "https://spongebob.fandom.com/wiki/" + nama_episode.replace(" ", "_")
-        image_url = get_image(url)
+        fandom_url = "https://spongebob.fandom.com/wiki/" + nama_episode.replace(" ", "_")
+        image_url = get_image(fandom_url)
         
+        context['fandom'] = fandom_url
         context['image_url'] = image_url
         
         ############################################################
