@@ -228,6 +228,45 @@
                 <div class="mt-6">
                     <h2 class="text-xl font-semibold text-gray-700 border-b pb-2 mb-4">Credits</h2>
                     <ul class="space-y-2 text-gray-600">
+                        
+                        {% if guests %}
+                            <li><strong class="font-medium">Guests:</strong>
+                                {% if guests|length == 1 %}
+                                    <span class="ml-2">
+                                        {{ guests.0.name }} as 
+                                        {% for role in guests.0.roles %}
+                                            {% if forloop.last and not forloop.first %}
+                                                and {{ role }}
+                                            {% elif forloop.last %}
+                                                {{ role }}
+                                            {% else %}
+                                                {{ role }},
+                                            {% endif %}
+                                        {% endfor %}
+                                    </span>
+                                    
+
+                                {% else %}
+                                    <ul class="list-disc pl-6 space-y-1">
+                                        {% for guest in guests %}
+                                            <li>
+                                                {{ guest.name }} as 
+                                                {% for role in guest.roles %}
+                                                    {% if forloop.last and not forloop.first %}
+                                                        and {{ role }}
+                                                    {% elif forloop.last %}
+                                                        {{ role }}
+                                                    {% else %}
+                                                        {{ role }},
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                {% endif %}
+                            </li>
+                        {% endif %}
+                        
                         {% if creative %}<li><strong class="font-medium">Creative:</strong> <span class="ml-2">{{ creative }}</span></li>{% endif %}
                         
                         {% if animators %}
