@@ -46,6 +46,34 @@ def get_attributes(s_uri, atr):
         val.append(result['o']['value'])
     return val
 
+def get_atrributes_bn(s_uri, atr, atr1, atr2):
+    if s_uri is None:
+        return None
+    sparql_query = f"""
+    PREFIX exv: <http://example.org/vocab#>
+
+    SELECT ?o1 ?o2
+    WHERE {{
+        <{s_uri}> exv:{atr} ?bn .
+        ?bn exv:{atr1} ?o1 ;
+            exv:{atr2} ?o2 .
+    }}
+    """
+    atr_main = []
+    atr_info = {}
+    results = rdf_manager.query(sparql_query)
+    for result in results:
+        o1 = result['o1']['value']
+        o2 = result['o2']['value']
+        if o1 not in atr_main:
+            atr_main.append(o1)
+            atr_info[o1] = []
+        if o2 not in atr_info[o1]:
+            atr_info[o1].append(o2)
+
+    return atr_main, atr_info
+
+
 def episode_view(request, nama_episode : str):
     print(nama_episode)
     sparql_query = f"""
@@ -69,7 +97,6 @@ def episode_view(request, nama_episode : str):
         # WD FOR IMDB
         eps_wd = get_attribute(eps_uri, "hasWikidata")
         context['eps_wd'] = eps_wd
-        print(eps_wd)
         imdb_id = None
         imdb_url = None
         rating = None
@@ -79,15 +106,12 @@ def episode_view(request, nama_episode : str):
                 results = wikidata_manager.get_attribute(eps_wd, "http://www.wikidata.org/prop/direct/P361")
                 if results:
                     full_eps_wd = results[0]['object']['value']
-                    print(full_eps_wd)
                     results = wikidata_manager.get_attribute(full_eps_wd, "http://www.wikidata.org/prop/direct/P345")
             if results:
-                print("c")
                 imdb_id = results[0]['object']['value']
                 imdb_url = f"https://www.imdb.com/title/{imdb_id}/"
                 
             rating = get_imdb_rating(imdb_id)
-            print(f"IMDb Rating for {imdb_id}: {rating}")
         context['imdb_url'] = imdb_url
         context['rating'] = rating
 
@@ -151,7 +175,6 @@ def episode_view(request, nama_episode : str):
                 'name': character,
                 'image': character_image  # Menyimpan URL gambar
             })
-            print(character_image)
         context['characters'] = characters
 
         # Copyright Year
@@ -181,7 +204,6 @@ def episode_view(request, nama_episode : str):
             sister_episode = get_attribute(uri, "title")
             sister_episodes.append(sister_episode)
         context['sister_episodes'] = sister_episodes
-        print(sister_episodes)
 
         # Storyboard Artists
         storyboard_artist_uris = get_attributes(eps_uri, "hasStoryboardArtists")
@@ -232,18 +254,31 @@ def episode_view(request, nama_episode : str):
             writers.append(writer)
         context['writers'] = writers
 
-
-
-        # IMAGE
-        url = "https://spongebob.fandom.com/wiki/" + nama_episode.replace(" ", "_")
-        image_url = get_image(url)
+        # Guests
+        guests = []
+        guest_uris, guest_role_uris = get_atrributes_bn(eps_uri, "hasGuests", "hasGuest", "playedAs")
+        for guest_uri in guest_uris:
+            guest_name = get_attribute(guest_uri, "name")
+            roles = []
+            for role_uri in guest_role_uris[guest_uri]:
+                role_name = get_attribute(role_uri, "name")
+                roles.append(role_name)
+            guests.append({
+                "name" : guest_name,
+                "roles" : roles
+            })
+        context['guests'] = guests
         
+        # IMAGE
+        fandom_url = "https://spongebob.fandom.com/wiki/" + nama_episode.replace(" ", "_")
+        image_url = get_image(fandom_url)
+        
+        context['fandom'] = fandom_url
         context['image_url'] = image_url
 
         context['summary'] = get_best_summary(nama_episode)
         
         ############################################################
-        print(context)
         return render(request, 'template.html', context)
     else:
         return HttpResponseNotFound(f"Episode '{nama_episode}' tidak ditemukan.")
