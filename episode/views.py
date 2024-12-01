@@ -1,4 +1,5 @@
 import requests
+import fandom
 from bs4 import BeautifulSoup
 from django.http import HttpResponseNotFound, JsonResponse
 from django.shortcuts import render
@@ -274,6 +275,8 @@ def episode_view(request, nama_episode : str):
         
         context['fandom'] = fandom_url
         context['image_url'] = image_url
+
+        context['summary'] = get_best_summary(nama_episode)
         
         ############################################################
         return render(request, 'template.html', context)
@@ -315,3 +318,46 @@ def get_imdb_rating(imdb_id):
     else:
         return f"Error fetching page. Status code: {response.status_code}"
 
+def get_summary_bs4(url):
+    headers = {
+        "User-Agent": (
+            "Mozilla/5.0 (iPhone; CPU iPhone OS 13_5_1 like Mac OS X) "
+            "AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1.1 Mobile/15E148 Safari/604.1"
+        )
+    }
+    response = requests.get(url, headers=headers)
+    soup = BeautifulSoup(response.text, "html.parser")
+
+    # Check if summary is inside div class="tab-line"
+    tab_line_div = soup.select_one(".mw-parser-output .tab-line")
+    if tab_line_div:
+        paragraphs = tab_line_div.find_all("p")
+        for p in paragraphs:
+            if p.get_text(strip=True):
+                # Remove all <sup> tags
+                for sup in p.find_all("sup"):
+                    sup.decompose()
+                summary = p.get_text(strip=False)
+                return summary
+    return "Summary not found."
+
+def get_summary_fandom(page_title):
+    fandom.set_wiki("spongebob")
+    page = fandom.page(page_title)
+    return page.summary
+
+def get_best_summary(page_title):
+    BASE_URL = "https://spongebob.fandom.com/wiki"
+    url = f"{BASE_URL}/{page_title}"
+
+    response = requests.get(url)
+    soup = BeautifulSoup(response.text, "html.parser")
+
+    if soup.select_one(".mw-parser-output .tab-line > p"):
+        print("Using BeautifulSoup approach")
+        best_summary = get_summary_bs4(url)
+    else:
+        print("Using Fandom API approach")
+        best_summary = get_summary_fandom(page_title)
+
+    return best_summary

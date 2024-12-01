@@ -19512,7 +19512,7 @@ ex:noxiousenterprise%27ssuperspu-31liquid-cooledmobileprocessingunit a exv:Chara
     exv:hasResidences [ exv:hasResidence ex:chumbucket%2Cbikinibottom%2Cpacificocean ] ;
     exv:hasUrl "https://spongebob.fandom.com/wiki/Noxious_Enterprise%27s_Super_SPU-31_Liquid-Cooled_Mobile_Processing_Unit" ;
     exv:name "Noxious Enterprise's Super SPU-31 Liquid-Cooled Mobile Processing Unit",
-        "Noxious Enterprise's Super SPU-31 Liquid-Cooled Mobile Processing Unit" .
+        "Noxious Enterprise's Super SPU-31 Liquid-Cooled Mobile Processing Unit" .
 
 ex:nudistcampguard_harold exv:occupations ex:nudistcampguard .
 
