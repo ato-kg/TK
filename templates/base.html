@@ -4,6 +4,8 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{% block title %}{% endblock %}</title>
+        {% block extra_head %}{% endblock %}
         {% block meta %}
             <meta charset="UTF-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,7 +14,28 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     </head>
 
-    <body>
-        {% block content %} {% endblock content %}
+    <body class="bg-blue-50 text-gray-800 min-h-screen flex flex-col">
+        <!-- Navbar -->
+        <header class="bg-yellow-300 shadow-md w-full">
+            <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+                <a href="/" class="flex items-center space-x-2">
+                    <img src="{% static 'images/default.png' %}" alt="Logo" class="w-12 h-12 rounded-full">
+                    <span class="text-xl font-bold text-gray-900">SpongeBob Fandom</span>
+                </a>
+                <nav class="space-x-6">
+                    {% block extra_nav %}{% endblock %}
+                    <a href="/characters" class="hover:text-blue-600">Characters</a>
+                    <a href="/episodes" class="hover:text-blue-600">Episodes</a>
+                </nav>
+            </div>
+        </header>
+    
+        <!-- Main Content -->
+        <main class="flex-grow container mx-auto px-4 py-4">
+            {% block content %}
+            {% endblock %}
+        </main>
+    
+        {% block extra_scripts %}{% endblock %}
     </body>
 </html>
