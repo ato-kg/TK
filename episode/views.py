@@ -180,7 +180,7 @@ def episode_view(request, nama_episode : str):
             sister_episode = get_attribute(uri, "title")
             sister_episodes.append(sister_episode)
         context['sister_episodes'] = sister_episodes
-        print(sister_episode)
+        print(sister_episodes)
 
         # Storyboard Artists
         storyboard_artist_uris = get_attributes(eps_uri, "hasStoryboardArtists")
