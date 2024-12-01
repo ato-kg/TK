@@ -9,7 +9,7 @@ from rdfapp.wikidata_manager import WikidataManager
 
 rdf_manager = RDFManager()
 wikidata_manager = WikidataManager()
-
+fandom.set_wiki("spongebob")
 
 def get_attribute(s_uri, atr):
     if s_uri is None:
@@ -342,10 +342,12 @@ def get_summary_bs4(url):
     return "Summary not found."
 
 def get_summary_fandom(page_title):
-    fandom.set_wiki("spongebob")
-    page = fandom.page(page_title)
-    return page.summary
-
+    try:
+        page_data = fandom.page(page_title)
+        return page_data.summary
+    except fandom.error.PageError:
+        return "Summary not found."
+    
 def get_best_summary(page_title):
     BASE_URL = "https://spongebob.fandom.com/wiki"
     url = f"{BASE_URL}/{page_title}"
