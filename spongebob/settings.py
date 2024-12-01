@@ -25,7 +25,10 @@ SECRET_KEY = 'django-insecure-p6_rz^%ddks&z0xm0a8iow-ymu790a=j4&*gqqg)a($)d-kkmr
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["localhost","127.0.0.1","muhammad-irfan25-kage.pbp.cs.ui.ac.id"]
+CSRF_TRUSTED_ORIGINS = ["http://localhost","http://127.0.0.1","http://muhammad-irfan25-kage.pbp.cs.ui.ac.id", "https://muhammad-irfan25-kage.pbp.cs.ui.ac.id"]
+
+
 
 
 # Application definition
@@ -41,7 +44,6 @@ INSTALLED_APPS = [
     'episode',
     'gallery',
     'search',
-    'webpage',
 ]
 
 MIDDLEWARE = [
