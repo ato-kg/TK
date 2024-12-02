@@ -1,5 +1,5 @@
-import requests
 import fandom
+import requests
 from bs4 import BeautifulSoup
 from django.http import HttpResponseNotFound, JsonResponse
 from django.shortcuts import render
@@ -23,6 +23,8 @@ def get_attribute(s_uri, atr):
     }}
     LIMIT 1
     """
+    if s_uri in ("http://example.org/data/bubblebuddy", "http://example.org/data/stanleys.squarepants") and atr == "hasWikidata":
+        sparql_query += "\nOFFSET 1"
     results = rdf_manager.query(sparql_query)
     if results:
         return results[0]['o']['value']
@@ -170,7 +172,7 @@ def episode_view(request, nama_episode : str):
         characters = []
         for uri in character_uris:
             character = get_attribute(uri, "name")
-            character_image = get_attribute(uri, "hasImage")
+            character_image = get_attribute(uri, "hasImageChar")
             characters.append({
                 'name': character,
                 'image': character_image  # Menyimpan URL gambar
@@ -270,32 +272,17 @@ def episode_view(request, nama_episode : str):
         context['guests'] = guests
         
         # IMAGE
-        fandom_url = "https://spongebob.fandom.com/wiki/" + nama_episode.replace(" ", "_")
-        image_url = get_image(fandom_url)
-        
+        image_url = get_attribute(eps_uri, "hasImageEps")
+        fandom_url = get_attribute(eps_uri, "hasUrl")
         context['fandom'] = fandom_url
         context['image_url'] = image_url
 
         context['summary'] = get_best_summary(nama_episode)
-        
+        print(context['summary'])
         ############################################################
         return render(request, 'template.html', context)
     else:
         return HttpResponseNotFound(f"Episode '{nama_episode}' tidak ditemukan.")
-
-def get_image(fandom_url):
-    try:
-        response = requests.get(fandom_url)
-        soup = BeautifulSoup(response.text, 'html.parser')
-
-        infobox_image = soup.select_one(".pi-image-thumbnail")
-        if infobox_image:
-            image_url = infobox_image['src']
-            return image_url
-        else:
-            return None
-    except:
-        return None
 
 def get_imdb_rating(imdb_id):
     url = f'https://www.imdb.com/title/{imdb_id}/'

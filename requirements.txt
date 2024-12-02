@@ -7,3 +7,4 @@ urllib3
 rdflib
 SPARQLWrapper
 beautifulsoup4
+fandom-py
