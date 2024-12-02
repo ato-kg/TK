@@ -1,8 +1,11 @@
 import requests
+import re
+
 from bs4 import BeautifulSoup
 from django.http import HttpResponseNotFound, JsonResponse
 from django.shortcuts import render
 from urllib.parse import quote
+from django.core.paginator import Paginator
 
 from rdfapp.rdf_manager import RDFManager
 from rdfapp.wikidata_manager import WikidataManager
@@ -19,6 +22,7 @@ prefix_mapping = {
     "http://www.wikidata.org/entity/": "wd:",
     "http://www.w3.org/2001/XMLSchema#": "xsd:",
 }
+
 
 
 def search(request):
@@ -142,42 +146,131 @@ WHERE {{
                                 "type": result_type,
                             }
                         )
-            print(results)
+            # print(results)
         return JsonResponse({"results": results, "more_results": more_results})
     context = {"query": query, "results": []}
 
     return render(request, "home.html", context)
 
+def getUniqueSeasonsQuery():
+    query = """
+    PREFIX ex: <http://example.org/data/>
+    PREFIX exv: <http://example.org/vocab#>
+
+    SELECT DISTINCT ?season
+    WHERE {
+        OPTIONAL { ?episode exv:isSeasonNo ?season }
+    }
+    ORDER BY ASC(?season)
+    """
+    return query
+
+def getQueryEpisodeList(query, season, sort, page, page_size, total: bool):
+    if total:
+        column = "(COUNT(?episode) as ?total)"
+        limitpage = ""
+    else:
+        column = "?episode ?title ?season ?views ?episode_number ?image_url"
+        limitpage = ""
+    
+    order_by_clause = ""
+    if sort == "views-asc":
+        order_by_clause = """
+        ORDER BY ASC(
+            IF(
+                contains(?views, 'N/A') || contains(?views, 'TBD'), 
+                "0", 
+                ?views
+            )
+        )
+        """
+    elif sort == "views-desc":
+        order_by_clause = """
+        ORDER BY DESC(
+            IF(
+                contains(?views, 'N/A') || contains(?views, 'TBD'), 
+                "0", 
+                ?views
+            )
+        )
+        """
+    elif sort == "title-asc":
+        order_by_clause = "ORDER BY ASC(?title)"
+    elif sort == "title-desc":
+        order_by_clause = "ORDER BY DESC(?title)"
+    elif sort == "episode-number-asc" or sort == "episode-number-desc":
+        order_by_clause = ""
+
+    season_filter = ""
+    if season:
+        if season == "N/A":
+            season_filter = "FILTER(!BOUND(?season))"
+        else:
+            try:
+                season_number = int(season)
+                season_filter = f"FILTER(xsd:integer(?season) = {season_number})"
+            except ValueError:
+                season_filter = f"FILTER(?season = '{season}')"
+
+    query = f"""
+    PREFIX ex: <http://example.org/data/>
+    PREFIX exv: <http://example.org/vocab#>
+
+    SELECT {column}
+    WHERE {{
+        ?episode exv:title ?title .
+        OPTIONAL {{ ?episode exv:isSeasonNo ?season }} .
+        OPTIONAL {{ ?episode exv:hasViewers ?views }} .
+        OPTIONAL {{ ?episode exv:isEpisodeNo ?episode_number }} .
+        OPTIONAL {{ ?episode exv:hasImageEps ?image_url }} .
+        FILTER(contains(lcase(?title), lcase("{query}")))
+        {season_filter}
+    }}
+    {order_by_clause}
+    {limitpage}
+    """
+    return query
+
+def natural_sort_key(episode_number, reverse=False):
+    if episode_number == "N/A" or episode_number is None:
+        return (float('-inf'), '') if not reverse else (float('inf'), '')  # Treat N/A or missing as smallest for asc, largest for desc
+    match = re.match(r"(\d+)([a-zA-Z\-]*)", episode_number)
+    if match:
+        number = int(match.group(1))
+        suffix = match.group(2)
+        return (number, suffix)
+    return (float('-inf'), '') if not reverse else (float('inf'), '')  # Fallback for unexpected formats
 
 def episodes(request):
     query = request.GET.get("q", "")
     season = request.GET.get("season", "")
     sort = request.GET.get("sort", "title-asc")
+    page = int(request.GET.get("page", 1))
+    page_size = int(request.GET.get("page_size", 18))
+    # print(type(season))
 
-    sparql_query = f"""
-    PREFIX ex: <http://example.org/data/>
-    PREFIX exv: <http://example.org/vocab#>
-
-    SELECT ?episode ?title ?season ?views ?episode_number
-    WHERE {{
-        ?episode exv:title ?title .
-                 OPTIONAL {{ ?episode exv:isSeasonNo ?season }} .
-                 OPTIONAL {{ ?episode exv:hasViewers ?views }} .
-                 OPTIONAL {{ ?episode exv:isEpisodeNo ?episode_number }} .
-        FILTER(contains(lcase(?title), lcase("{query}")))
-        {f"FILTER(?season = '{season}')" if season else ""}
-    }}
-    ORDER BY {"ASC(?views)" if sort == "views-asc" else "DESC(?views)" if sort == "views-desc" else ""}
-             {"ASC(?title)" if sort == "title-asc" else "DESC(?title)" if sort == "title-desc" else ""}
-             {"ASC(?episode_number)" if sort == "episode-number-asc" else "DESC(?episode_number)" if sort == "episode-number-desc" else ""}
-    """
+    unique_seasons_query = getUniqueSeasonsQuery()
     sparql_wrapper = rdf_manager.sparql
+    sparql_wrapper.setQuery(unique_seasons_query)
+    sparql_wrapper.setReturnFormat(JSON)
+    seasons_response = sparql_wrapper.query()
+    seasons_bindings = seasons_response.convert()["results"]["bindings"]
+    unique_seasons = [binding.get("season", {}).get("value", "N/A") for binding in seasons_bindings]
+
+    count_query = getQueryEpisodeList(query, season, sort, page, page_size, total=True)
+    sparql_wrapper.setQuery(count_query)
+    sparql_wrapper.setReturnFormat(JSON)
+    count_response = sparql_wrapper.query()
+    total_episodes = int(count_response.convert()["results"]["bindings"][0]["total"]["value"])
+    print(total_episodes)
+
+    sparql_query = getQueryEpisodeList(query, season, sort, page, page_size, total=False)
     sparql_wrapper.setQuery(sparql_query)
     sparql_wrapper.setReturnFormat(JSON)
     response = sparql_wrapper.query()
     bindings = response.convert()["results"]["bindings"]
-    print(bindings)
-    print("gyatt")
+    # print(bindings)
+    # print("gyatt")
 
     episodes = [
         {
@@ -185,18 +278,36 @@ def episodes(request):
             "season": binding.get("season", {}).get("value", "N/A"),
             "views": binding.get("views", {}).get("value", "N/A"),
             "episode_number": binding.get("episode_number", {}).get("value", "N/A"),
-            "imdb_rating": get_imdb_rating(binding["title"]["value"]),
+            # "imdb_rating": get_imdb_rating(binding["title"]["value"]), #TODO
             "url": f"/episode/{quote(binding['title']['value'])}/",
-            "image": get_image("https://spongebob.fandom.com/wiki/" + binding["title"]["value"]),
+            "image": binding.get("image_url", {}).get("value", "N/A"),
         }
         for binding in bindings
     ]
-    print(episodes)
+    if "episode-number" in sort:
+        reverse_sort = sort == "episode-number-desc"
+        episodes.sort(key=lambda ep: natural_sort_key(ep["episode_number"]), reverse=reverse_sort)
+    # print(episodes)
+
+    start_idx = (page - 1) * page_size
+    end_idx = start_idx + page_size
+    paginated_episodes = episodes[start_idx:end_idx]
+
 
     if request.headers.get("x-requested-with") == "XMLHttpRequest":
-        return JsonResponse({"episodes": episodes})
+        return JsonResponse({
+            "episodes": paginated_episodes,
+            "page": page,
+            "page_size": page_size,
+            "total_episodes": total_episodes
+        })
 
-    context = {"query": query, "results": episodes}
+    # Render the page normally
+    context = {
+        "query": query,
+        "results": paginated_episodes,
+        "unique_seasons": unique_seasons,
+    }
     return render(request, "episodes.html", context)
 
 
@@ -259,18 +370,4 @@ def get_attribute(s_uri, atr):
     if results:
         return results[0]["o"]["value"]
     else:
-        return None
-
-def get_image(fandom_url):
-    try:
-        response = requests.get(fandom_url)
-        soup = BeautifulSoup(response.text, 'html.parser')
-
-        infobox_image = soup.select_one(".pi-image-thumbnail")
-        if infobox_image:
-            image_url = infobox_image['src']
-            return image_url
-        else:
-            return None
-    except:
         return None
