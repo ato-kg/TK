@@ -277,8 +277,11 @@ def episode_view(request, nama_episode : str):
         context['fandom'] = fandom_url
         context['image_url'] = image_url
 
+        # Desc
         context['summary'] = get_best_summary(nama_episode)
         print(context['summary'])
+        print(nama_episode)
+        context['synopsis'] = get_synopsis(nama_episode)
         ############################################################
         return render(request, 'template.html', context)
     else:
@@ -348,3 +351,33 @@ def get_best_summary(page_title):
         best_summary = get_summary_fandom(page_title)
 
     return best_summary
+
+def get_synopsis(page_title):
+    page = fandom.page(page_title)
+    data = page.content
+    def dfs(section):
+        html = ""
+        
+        # Jika ada content, kita pisahkan berdasarkan paragraf
+        if section['content']:
+            # Pisahkan konten berdasarkan paragraf yang dipisahkan dengan '\n'
+            paragraphs = section['content'].split('\n')
+            for paragraph in paragraphs:
+                if paragraph.strip():  # Memastikan paragraf tidak kosong
+                    html += f"<p class='mb-4'>{paragraph.strip()}</p>"
+        
+        # Jika ada subsections, lakukan rekursi
+        if 'sections' in section:
+            for sub_section in section['sections']:
+                html += f"<div class='ml-4'>"
+                html += f"<h3 class='text-xl font-semibold'>{sub_section['title']}</h3>"
+                html += dfs(sub_section)  # DFS ke sub-section
+                html += "</div>"
+        
+        return html
+    html_content = ""
+    for section in data['sections']:
+        if section['title'] == 'Synopsis':
+            html_content += f"<h2 class='text-2xl font-bold mb-4'>{section['title']}</h2>"
+            html_content += dfs(section)  # Mulai DFS untuk bagian Synopsis 
+    return html_content
