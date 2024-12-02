@@ -9,7 +9,7 @@ from rdfapp.wikidata_manager import WikidataManager
 
 rdf_manager = RDFManager()
 wikidata_manager = WikidataManager()
-
+fandom.set_wiki("spongebob")
 
 def get_attribute(s_uri, atr):
     if s_uri is None:
@@ -332,10 +332,37 @@ def get_summary_bs4(url):
     return "Summary not found."
 
 def get_summary_fandom(page_title):
-    fandom.set_wiki("spongebob")
-    page = fandom.page(page_title)
-    return page.summary
+    BASE_URL = "https://spongebob.fandom.com/wiki"
+    url = f"{BASE_URL}/{page_title}"
+    
+    try:
+        page_data = fandom.page(page_title)
+        summary = page_data.summary
+        return summary
+    except IndexError:
+        print("error, using bs4")
+        headers = {
+            "User-Agent": (
+                "Mozilla/5.0 (iPhone; CPU iPhone OS 13_5_1 like Mac OS X) "
+                "AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1.1 Mobile/15E148 Safari/604.1"
+            )
+        }
+        response = requests.get(url, headers=headers)
+        soup = BeautifulSoup(response.text, "html.parser")
 
+        tab_line_div = soup.select_one(".mw-parser-output")
+        if tab_line_div:
+            paragraphs = tab_line_div.find_all("p")
+            for p in paragraphs:
+                if p.get_text(strip=True):
+                    # Remove all <sup> tags
+                    for sup in p.find_all("sup"):
+                        sup.decompose()
+                    summary = p.get_text(strip=False)
+                    return summary
+    except fandom.error.PageError:
+        return "Summary not found."
+    
 def get_best_summary(page_title):
     BASE_URL = "https://spongebob.fandom.com/wiki"
     url = f"{BASE_URL}/{page_title}"
