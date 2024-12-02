@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Episodes{% endblock %}
+{% block content %}
+<div class="bg-blue-50 text-gray-800 min-h-screen flex flex-col items-center">
+    <!-- Page Title -->
+    <h1 class="text-4xl font-extrabold text-gray-900 text-center my-6">Episodes</h1>
+
+    <!-- Search and Filter Section -->
+    <div class="w-full max-w-4xl px-4">
+        <div class="flex flex-wrap items-center gap-4 mb-6">
+            <!-- Search Bar -->
+            <div class="relative w-full sm:w-auto flex-grow">
+                <input type="text" id="search-input" placeholder="Search episodes..."
+                    class="w-full py-3 px-5 rounded-full border border-gray-300 shadow-md focus:outline-none focus:ring-2 focus:ring-yellow-300">
+            </div>
+
+            <!-- Filter by Season -->
+            <select id="season-filter"
+                class="py-3 px-5 rounded-full border border-gray-300 shadow-md focus:outline-none focus:ring-2 focus:ring-yellow-300">
+                <option value="">All Seasons</option>
+                <!-- Dynamic season options will be populated here -->
+            </select>
+
+            <!-- Sort Dropdown -->
+            <select id="sort-by"
+                class="py-3 px-5 rounded-full border border-gray-300 shadow-md focus:outline-none focus:ring-2 focus:ring-yellow-300">
+                <option value="views-desc">Most Viewed</option>
+                <option value="views-asc">Least Viewed</option>
+                <option value="title-asc">Title (A-Z)</option>
+                <option value="title-desc">Title (Z-A)</option>
+                <option value="episode-number-desc">Episode Number (Highest First)</option>
+                <option value="episode-number-asc">Episode Number (Lowest First)</option>
+                <option value="imdb-rating-desc">IMDb Rating (Highest First)</option>
+                <option value="imdb-rating-asc">IMDb Rating (Lowest First)</option>
+            </select>
+        </div>
+
+        <!-- Episodes List -->
+        <div id="episodes-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <!-- Episode cards will be populated dynamically -->
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+    $(document).ready(function () {
+        const fetchEpisodes = (query = "", season = "", sort = "title-asc") => {
+            $.ajax({
+                url: "{% url 'episodes' %}",
+                data: { q: query, season: season, sort: sort },
+                dataType: 'json',
+                success: function (data) {
+                    const episodesList = $("#episodes-list");
+                    episodesList.empty();
+                    if (data.episodes.length > 0) {
+                        data.episodes.forEach((episode) => {
+                            const card = `
+                                <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg">
+                                    <h3 class="text-lg font-semibold text-yellow-700">${episode.title}</h3>
+                                    <p class="text-sm text-gray-500">Season ${episode.season}</p>
+                                    <p class="text-sm text-gray-600 mt-1">${episode.views} views</p>
+                                    <p class="text-sm text-gray-600 mt-1">Episode Number: ${episode.episode_number}</p>
+                                    <p class="text-sm text-gray-600 mt-1">IMDb Rating: ${episode.imdb_rating}</p>
+                                    <a href="${episode.url}" class="text-blue-600 font-semibold mt-3 block">Details</a>
+                                </div>
+                            `;
+                            episodesList.append(card);
+                        });
+                    } else {
+                        episodesList.append('<p class="text-gray-600 mt-2">No episodes found.</p>');
+                    }
+                }
+            });
+        };
+
+        // Initial fetch
+        fetchEpisodes();
+
+        // Event listeners
+        $("#search-input").on("input", function () {
+            const query = $(this).val();
+            const season = $("#season-filter").val();
+            const sort = $("#sort-by").val();
+            fetchEpisodes(query, season, sort);
+        });
+
+        $("#season-filter, #sort-by").on("change", function () {
+            const query = $("#search-input").val();
+            const season = $("#season-filter").val();
+            const sort = $("#sort-by").val();
+            fetchEpisodes(query, season, sort);
+        });
+    });
+</script>
+{% endblock %}
