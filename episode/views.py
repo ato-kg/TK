@@ -273,7 +273,7 @@ def episode_view(request, nama_episode : str):
         
         # IMAGE
         image_url = get_attribute(eps_uri, "hasImageEps")
-        fandom_url = get_attribute(eps_uri, "hasUrl")
+        fandom_url = get_attribute(eps_uri, "hasUrlEps")
         context['fandom'] = fandom_url
         context['image_url'] = image_url
 
