@@ -370,7 +370,7 @@ def get_synopsis(page_title):
         if 'sections' in section:
             for sub_section in section['sections']:
                 html += f"<div class='ml-4'>"
-                html += f"<h3 class='text-xl font-semibold'>{sub_section['title']}</h3>"
+                html += f"<h4 class='text-xl font-semibold'>{sub_section['title']}</h4>"
                 html += dfs(sub_section)  # DFS ke sub-section
                 html += "</div>"
         
@@ -378,6 +378,5 @@ def get_synopsis(page_title):
     html_content = ""
     for section in data['sections']:
         if section['title'] == 'Synopsis':
-            html_content += f"<h2 class='text-2xl font-bold mb-4'>{section['title']}</h2>"
             html_content += dfs(section)  # Mulai DFS untuk bagian Synopsis 
     return html_content
