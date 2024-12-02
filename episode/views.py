@@ -1,5 +1,5 @@
-import requests
 import fandom
+import requests
 from bs4 import BeautifulSoup
 from django.http import HttpResponseNotFound, JsonResponse
 from django.shortcuts import render
@@ -23,6 +23,8 @@ def get_attribute(s_uri, atr):
     }}
     LIMIT 1
     """
+    if s_uri in ("http://example.org/data/bubblebuddy", "http://example.org/data/stanleys.squarepants") and atr == "hasWikidata":
+        sparql_query += "\nOFFSET 1"
     results = rdf_manager.query(sparql_query)
     if results:
         return results[0]['o']['value']
@@ -170,7 +172,7 @@ def episode_view(request, nama_episode : str):
         characters = []
         for uri in character_uris:
             character = get_attribute(uri, "name")
-            character_image = get_attribute(uri, "hasImage")
+            character_image = get_attribute(uri, "hasImageChar")
             characters.append({
                 'name': character,
                 'image': character_image  # Menyimpan URL gambar
@@ -270,32 +272,20 @@ def episode_view(request, nama_episode : str):
         context['guests'] = guests
         
         # IMAGE
-        fandom_url = "https://spongebob.fandom.com/wiki/" + nama_episode.replace(" ", "_")
-        image_url = get_image(fandom_url)
-        
+        image_url = get_attribute(eps_uri, "hasImageEps")
+        fandom_url = get_attribute(eps_uri, "hasUrlEps")
         context['fandom'] = fandom_url
         context['image_url'] = image_url
 
+        # Desc
         context['summary'] = get_best_summary(nama_episode)
-        
+        print(context['summary'])
+        print(nama_episode)
+        context['synopsis'] = get_synopsis(nama_episode)
         ############################################################
         return render(request, 'template.html', context)
     else:
         return HttpResponseNotFound(f"Episode '{nama_episode}' tidak ditemukan.")
-
-def get_image(fandom_url):
-    try:
-        response = requests.get(fandom_url)
-        soup = BeautifulSoup(response.text, 'html.parser')
-
-        infobox_image = soup.select_one(".pi-image-thumbnail")
-        if infobox_image:
-            image_url = infobox_image['src']
-            return image_url
-        else:
-            return None
-    except:
-        return None
 
 def get_imdb_rating(imdb_id):
     url = f'https://www.imdb.com/title/{imdb_id}/'
@@ -388,3 +378,32 @@ def get_best_summary(page_title):
         best_summary = get_summary_fandom(page_title)
 
     return best_summary
+
+def get_synopsis(page_title):
+    page = fandom.page(page_title)
+    data = page.content
+    def dfs(section):
+        html = ""
+        
+        # Jika ada content, kita pisahkan berdasarkan paragraf
+        if section['content']:
+            # Pisahkan konten berdasarkan paragraf yang dipisahkan dengan '\n'
+            paragraphs = section['content'].split('\n')
+            for paragraph in paragraphs:
+                if paragraph.strip():  # Memastikan paragraf tidak kosong
+                    html += f"<p class='mb-4'>{paragraph.strip()}</p>"
+        
+        # Jika ada subsections, lakukan rekursi
+        if 'sections' in section:
+            for sub_section in section['sections']:
+                html += f"<div class='ml-4'>"
+                html += f"<h4 class='text-xl font-semibold'>{sub_section['title']}</h4>"
+                html += dfs(sub_section)  # DFS ke sub-section
+                html += "</div>"
+        
+        return html
+    html_content = ""
+    for section in data['sections']:
+        if section['title'] == 'Synopsis':
+            html_content += dfs(section)  # Mulai DFS untuk bagian Synopsis 
+    return html_content
