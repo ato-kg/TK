@@ -329,7 +329,7 @@ def get_summary_bs4(url):
                     sup.decompose()
                 summary = p.get_text(strip=False)
                 return summary
-    return "Summary not found."
+    return ""
 
 def get_summary_fandom(page_title):
     BASE_URL = "https://spongebob.fandom.com/wiki"
@@ -361,7 +361,7 @@ def get_summary_fandom(page_title):
                     summary = p.get_text(strip=False)
                     return summary
     except fandom.error.PageError:
-        return "Summary not found."
+        return ""
     
 def get_best_summary(page_title):
     BASE_URL = "https://spongebob.fandom.com/wiki"
@@ -380,7 +380,10 @@ def get_best_summary(page_title):
     return best_summary
 
 def get_synopsis(page_title):
-    page = fandom.page(page_title)
+    try:
+        page = fandom.page(page_title)
+    except:
+        return ""
     data = page.content
     def dfs(section):
         html = ""
@@ -403,7 +406,8 @@ def get_synopsis(page_title):
         
         return html
     html_content = ""
-    for section in data['sections']:
-        if section['title'] == 'Synopsis':
-            html_content += dfs(section)  # Mulai DFS untuk bagian Synopsis 
+    if data.get('sections',None):
+        for section in data['sections']:
+            if section['title'] == 'Synopsis':
+                html_content += dfs(section)  # Mulai DFS untuk bagian Synopsis 
     return html_content

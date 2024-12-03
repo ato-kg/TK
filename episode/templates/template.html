@@ -18,13 +18,23 @@
                 {% endif %}
             </h1>
             <hr class="border-t-2 border-gray-300 mb-6">  <!-- Pembatas -->
+            
+            {% if summary %}
             <p class="text-gray-700 mb-6">
                 {{ summary }}
             </p>
+            {% else %}
+                <p class="text-center text-gray-500 col-span-full">No Summary available.</p>
+            {% endif %}
+
+            <h2 class="text-2xl font-bold text-gray-700 border-b pb-2 mb-4">Synopsis</h2>
+            {% if synopsis %}
             <div>
-                <h2 class="text-2xl font-bold text-gray-700 border-b pb-2 mb-4">Synopsis</h2>
                 {{ synopsis|safe }}
             </div>
+            {% else %}
+                <p class="text-center text-gray-500 col-span-full">No Synopsis available.</p>
+            {% endif %}
 
                 
             <div class="mt-6">
@@ -79,17 +89,29 @@
                     </div>
                 {% endif %}
                 <div class="mt-6 text-center">
+                    {% if fandom %}
                     <a href="{{ fandom }}"
                         class="text-xl font-semibold text-blue-600 hover:text-blue-700 hover:underline"
                         target="_blank">
                         Fandom
                     </a>
+                    {% else %}
+                    <span class="text-xl font-semibold">
+                        Fandom
+                    </span>
+                    {% endif %}
                     <span class="mx-2 text-gray-500 text-3xl font-bold">-</span> <!-- Dot Separator -->
+                    {% if eps_wd %}
                     <a href="{{ eps_wd }}"
                         class="text-xl font-semibold text-blue-600 hover:text-blue-700 hover:underline"
                         target="_blank">
                         Wikidata
                     </a>
+                    {% else %}
+                    <span class="text-xl font-semibold">
+                        Wikidata
+                    </span>
+                    {% endif %}
                     <span class="mx-2 text-gray-500 text-3xl font-bold">-</span> <!-- Dot Separator -->
                     <a href="{% url 'gallery_episode' title %}"
                         class="text-xl font-semibold text-blue-600 hover:text-blue-700 hover:underline">
