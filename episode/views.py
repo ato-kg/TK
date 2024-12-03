@@ -274,6 +274,22 @@ def episode_view(request, nama_episode : str):
         # IMAGE
         image_url = get_attribute(eps_uri, "hasImageEps")
         fandom_url = get_attribute(eps_uri, "hasUrlEps")
+        
+
+        if not fandom_url:
+            fandom_url = "https://spongebob.fandom.com/wiki/" + nama_episode.replace(" ", "_")
+            response = requests.get(fandom_url)
+
+            if "There is currently no text in this page" in response.text:
+                fandom_url = None
+        
+        if fandom_url:
+            image_url = get_image(fandom_url)
+
+
+
+
+
         context['fandom'] = fandom_url
         context['image_url'] = image_url
 
@@ -287,6 +303,21 @@ def episode_view(request, nama_episode : str):
     else:
         return HttpResponseNotFound(f"Episode '{nama_episode}' tidak ditemukan.")
 
+
+def get_image(fandom_url):
+    try:
+        response = requests.get(fandom_url)
+        soup = BeautifulSoup(response.text, 'html.parser')
+
+        infobox_image = soup.select_one(".pi-image-thumbnail")
+        if infobox_image:
+            image_url = infobox_image['src']
+            return image_url
+        else:
+            return None
+    except:
+        return None
+    
 def get_imdb_rating(imdb_id):
     url = f'https://www.imdb.com/title/{imdb_id}/'
     
@@ -381,33 +412,36 @@ def get_best_summary(page_title):
 
 def get_synopsis(page_title):
     try:
+        print(page_title)
         page = fandom.page(page_title)
+        data = page.content
+    
+        def dfs(section):
+            html = ""
+            
+            # Jika ada content, kita pisahkan berdasarkan paragraf
+            if section['content']:
+                # Pisahkan konten berdasarkan paragraf yang dipisahkan dengan '\n'
+                paragraphs = section['content'].split('\n')
+                for paragraph in paragraphs:
+                    if paragraph.strip():  # Memastikan paragraf tidak kosong
+                        html += f"<p class='mb-4'>{paragraph.strip()}</p>"
+            
+            # Jika ada subsections, lakukan rekursi
+            if 'sections' in section:
+                for sub_section in section['sections']:
+                    html += f"<div class='ml-4'>"
+                    html += f"<h4 class='text-xl font-semibold'>{sub_section['title']}</h4>"
+                    html += dfs(sub_section)  # DFS ke sub-section
+                    html += "</div>"
+            
+            return html
+        html_content = ""
+        if data.get('sections',None):
+            for section in data['sections']:
+                if section['title'] in ('Synopsis','Plot'):
+                    print(section)
+                    html_content += dfs(section)  # Mulai DFS untuk bagian Synopsis 
+        return html_content
     except:
         return ""
-    data = page.content
-    def dfs(section):
-        html = ""
-        
-        # Jika ada content, kita pisahkan berdasarkan paragraf
-        if section['content']:
-            # Pisahkan konten berdasarkan paragraf yang dipisahkan dengan '\n'
-            paragraphs = section['content'].split('\n')
-            for paragraph in paragraphs:
-                if paragraph.strip():  # Memastikan paragraf tidak kosong
-                    html += f"<p class='mb-4'>{paragraph.strip()}</p>"
-        
-        # Jika ada subsections, lakukan rekursi
-        if 'sections' in section:
-            for sub_section in section['sections']:
-                html += f"<div class='ml-4'>"
-                html += f"<h4 class='text-xl font-semibold'>{sub_section['title']}</h4>"
-                html += dfs(sub_section)  # DFS ke sub-section
-                html += "</div>"
-        
-        return html
-    html_content = ""
-    if data.get('sections',None):
-        for section in data['sections']:
-            if section['title'] == 'Synopsis':
-                html_content += dfs(section)  # Mulai DFS untuk bagian Synopsis 
-    return html_content
