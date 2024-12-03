@@ -24,8 +24,9 @@ def get_attribute(eps_uri, atr):
     LIMIT 1
     """
     results = rdf_manager.query(sparql_query)
-    print(results)
-    return results[0]['o']['value']
+    if results:
+        return results[0]['o']['value']
+    return None
 
 def get_eps_fandom_page(nama_episode : str):
     sparql_query = f"""
@@ -46,17 +47,12 @@ def get_eps_fandom_page(nama_episode : str):
     results = rdf_manager.query(sparql_query, params)
     if results:
         eps_uri = results[0]['s']['value']
-        eps_wd = get_attribute(eps_uri, "hasWikidata")
+        if not eps_uri:
+            return None
+        eps_fandom = get_attribute(eps_uri, "hasUrlEps")
         
-        results = wikidata_manager.get_attribute(eps_wd, "http://www.wikidata.org/prop/direct/P6262")
-        spongebob_value = next(
-            (item['object']['value'] for item in results 
-            if item['object']['value'].startswith('spongebob:')), 
-            None
-        )
-        
-        if spongebob_value:
-            fandom_page = "https://spongebob.fandom.com/wiki/" + spongebob_value.split(":")[1]
+        if eps_fandom:
+            fandom_page = eps_fandom 
         else:
             fandom_page = None
     
@@ -126,10 +122,19 @@ def get_char_fandom_page(nama_karakter : str):
 
 def get_images_char_caption(fandom_page : str):
     if fandom_page:
-        response = requests.get(fandom_page)
-        soup = BeautifulSoup(response.content, 'html.parser')
-        gallery = soup.find('div', {'id': 'gallery-0'})
-        gallery_item = gallery.find_all('div', {'class': 'wikia-gallery-item'}, recursive=False)
+        try:
+            response = requests.get(fandom_page)
+            soup = BeautifulSoup(response.content, 'html.parser')
+            gallery = soup.find('div', {'id': 'gallery-0'})
+            gallery_item = gallery.find_all('div', {'class': 'wikia-gallery-item'}, recursive=False)
+        except:
+            fandom_page = fandom_page.replace("/gallery", "")
+            response = requests.get(fandom_page)
+            soup = BeautifulSoup(response.content, 'html.parser')
+            gallery = soup.find('div', {'id': 'gallery-0'})
+            if not gallery:
+                return None
+            gallery_item = gallery.find_all('div', {'class': 'wikia-gallery-item'}, recursive=False)
 
         images = []
         for item in gallery_item:
