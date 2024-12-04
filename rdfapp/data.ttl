@@ -93785,3 +93785,1726 @@ exv:hasUrlEps a rdf:Property ;
 
 ex:chefbob exv:hasImageChar "https://static.wikia.nocookie.net/spongebob/images/2/2d/ChefBob_096.png/revision/latest/scale-to-width-down/1000?cb=20180810015248" .
 
+ex:20%2C000pattiesunderthesea exv:hasIMDB "tt1169731" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:abandontwits exv:hasIMDB "tt15215152" .
+
+ex:acabininthekelp exv:hasIMDB "tt10084376" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:accidentswillhappen exv:hasIMDB "tt1979928" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:adaywithouttears exv:hasIMDB "tt1560384" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:afleainherdome exv:hasIMDB "tt1081799" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:afriendlygame exv:hasIMDB "tt1895138" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:ain%27tthatthetooth exv:hasIMDB "tt18949578" .
+
+ex:alifeinaday exv:hasIMDB "tt1272820" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:allergyattack%21 exv:hasIMDB "tt18949584" .
+
+ex:allthatglitters exv:hasIMDB "tt0829059" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:apalforgary exv:hasIMDB "tt1560380" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:aplaceforpets exv:hasIMDB "tt9765202" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:appointmenttv exv:hasIMDB "tt8260932" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:arbordaydisarray exv:hasIMDB "tt18949578" .
+
+ex:areyouhappynow%3F exv:hasIMDB "tt2337387" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:arrgh%21 exv:hasIMDB "tt0769426" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:artistunknown exv:hasIMDB "tt0832785" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:askinwrinkleintime exv:hasIMDB "tt15215148" .
+
+ex:asquarepantsfamilyvacation exv:hasIMDB "tt2102063" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:asseenontv exv:hasIMDB "tt0832772" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:atlantissquarepantis exv:hasIMDB "tt1141570" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:backtothepast exv:hasIMDB "tt1560382" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:bandgeeks exv:hasIMDB "tt0707287" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:bannedinbikinibottom exv:hasIMDB "tt1169730" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:barnacleface exv:hasIMDB "tt2055376" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:bassward exv:hasIMDB "tt30136354" .
+
+ex:bestdayever exv:hasIMDB "tt0893234" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:bestfrenemies exv:hasIMDB "tt0907541" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:biddysitting exv:hasIMDB "tt9222498" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:bigleaguebob exv:hasIMDB "tt33037616" .
+
+ex:bigpinkloser exv:hasIMDB "tt0707290" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:bigsistersam exv:hasIMDB "tt1859290" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:bigtopflop exv:hasIMDB "tt18949592" .
+
+ex:blackenedsponge exv:hasIMDB "tt1081800" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:blackjack exv:hasIMDB "tt1081802" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:bloodisthickerthangrease exv:hasIMDB "tt29360955" .
+
+ex:boatingbuddies exv:hasIMDB "tt1272821" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:boatingschool exv:hasIMDB "tt0769432" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:boatsmarts exv:hasIMDB "tt1075274" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:bornagainkrabs exv:hasIMDB "tt0707288" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:borntobewild exv:hasIMDB "tt0907541" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:bossforaday exv:hasIMDB "tt10089484" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:bossyboots exv:hasIMDB "tt0707289" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:bottleburglars exv:hasIMDB "tt8253350" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:breakin%27 exv:hasIMDB "tt1868973" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:breathoffreshsquidward exv:hasIMDB "tt1076699" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:brokenalarm exv:hasIMDB "tt9222488" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:bubblebass%27stab exv:hasIMDB "tt10084382" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:bubblebuddy exv:hasIMDB "tt0707290" ;
+    exv:hasLocation "Bikini Bottom",
+        "Goo Lagoon" .
+
+ex:bubblebuddyreturns exv:hasIMDB "tt2124563" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:bubblestand exv:hasIMDB "tt0769427" ;
+    exv:hasLocation "Bikini Bottom",
+        "Conch Street" .
+
+ex:bubbletown exv:hasIMDB "tt8260946" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:bubbletroubles exv:hasIMDB "tt2124565" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:bucketsweetbucket exv:hasIMDB "tt1078256" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:buffforpuff exv:hasIMDB "tt19038068" .
+
+ex:bulletinboard exv:hasIMDB "tt5970278" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:bummervacation exv:hasIMDB "tt0882615" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:bumpertobumper exv:hasIMDB "tt2512000" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:bunnyhunt exv:hasIMDB "tt7534442" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:buriedintime exv:hasIMDB "tt1560381" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:burstyourbubble exv:hasIMDB "tt6539410" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:c.h.u.m.s exv:hasIMDB "tt13453820" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:callthecops exv:hasIMDB "tt8260866" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:canyouspareadime%3F exv:hasIMDB "tt0832772" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:captainpipsqueak exv:hasIMDB "tt15215146" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:cavedwellingsponge exv:hasIMDB "tt7103982" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:cephalopodlodge exv:hasIMDB "tt1379144" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:chatterboxgary exv:hasIMDB "tt7809196" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:chefbob exv:hasIMDB "tt8260838" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:chimpsahoy exv:hasIMDB "tt0832775" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:chocolatewithnuts exv:hasIMDB "tt0707301" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:choirboys exv:hasIMDB "tt1329073" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:christmaswho%3F exv:hasIMDB "tt0707305" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:chumbucketsupreme exv:hasIMDB "tt1449036" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:chumcaverns exv:hasIMDB "tt1420882" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:chumfricassee exv:hasIMDB "tt2480712" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:clams exv:hasIMDB "tt0832781" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:clubspongebob exv:hasIMDB "tt0832773" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:codeyellow exv:hasIMDB "tt6382746" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:companypicnic exv:hasIMDB "tt4980472" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:copybobdittopants exv:hasIMDB "tt5656642" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:cuddlee.hugs exv:hasIMDB "tt7614782" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:cultureshock exv:hasIMDB "tt0769428" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:dearvikings exv:hasIMDB "tt1329071" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:deliverytomonsterisland exv:hasIMDB "tt18949568" .
+
+ex:demolitiondoofus exv:hasIMDB "tt2260070" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:dirtybubblereturns exv:hasIMDB "tt9222496" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:ditchin%27 exv:hasIMDB "tt1329071" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:doingtime exv:hasIMDB "tt0707300" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:don%27tfeedtheclowns exv:hasIMDB "tt7809196" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:don%27tlooknow exv:hasIMDB "tt3034754" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:don%27tmakemelaugh exv:hasIMDB "tt29360955" .
+
+ex:don%27twakepatrick exv:hasIMDB "tt6735072" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:doodledimension exv:hasIMDB "tt8253348" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:dopeydick exv:hasIMDB "tt18949588" .
+
+ex:dreamhoppers exv:hasIMDB "tt10084388" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:drivehappy exv:hasIMDB "tt7809212" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:driventotears exv:hasIMDB "tt0954808" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:drivethru exv:hasIMDB "tt1960864" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:dumped exv:hasIMDB "tt0832789" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:duncesanddragons exv:hasIMDB "tt0774435" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:dyingforpie exv:hasIMDB "tt0766195" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:earworm exv:hasIMDB "tt1771816" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:eek%2Canurchin%21 exv:hasIMDB "tt2460336" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:employeeofthemonth exv:hasIMDB "tt0769438" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:enchantedtikidreams exv:hasIMDB "tt1560381" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:enemyin-law exv:hasIMDB "tt0832774" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:escapefrombeneathgloveworld exv:hasIMDB "tt10084386" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:evilspatula exv:hasIMDB "tt2762292" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:extremespots exv:hasIMDB "tt2260050" ;
+    exv:hasLocation "Bikini Bottom" .
+
+<http://example.org/data/f.u.n.> exv:hasIMDB "tt0769428" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:facefreeze%21 exv:hasIMDB "tt2260074" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:farmerbob exv:hasIMDB "tt9222468" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:fearofakrabbypatty exv:hasIMDB "tt0707308" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:feralfriends exv:hasIMDB "tt6735072" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:fiasco%21 exv:hasIMDB "tt2330167" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:foodconcastaways exv:hasIMDB "tt5834104" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:foodpbfft%21truck exv:hasIMDB "tt15215142" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:foolsinapril exv:hasIMDB "tt0707303" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:forhereortogo exv:hasIMDB "tt2332285" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:frankendoodle exv:hasIMDB "tt0832794" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:freesamples exv:hasIMDB "tt2380873" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:friendiversary exv:hasIMDB "tt18949582" .
+
+ex:friendorfoe exv:hasIMDB "tt0999276" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:frozenface-off exv:hasIMDB "tt1979927" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:fun-believable exv:hasIMDB "tt18949576" .
+
+ex:fun-sizedfriends exv:hasIMDB "tt7809244" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:fungusamongus exv:hasIMDB "tt0971106" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:funnypants exv:hasIMDB "tt0832787" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:gary%26spot exv:hasIMDB "tt9222468" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:gary%27sgotlegs exv:hasIMDB "tt9222474" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:gary%27snewtoy exv:hasIMDB "tt2432130" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:gary%27splayhouse exv:hasIMDB "tt18949586" .
+
+ex:garyinlove exv:hasIMDB "tt1619564" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:garytakesabath exv:hasIMDB "tt0707316" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:ghosthost exv:hasIMDB "tt0832775" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:ghoulfools exv:hasIMDB "tt2089404" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:giantsquidward exv:hasIMDB "tt1272822" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:girls%27nightout exv:hasIMDB "tt8260946" ;
+    exv:hasLocation "Bikini Bottom" .
+
+<http://example.org/data/gloveworldr.i.p.> exv:hasIMDB "tt2260074" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:gone exv:hasIMDB "tt1272826" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:goodbye%2Ckrabbypatty%3F exv:hasIMDB "tt5123790" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:goodneighbors exv:hasIMDB "tt0832788" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:goodol%27whatshisname exv:hasIMDB "tt1075274" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:goofyscoopers exv:hasIMDB "tt1810100" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:googoogas exv:hasIMDB "tt1170320" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:goonsonthemoon exv:hasIMDB "tt8260930" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:gramma%27ssecretrecipe exv:hasIMDB "tt1686275" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:grandma%27skisses exv:hasIMDB "tt0707291" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:grandmum%27stheword exv:hasIMDB "tt7809244" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:grandpappythepirate exv:hasIMDB "tt1379144" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:graveyardshift exv:hasIMDB "tt0707292" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:greasybuffoons exv:hasIMDB "tt1559935" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:groominggary exv:hasIMDB "tt1329074" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:growthspout exv:hasIMDB "tt1472907" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:gulliblepants exv:hasIMDB "tt1449035" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:hallmonitor exv:hasIMDB "tt0769429" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:handemonium exv:hasIMDB "tt1868973" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:haveyouseenthissnail%3F exv:hasIMDB "tt0707315" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:hellobikinibottom%21 exv:hasIMDB "tt2432132" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:helpwanted exv:hasIMDB "tt0707293" ;
+    exv:hasLocation "Bikini Bottom",
+        "Krusty Krab" .
+
+ex:hiccupplague exv:hasIMDB "tt10084370" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:hideandthenwhathappens%3F exv:hasIMDB "tt5325976" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:highseadiving exv:hasIMDB "tt8253350" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:hocuspocus exv:hasIMDB "tt0937306" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:homesweetpineapple exv:hasIMDB "tt0769433" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:homesweetrubble exv:hasIMDB "tt2380873" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:hooky exv:hasIMDB "tt0707294" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:hotcrossednuts exv:hasIMDB "tt18949574" .
+
+ex:housefancy exv:hasIMDB "tt1272824" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:housesittin%27forsandy exv:hasIMDB "tt2082958" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:houseworming exv:hasIMDB "tt6114920" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:hystericalhistory exv:hasIMDB "tt31227907" .
+
+ex:i%27mwithstupid exv:hasIMDB "tt0707295" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:i%27myourbiggestfanatic exv:hasIMDB "tt0832782" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:idiotbox exv:hasIMDB "tt0832780" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:ihadanaccident exv:hasIMDB "tt0707288" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:imitationkrabs exv:hasIMDB "tt0766195" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:inklemonade exv:hasIMDB "tt8260768" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:insecurityguards exv:hasIMDB "tt9222484" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:inspongeiac exv:hasIMDB "tt2330171" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:inthemoodtofeud exv:hasIMDB "tt31227903" .
+
+ex:it%27saspongebobchristmas%21 exv:hasIMDB "tt2476918" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:itcamefromgoolagoon exv:hasIMDB "tt3034750" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:iwasateenagegary exv:hasIMDB "tt0707307" ;
+    exv:hasLocation "Bikini Bottom" .
+
+<http://example.org/data/i♥dancing> exv:hasIMDB "tt1472911" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:jailbreak%21 exv:hasIMDB "tt2762292" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:jellyfishhunter exv:hasIMDB "tt0832776" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:jellyfishing exv:hasIMDB "tt0707296" ;
+    exv:hasLocation "Bikini Bottom",
+        "Jellyfish Fields",
+        "Squidward Tentacles' house" .
+
+ex:jellyfishjam exv:hasIMDB "tt0769429" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:jollylodgers exv:hasIMDB "tt9222498" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:justonebite exv:hasIMDB "tt0707313" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:karatechoppers exv:hasIMDB "tt0769435" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:karateisland exv:hasIMDB "tt0810723" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:karatestar exv:hasIMDB "tt1686276" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:karen%27sbaby exv:hasIMDB "tt9222488" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:karen%27svirus exv:hasIMDB "tt8260932" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:karen2.0 exv:hasIMDB "tt2330171" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:karenforspot exv:hasIMDB "tt18949570" .
+
+ex:keepbikinibottombeautiful exv:hasIMDB "tt1560380" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:kennythecat exv:hasIMDB "tt3034772" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:kingplankton exv:hasIMDB "tt9222474" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:knockknock%2Cwho%27sthere%3F exv:hasIMDB "tt10084362" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:komputeroverload exv:hasIMDB "tt1393643" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:kookycooks exv:hasIMDB "tt10084382" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:krabborg exv:hasIMDB "tt0707297" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:krabbyland exv:hasIMDB "tt0832777" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:krabbypattycreaturefeature exv:hasIMDB "tt7529578" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:krabbyroad exv:hasIMDB "tt1272824" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:krabsvs.plankton exv:hasIMDB "tt0832791" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:krabsàlamode exv:hasIMDB "tt1076088" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:krackedkrabs exv:hasIMDB "tt1720765" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:kreepawaykamp exv:hasIMDB "tt31227909" .
+
+ex:krustydogs exv:hasIMDB "tt1742997" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:krustykatering exv:hasIMDB "tt1941082" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:krustykleaners exv:hasIMDB "tt8260806" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:krustykoncessionaires exv:hasIMDB "tt10084388" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:krustykrabtrainingvideo exv:hasIMDB "tt0707298" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:krustykrushers exv:hasIMDB "tt1329072" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:krustylove exv:hasIMDB "tt0707292" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:krustytowers exv:hasIMDB "tt0832778" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:kwarantinedkrab exv:hasIMDB "tt10084372" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:lameandfortune exv:hasIMDB "tt5659110" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:larry%27sgym exv:hasIMDB "tt5433216" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:larrythefloormanager exv:hasIMDB "tt7289106" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:lebigswitch exv:hasIMDB "tt1170320" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:librarycards exv:hasIMDB "tt8260854" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:licensetomilkshake exv:hasIMDB "tt2369716" ;
+    exv:hasLocation "Bikini Bottom",
+        "Milkshake Academy" .
+
+ex:lifeinsurance exv:hasIMDB "tt6539410" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:lifeofcrime exv:hasIMDB "tt0707306" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:lighthouselouie exv:hasIMDB "tt10084370" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:littleyellowbook exv:hasIMDB "tt2512000" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:lockdownforlove exv:hasIMDB "tt9765202" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:lostandfound exv:hasIMDB "tt6663030" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:lostinbikinibottom exv:hasIMDB "tt2102062" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:lovethatsquid exv:hasIMDB "tt5326000" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:maandpa%27sbighurrah exv:hasIMDB "tt18949572" .
+
+ex:mallgirlpearl exv:hasIMDB "tt5509104" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:mandatorymusic exv:hasIMDB "tt18949582" .
+
+ex:manrayreturns exv:hasIMDB "tt7289106" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:marriedtomoney exv:hasIMDB "tt5690146" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:mermaidman%26barnacleboyvi%3Athemotionpicture exv:hasIMDB "tt0832774" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:mermaidmanandbarnacleboy exv:hasIMDB "tt0707302" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:mermaidmanandbarnacleboyii exv:hasIMDB "tt0707294" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:mermaidmanandbarnacleboyiii exv:hasIMDB "tt0707299" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:mermaidmanandbarnacleboyiv exv:hasIMDB "tt0707300" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:mermaidmanandbarnacleboyv exv:hasIMDB "tt0707301" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:mermaidmanbegins exv:hasIMDB "tt2058479" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:mermaidmanvs.spongebob exv:hasIMDB "tt1081800" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:mermaidpants exv:hasIMDB "tt6094200" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:mid-lifecrustacean exv:hasIMDB "tt0832790" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:mimicmadness exv:hasIMDB "tt6114920" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:mindthegap exv:hasIMDB "tt9222496" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:missingidentity exv:hasIMDB "tt0832784" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:modelsponge exv:hasIMDB "tt1559935" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:momageddon exv:hasIMDB "tt31227893" .
+
+ex:moneytalks exv:hasIMDB "tt1081801" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:mooncation exv:hasIMDB "tt2124560" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:mooned%21 exv:hasIMDB "tt31227907" .
+
+ex:moveitorloseit exv:hasIMDB "tt2444840" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:movingbubblebass exv:hasIMDB "tt8253348" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:mr.krabstakesavacation exv:hasIMDB "tt2124560" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:mrs.puff%2Cyou%27refired exv:hasIMDB "tt0832778" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:musclebobbuffpants exv:hasIMDB "tt0769430" ;
+    exv:hasLocation "Bikini Bottom",
+        "Goo Lagoon" .
+
+ex:mustardo%27mine exv:hasIMDB "tt8260790" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:mutinyonthekrusty exv:hasIMDB "tt5852726" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:myfriendpatty exv:hasIMDB "tt18949576" .
+
+ex:myleg%21 exv:hasIMDB "tt8260768" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:myprettyseahorse exv:hasIMDB "tt0832773" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:mytwokrabses exv:hasIMDB "tt10084352" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:nastypatty exv:hasIMDB "tt0832780" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:naturepants exv:hasIMDB "tt0769431" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:naughtynauticalneighbors exv:hasIMDB "tt0769432" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:nauticalnovice exv:hasIMDB "tt1272828" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:necro-nom-nom-nom-i-con exv:hasIMDB "tt31227898" .
+
+ex:neptune%27sspatula exv:hasIMDB "tt0707303" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:newdigs exv:hasIMDB "tt1076088" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:newfishintown exv:hasIMDB "tt5326000" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:newleaf exv:hasIMDB "tt0837733" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:newstudentstarfish exv:hasIMDB "tt0832781" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:nightlight exv:hasIMDB "tt1033384" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:nofreerides exv:hasIMDB "tt0832782" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:nohatforpat exv:hasIMDB "tt1393645" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:nonoseknows exv:hasIMDB "tt1272822" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:nopicturesplease exv:hasIMDB "tt7463932" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:notnormal exv:hasIMDB "tt1272826" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:noweeniesallowed exv:hasIMDB "tt0707304" ;
+    exv:hasLocation "Bikini Bottom",
+        "Goo Lagoon" .
+
+ex:oldmanpatrick exv:hasIMDB "tt7809212" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:oncebitten exv:hasIMDB "tt0837733" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:onecoarsemeal exv:hasIMDB "tt1619564" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:onekrabstrash exv:hasIMDB "tt0832792" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:onetricksponge exv:hasIMDB "tt9222480" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:oppositeday exv:hasIMDB "tt0769431" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:oralreport exv:hasIMDB "tt1953257" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:outofthepicture exv:hasIMDB "tt6663032" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:overbooked exv:hasIMDB "tt1449035" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:partypooperpants exv:hasIMDB "tt0707310" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:patheartssquid exv:hasIMDB "tt10084362" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:patnocchio exv:hasIMDB "tt8260838" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:patnopay exv:hasIMDB "tt1081802" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:patrick%21thegame exv:hasIMDB "tt5162808" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:patrick%27scoupon exv:hasIMDB "tt6663032" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:patrick%27sstaycation exv:hasIMDB "tt2124562" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:patrick%27stantrum exv:hasIMDB "tt10084374" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:patrick-man%21 exv:hasIMDB "tt2432130" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:patricksmartpants exv:hasIMDB "tt0832783" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:patrickthemailman exv:hasIMDB "tt15215144" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:patthedog exv:hasIMDB "tt1810100" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:patthehorse exv:hasIMDB "tt7614782" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:pattycaper exv:hasIMDB "tt1272834" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:pattyhype exv:hasIMDB "tt0830056" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:pennyfoolish exv:hasIMDB "tt1272828" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:perfectchemistry exv:hasIMDB "tt1859290" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:pestofthewest exv:hasIMDB "tt1272829" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:petorpests exv:hasIMDB "tt1393643" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:petsitterpat exv:hasIMDB "tt2055376" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:pettherock exv:hasIMDB "tt31227893" .
+
+ex:pickles exv:hasIMDB "tt0707302" ;
+    exv:hasLocation "Bikini Bottom",
+        "Krusty Krab" .
+
+ex:pictureday exv:hasIMDB "tt1081802" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:pineapplefever exv:hasIMDB "tt1420882" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:pineappleinvasion exv:hasIMDB "tt5831910" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:pineapplerv exv:hasIMDB "tt9222472" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:pizzadelivery exv:hasIMDB "tt0769433" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:pl-1413 exv:hasIMDB "tt31227903" .
+
+ex:planetofthejellyfish exv:hasIMDB "tt2337387" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:planetosea exv:hasIMDB "tt15215146" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:plankton%21 exv:hasIMDB "tt0707296" ;
+    exv:hasLocation "Bikini Bottom",
+        "Chum Bucket",
+        "Krusty Krab" .
+
+ex:plankton%27sarmy exv:hasIMDB "tt0832784" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:plankton%27sgoodeye exv:hasIMDB "tt2058479" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:plankton%27sintern exv:hasIMDB "tt10084374" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:plankton%27soldchum exv:hasIMDB "tt9222478" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:plankton%27spet exv:hasIMDB "tt2632252" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:plankton%27sregular exv:hasIMDB "tt1272834" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:planktonandthebeanstalk exv:hasIMDB "tt18949588" .
+
+ex:planktongetstheboot exv:hasIMDB "tt6539398" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:planktonparanoia exv:hasIMDB "tt8260854" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:planktonretires exv:hasIMDB "tt6539412" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:porouspockets exv:hasIMDB "tt1329073" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:potatopuff exv:hasIMDB "tt14514048" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:pranksalot exv:hasIMDB "tt0707309" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:prehibernationweek exv:hasIMDB "tt0707306" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:pressure exv:hasIMDB "tt0792733" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:procrastination exv:hasIMDB "tt0707295" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:professorsquidward exv:hasIMDB "tt1374675" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:pullupabarrel exv:hasIMDB "tt4980472" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:reefblower exv:hasIMDB "tt0707293" ;
+    exv:hasLocation "Bikini Bottom",
+        "Conch Street" .
+
+ex:restrainingspongebob exv:hasIMDB "tt2330167" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:ridepatrickride exv:hasIMDB "tt18949568" .
+
+ex:rippedpants exv:hasIMDB "tt0769427" ;
+    exv:hasLocation "Bikini Bottom",
+        "Goo Lagoon" .
+
+ex:riseandshine exv:hasIMDB "tt0971106" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:rock-a-byebivalve exv:hasIMDB "tt0707297" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:rockbottom exv:hasIMDB "tt0769426" ;
+    exv:hasLocation "Bikini Bottom",
+        "Glove World!",
+        "Rock Bottom" .
+
+ex:rodeodaze exv:hasIMDB "tt1619565" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:rollercowards exv:hasIMDB "tt1078256" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:ruleofdumb exv:hasIMDB "tt0954808" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:safedepositkrabs exv:hasIMDB "tt2632252" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:sailormouth exv:hasIMDB "tt0832785" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:salsaimbecilicus exv:hasIMDB "tt5831910" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:saltysponge exv:hasIMDB "tt18949570" .
+
+ex:sammysuckerfish exv:hasIMDB "tt33037616" .
+
+ex:sanctuary%21 exv:hasIMDB "tt5041460" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:sandcastlesinthesand exv:hasIMDB "tt1393644" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:sandy%27snutmare exv:hasIMDB "tt5970278" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:sandy%27snuttynieces exv:hasIMDB "tt9222484" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:sandy%27srocket exv:hasIMDB "tt0769436" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:sandy%2Chelpus%21 exv:hasIMDB "tt18949592" .
+
+ex:sandy%2Cspongebob%2Candtheworm exv:hasIMDB "tt0832786" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:sanitationinsanity exv:hasIMDB "tt7534442" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:sayawww%21 exv:hasIMDB "tt15215144" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:sb-129 exv:hasIMDB "tt0769435" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:scaredypants exv:hasIMDB "tt0707307" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:scavengerpants exv:hasIMDB "tt7534490" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:sea-manspongehatersclub exv:hasIMDB "tt15215140" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:sellingout exv:hasIMDB "tt0832787" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:seniordiscount exv:hasIMDB "tt9222492" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:sentimentalsponge exv:hasIMDB "tt1895138" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:shanghaied exv:hasIMDB "tt0707316" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:sharksvs.pods exv:hasIMDB "tt5656642" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:sheldonsquarepants exv:hasIMDB "tt31227919" .
+
+ex:shellbackshenanigans exv:hasIMDB "tt5325976" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:shellgames exv:hasIMDB "tt9222492" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:shellofaman exv:hasIMDB "tt0707308" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:shellshocked exv:hasIMDB "tt1393644" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:shoppinglist exv:hasIMDB "tt8260790" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:shuffleboarding exv:hasIMDB "tt1374675" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:singasongofpatrick exv:hasIMDB "tt1075621" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:single-celleddefense exv:hasIMDB "tt19038068" .
+
+ex:singlecellanniversary exv:hasIMDB "tt1449036" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:sirurchinandsnailfail exv:hasIMDB "tt18949574" .
+
+ex:skillcrane exv:hasIMDB "tt0832788" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:slappydaze exv:hasIMDB "tt15215150" .
+
+ex:sleepytime exv:hasIMDB "tt0769437" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:slidewhistlestooges exv:hasIMDB "tt1272835" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:slimydancing exv:hasIMDB "tt1081801" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:smoothejazzatbikinibottom exv:hasIMDB "tt2082958" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:snailmail exv:hasIMDB "tt5834104" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:snoozeyoulose exv:hasIMDB "tt1941082" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:snowballeffect exv:hasIMDB "tt0832792" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:snowyellowandthesevenjellies exv:hasIMDB "tt31227916" .
+
+ex:sold%21 exv:hasIMDB "tt5659110" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:someone%27sinthekitchenwithsandy exv:hasIMDB "tt1472909" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:somethingnarwhalthiswaycomes exv:hasIMDB "tt13453820" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:somethingsmells exv:hasIMDB "tt0707289" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:spatulaoftheheavens exv:hasIMDB "tt18949586" .
+
+ex:spinthebottle exv:hasIMDB "tt7160384" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:sponge-cano%21 exv:hasIMDB "tt5325948" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:spongebob%27sbadhabit exv:hasIMDB "tt1819126" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:spongebob%27sbigbirthdayblowout exv:hasIMDB "tt9222502" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:spongebob%27slaststand exv:hasIMDB "tt1560383" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:spongebob%27splace exv:hasIMDB "tt6539398" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:spongebob%27sroadtochristmas exv:hasIMDB "tt14514044" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:spongebobinrandomland exv:hasIMDB "tt1819126" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:spongeboblongpants exv:hasIMDB "tt5433216" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:spongebobmeetsthestrangler exv:hasIMDB "tt0707309" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:spongebobonparade exv:hasIMDB "tt18949580" .
+
+ex:spongebobsquarepantsvs.thebigone exv:hasIMDB "tt1411029" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:spongebobvs.thepattygadget exv:hasIMDB "tt1081801" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:spongebobyou%27refired exv:hasIMDB "tt3034760" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:spongechovy exv:hasIMDB "tt29578256" .
+
+ex:spongeguardonduty exv:hasIMDB "tt0707312" ;
+    exv:hasLocation "Bikini Bottom",
+        "Goo Lagoon" .
+
+ex:spongehenge exv:hasIMDB "tt1169729" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:spongicus exv:hasIMDB "tt1272831" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:sportz%3F exv:hasIMDB "tt6561726" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:spotreturns exv:hasIMDB "tt7013576" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:spybuddies exv:hasIMDB "tt1075274" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:squeakyboots exv:hasIMDB "tt0769436" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:squid%27sdayoff exv:hasIMDB "tt0707317" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:squid%27sonabus exv:hasIMDB "tt9222482" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:squid%27svisit exv:hasIMDB "tt1449037" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:squidbaby exv:hasIMDB "tt2369716" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:squidbird exv:hasIMDB "tt18949584" .
+
+ex:squidbobtentaclepants exv:hasIMDB "tt0832783" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:squiddefense exv:hasIMDB "tt2460336" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:squidferatu exv:hasIMDB "tt15215150" .
+
+ex:squidiotbox exv:hasIMDB "tt30136354" .
+
+ex:squiditis exv:hasIMDB "tt2260070" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:squidnoir exv:hasIMDB "tt7534490" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:squidonstrike exv:hasIMDB "tt0832786" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:squidplusone exv:hasIMDB "tt4980394" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:squidtasticvoyage exv:hasIMDB "tt0876379" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:squidville exv:hasIMDB "tt0707291" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:squidward%27sschoolforgrown-ups exv:hasIMDB "tt1953257" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:squidward%27ssickdaze exv:hasIMDB "tt13195574" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:squidwardinclarinetland exv:hasIMDB "tt1476808" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:squidwardtheunfriendlyghost exv:hasIMDB "tt0769430" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:squidwood exv:hasIMDB "tt0954488" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:squilliamreturns exv:hasIMDB "tt0707304" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:squirreljelly exv:hasIMDB "tt8260950" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:squirreljokes exv:hasIMDB "tt0707299" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:squirrelrecord exv:hasIMDB "tt2260050" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:stanleys.squarepants exv:hasIMDB "tt1169730" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:stormyweather exv:hasIMDB "tt9222478" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:stuckinthewringer exv:hasIMDB "tt1472907" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:stuckontheroof exv:hasIMDB "tt7463932" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:suctioncupsymphony exv:hasIMDB "tt1272831" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:suds exv:hasIMDB "tt0769437" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:summerjob exv:hasIMDB "tt1560384" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:sunbleached exv:hasIMDB "tt1272820" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:superevilaquaticvillainteamupisgo%21 exv:hasIMDB "tt2480712" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:surfn%27turf exv:hasIMDB "tt8260866" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:survivaloftheidiots exv:hasIMDB "tt0832789" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:swampmates exv:hasIMDB "tt9222480" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:sweetandsoursquid exv:hasIMDB "tt1994322" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:swimmingfools exv:hasIMDB "tt18949590" .
+
+ex:séanceshméance exv:hasIMDB "tt3034754" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:tangotangle exv:hasIMDB "tt31227898" .
+
+ex:teaatthetreedome exv:hasIMDB "tt0707293" ;
+    exv:hasLocation "Bikini Bottom",
+        "Jellyfish Fields",
+        "Sandy's treedome" .
+
+ex:teacher%27spests exv:hasIMDB "tt7529578" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:tentacle-vision exv:hasIMDB "tt1472911" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:texas exv:hasIMDB "tt0707311" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:that%27snolady exv:hasIMDB "tt0876379" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:thatsinkingfeeling exv:hasIMDB "tt1686276" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:theabrasiveside exv:hasIMDB "tt1771816" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:thealgae%27salwaysgreener exv:hasIMDB "tt0707312" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:thebadguyclubforvillains exv:hasIMDB "tt1560382" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:theballadoffilthymuck exv:hasIMDB "tt9222470" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:thebattleofbikinibottom exv:hasIMDB "tt1169731" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:thebigbadbubblebass exv:hasIMDB "tt15215140" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:thebully exv:hasIMDB "tt0707313" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:thecampingepisode exv:hasIMDB "tt0832777" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:thecard exv:hasIMDB "tt1329072" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:thecentofmoney exv:hasIMDB "tt1686275" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:thechaperone exv:hasIMDB "tt0769438" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:thecheck-up exv:hasIMDB "tt7013576" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:theclamwhisperer exv:hasIMDB "tt7103982" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:theclashoftriton exv:hasIMDB "tt1644907" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:thecurseofbikinibottom exv:hasIMDB "tt1476808" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:thecurseofthehex exv:hasIMDB "tt5325944" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:thedirtybubblebass exv:hasIMDB "tt31227919" .
+
+ex:thedonutofshame exv:hasIMDB "tt1081799" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:theexecutivetreatment exv:hasIMDB "tt4980394" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:thefishbowl exv:hasIMDB "tt5690146" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:theflowerplot exv:hasIMDB "tt18949580" .
+
+ex:thefrycookgames exv:hasIMDB "tt0832776" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:thegetaway exv:hasIMDB "tt6663030" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:theghostofplankton exv:hasIMDB "tt10084352" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:thegiftofgum exv:hasIMDB "tt0893234" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:thegoobfather exv:hasIMDB "tt18949590" .
+
+ex:thegoodkrabbyname exv:hasIMDB "tt2444840" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:thegoofynewbie exv:hasIMDB "tt10089484" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:thegooglyartiste exv:hasIMDB "tt1994322" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:thegreatpattycaper exv:hasIMDB "tt1751815" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:thegreatsnailrace exv:hasIMDB "tt0832790" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:thegrillisgone exv:hasIMDB "tt8260944" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:thehankering exv:hasIMDB "tt10084376" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:thehotshot exv:hasIMDB "tt1960864" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:theincredibleshrinkingsponge exv:hasIMDB "tt6561726" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:theinmatesofsummer exv:hasIMDB "tt1169732" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:theinsidejob exv:hasIMDB "tt1472909" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:thekrabbykronicle exv:hasIMDB "tt1272821" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:thekrabbypattythatatebikinibottom exv:hasIMDB "tt2124563" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:thekrustybucket exv:hasIMDB "tt9222482" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:thekrustyplate exv:hasIMDB "tt1081799" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:thekrustyslammer exv:hasIMDB "tt9222472" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:thekrustysponge exv:hasIMDB "tt1075621" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:thelegendofboo-kinibottom exv:hasIMDB "tt7044772" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:thelostmattress exv:hasIMDB "tt0832791" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:themaindrain exv:hasIMDB "tt5325944" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:themasterpiece exv:hasIMDB "tt1730003" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:themonsterwhocametobikinibottom exv:hasIMDB "tt1819127" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:thenightpatty exv:hasIMDB "tt8260944" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:thenitwitting exv:hasIMDB "tt9222470" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:theoriginalfrycook exv:hasIMDB "tt1033384" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:theotherpatty exv:hasIMDB "tt1979928" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:thepaper exv:hasIMDB "tt0707314" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:thepinkpurloiner exv:hasIMDB "tt0954488" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:theplay%27sthething exv:hasIMDB "tt1619565" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:there%27saspongeinmysoup exv:hasIMDB "tt7160384" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:therewillbegrease exv:hasIMDB "tt14514048" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:thesecretbox exv:hasIMDB "tt0707287" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:thesewersofbikinibottom exv:hasIMDB "tt5162808" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:theslumberparty exv:hasIMDB "tt1329074" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:thesmokingpeanut exv:hasIMDB "tt0792733" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:thesplinter exv:hasIMDB "tt1272835" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:thespongewhocouldfly exv:hasIMDB "tt0832793" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:thestring exv:hasIMDB "tt8260950" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:thething exv:hasIMDB "tt0937306" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:thetwofacesofsquidward exv:hasIMDB "tt1169729" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:thewayofthesponge exv:hasIMDB "tt2124565" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:thewholetooth exv:hasIMDB "tt5852726" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:thewreckofthemaunaloa exv:hasIMDB "tt1742997" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:toloveapatty exv:hasIMDB "tt1076699" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:tosaveasquirrel exv:hasIMDB "tt1169732" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:tosquarepantsornottosquarepants exv:hasIMDB "tt1449037" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:toystoreofdoom exv:hasIMDB "tt1393645" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:treats%21 exv:hasIMDB "tt2332285" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:trenchbillies exv:hasIMDB "tt5325948" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:tridenttrouble exv:hasIMDB "tt6539412" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:truthorsquare exv:hasIMDB "tt1476037" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:tunnelofglove exv:hasIMDB "tt1704920" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:tutorsauce exv:hasIMDB "tt2102062" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:twothumbsdown exv:hasIMDB "tt5509104" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:ugh exv:hasIMDB "tt0759020" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:underthesmalltop exv:hasIMDB "tt13195574" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:unrealestate exv:hasIMDB "tt6382746" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:upturngirls exv:hasIMDB "tt15215142" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:valentine%27sday exv:hasIMDB "tt0707314" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:waiting exv:hasIMDB "tt0971106" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:walkingsmall exv:hasIMDB "tt0707311" ;
+    exv:hasLocation "Bikini Bottom",
+        "Goo Lagoon" .
+
+ex:walkingtheplankton exv:hasIMDB "tt2124562" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:wallhalla exv:hasIMDB "tt15215152" .
+
+ex:welcometobinarybottom exv:hasIMDB "tt15215148" .
+
+ex:welcometothebikinibottomtriangle exv:hasIMDB "tt1819127" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:welcometothechumbucket exv:hasIMDB "tt0832794" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:wetpainters exv:hasIMDB "tt0707298" ;
+    exv:hasLocation "Bikini Bottom" .
+
+<http://example.org/data/we♥hoops> exv:hasIMDB "tt29578256" .
+
+ex:whaleofabirthday exv:hasIMDB "tt0810723" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:whalewatching exv:hasIMDB "tt8260806" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:what%27seatingpatrick%3F exv:hasIMDB "tt5041460" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:whateverhappenedtospongebob%3F exv:hasIMDB "tt1279299" ;
+    exv:hasLocation "Bikini Bottom",
+        "Krusty Krab",
+        "New Kelp City" .
+
+ex:whelkattack exv:hasIMDB "tt1730003" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:whirlybrains exv:hasIMDB "tt6094200" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:whorzoo%3F exv:hasIMDB "tt10084372" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:wigstruck exv:hasIMDB "tt0882615" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:wishingyouwell exv:hasIMDB "tt0829059" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:wormy exv:hasIMDB "tt0830056" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:yellowpavement exv:hasIMDB "tt18949572" .
+
+ex:yetikrabs exv:hasIMDB "tt3034772" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:you%27regoingtopay...phone exv:hasIMDB "tt15215148" .
+
+ex:youdon%27tknowsponge exv:hasIMDB "tt1704920" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:yours%2Cmineandmine exv:hasIMDB "tt1720765" ;
+    exv:hasLocation "Bikini Bottom" .
+
+ex:yourshoe%27suntied exv:hasIMDB "tt0707317" ;
+    exv:hasLocation "Bikini Bottom" .
+
+exv:hasIMDB a rdf:Property ;
+    rdfs:domain exv:Character ;
+    rdfs:range xsd:string .
+
+exv:hasLocation a rdf:Property ;
+    rdfs:domain exv:Character ;
+    rdfs:range xsd:string .
+

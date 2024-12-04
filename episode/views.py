@@ -94,26 +94,24 @@ def episode_view(request, nama_episode : str):
     }
     context = {'title' : nama_episode}
     results = rdf_manager.query(sparql_query, params)
+    print(5,"l")
     if results:
         eps_uri = results[0]['s']['value']
         # WD FOR IMDB
         eps_wd = get_attribute(eps_uri, "hasWikidata")
         context['eps_wd'] = eps_wd
-        imdb_id = None
         imdb_url = None
-        rating = None
-        if eps_wd:
-            results = wikidata_manager.get_attribute(eps_wd, "http://www.wikidata.org/prop/direct/P345")
-            if not results:
-                results = wikidata_manager.get_attribute(eps_wd, "http://www.wikidata.org/prop/direct/P361")
-                if results:
-                    full_eps_wd = results[0]['object']['value']
-                    results = wikidata_manager.get_attribute(full_eps_wd, "http://www.wikidata.org/prop/direct/P345")
-            if results:
-                imdb_id = results[0]['object']['value']
-                imdb_url = f"https://www.imdb.com/title/{imdb_id}/"
-                
-            rating = get_imdb_rating(imdb_id)
+        imdb_id = get_attribute(eps_uri, "hasIMDB")
+        # if not results:
+        #     results = wikidata_manager.get_attribute(eps_wd, "http://www.wikidata.org/prop/direct/P361")
+        #     if results:
+        #         full_eps_wd = results[0]['object']['value']
+        #         results = wikidata_manager.get_attribute(full_eps_wd, "http://www.wikidata.org/prop/direct/P345")
+        print(5,"b4")
+        if imdb_id:
+            imdb_url = f"https://www.imdb.com/title/{imdb_id}/"
+        rating = get_imdb_rating(imdb_id)
+        print(5,"af")
         context['imdb_url'] = imdb_url
         context['rating'] = rating
 
@@ -270,34 +268,31 @@ def episode_view(request, nama_episode : str):
                 "roles" : roles
             })
         context['guests'] = guests
-        
+        print(1,"k")
         # IMAGE
         image_url = get_attribute(eps_uri, "hasImageEps")
         fandom_url = get_attribute(eps_uri, "hasUrlEps")
-        
+        print(5,"k")
 
         if not fandom_url:
             fandom_url = "https://spongebob.fandom.com/wiki/" + nama_episode.replace(" ", "_")
             response = requests.get(fandom_url)
-
+            print(5.5)
             if "There is currently no text in this page" in response.text:
                 fandom_url = None
-        
-        if fandom_url:
-            image_url = get_image(fandom_url)
 
-
-
+            if fandom_url:
+                image_url = get_image(fandom_url)
 
 
         context['fandom'] = fandom_url
         context['image_url'] = image_url
-
+        print("konz")
         # Desc
-        context['summary'] = get_best_summary(nama_episode)
-        print(context['summary'])
-        print(nama_episode)
-        context['synopsis'] = get_synopsis(nama_episode)
+        print("konz")
+        # context['summary'] = get_best_summary(nama_episode)
+        # context['synopsis'] = get_synopsis(nama_episode)
+        print("konz")
         ############################################################
         return render(request, 'template.html', context)
     else:
@@ -319,25 +314,28 @@ def get_image(fandom_url):
         return None
     
 def get_imdb_rating(imdb_id):
-    url = f'https://www.imdb.com/title/{imdb_id}/'
-    
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36'
-    }
-    
-    response = requests.get(url, headers=headers)
-    
-    if response.status_code == 200:
-        soup = BeautifulSoup(response.text, 'html.parser')
+    try:
+        url = f'https://www.imdb.com/title/{imdb_id}/'
         
-        rating_tag = soup.find('span', class_='sc-d541859f-1 imUuxf')
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36'
+        }
         
-        if rating_tag:
-            return rating_tag.text
+        response = requests.get(url, headers=headers)
+        
+        if response.status_code == 200:
+            soup = BeautifulSoup(response.text, 'html.parser')
+            
+            rating_tag = soup.find('span', class_='sc-d541859f-1 imUuxf')
+            
+            if rating_tag:
+                return rating_tag.text
+            else:
+                return "Rating not found"
         else:
-            return "Rating not found"
-    else:
-        return f"Error fetching page. Status code: {response.status_code}"
+            return f"Error fetching page. Status code: {response.status_code}"
+    except:
+        return None
 
 def get_summary_bs4(url):
     headers = {
@@ -410,12 +408,17 @@ def get_best_summary(page_title):
 
     return best_summary
 
-def get_synopsis(page_title):
+def get_summary_view(request, page_title):
     try:
-        print(page_title)
-        page = fandom.page(page_title)
+        summary = get_best_summary(page_title)
+        return JsonResponse({'summary': summary})
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=500)
+
+def get_synopsis(nama_episode):
+    try:
+        page = fandom.page(nama_episode)
         data = page.content
-    
         def dfs(section):
             html = ""
             
@@ -440,8 +443,14 @@ def get_synopsis(page_title):
         if data.get('sections',None):
             for section in data['sections']:
                 if section['title'] in ('Synopsis','Plot'):
-                    print(section)
                     html_content += dfs(section)  # Mulai DFS untuk bagian Synopsis 
         return html_content
     except:
         return ""
+
+def get_synopsis_view(request, page_title):
+    try:
+        synopsis = get_synopsis(page_title)
+        return JsonResponse({'synopsis': synopsis})
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=500)
