@@ -39,16 +39,25 @@
                     {% if characters  %}
                         {% for character in characters %}
                             {% if character.image %}
-                            <li class="character-box bg-white shadow-md rounded-lg overflow-hidden border hover:shadow-lg transition-shadow duration-300">
-                                <div class="relative w-full h-64">
-                                    <img src="{{ character.image }}" alt="{{ character.name }}" class="w-full h-full object-cover">
-                                </div>
-                                <div class="p-4">
-                                    <p class="text-center font-semibold text-lg text-gray-800">{{ character.name }}</p>
-                                </div>
+                            <li class="character-box h-full">
+                                <a href="{% url 'character_detail' nama_character=character.name %}" class="flex flex-col h-full bg-white shadow-lg rounded-lg overflow-hidden border hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+                                    <div class="relative w-full h-64 overflow-hidden">
+                                        <img 
+                                            src="{{ character.image }}" 
+                                            alt="{{ character.name }}" 
+                                            class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300 rounded-t-lg"
+                                        >
+                                    </div>
+                                    <div class="p-4 flex-grow flex items-center justify-center">
+                                        <p class="text-center font-semibold text-lg text-gray-800 group-hover:text-blue-500 transition-colors duration-200 line-clamp-2">
+                                            {{ character.name }}
+                                        </p>
+                                    </div>
+                                </a>
                             </li>
                             {% endif %}
                         {% endfor %}
+                
                     {% else %}
                         <li class="text-center text-gray-500 col-span-full">No characters available.</li>
                     {% endif %}
