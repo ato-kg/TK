@@ -57,20 +57,27 @@ def get_atrributes_bn(s_uri, atr, atr1, atr2):
     SELECT ?o1 ?o2
     WHERE {{
         <{s_uri}> exv:{atr} ?bn .
-        ?bn exv:{atr1} ?o1 ;
-            exv:{atr2} ?o2 .
+        OPTIONAL {{
+            ?bn exv:{atr1} ?o1 .
+        }}
+        OPTIONAL {{
+            ?bn exv:{atr2} ?o2 .
+        }}
     }}
-    """
+"""
+
     atr_main = []
     atr_info = {}
     results = rdf_manager.query(sparql_query)
     for result in results:
         o1 = result['o1']['value']
-        o2 = result['o2']['value']
+        o2 = None
+        if 'o2' in result:
+            o2 = result['o2']['value']
         if o1 not in atr_main:
             atr_main.append(o1)
             atr_info[o1] = []
-        if o2 not in atr_info[o1]:
+        if o2 not in atr_info[o1] and o2:
             atr_info[o1].append(o2)
 
     return atr_main, atr_info

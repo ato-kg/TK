@@ -258,7 +258,10 @@
                             <li><strong class="font-medium">Guests:</strong>
                                 {% if guests|length == 1 %}
                                     <span class="ml-2">
-                                        {{ guests.0.name }} as 
+                                        {{ guests.0.name }}
+                                        {% if guests.0.roles %}
+                                        as
+                                        {% endif %}
                                         {% for role in guests.0.roles %}
                                             {% if forloop.last and not forloop.first %}
                                                 and {{ role }}
@@ -275,7 +278,10 @@
                                     <ul class="list-disc pl-6 space-y-1">
                                         {% for guest in guests %}
                                             <li>
-                                                {{ guest.name }} as 
+                                                {{ guest.name }} 
+                                                {% if guest.roles %}
+                                                as
+                                                {% endif %}
                                                 {% for role in guest.roles %}
                                                     {% if forloop.last and not forloop.first %}
                                                         and {{ role }}

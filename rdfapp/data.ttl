@@ -68931,14 +68931,9 @@ ex:inklemonade a exv:Episode ;
         ex:spongebobsquarepants,
         ex:squidwardtentacles ;
     exv:hasCopyrightyear "2018" ;
-    exv:hasGuests [ exv:hasGuest ex:larainenewmanas ],
-        [ exv:hasGuest ex:incidental167 ],
-        [ exv:hasGuest ex:larainenewmanas ],
-        [ exv:hasGuest ex:incidental167 ],
-        [ exv:hasGuest ex:larainenewmanas ],
-        [ exv:hasGuest ex:incidental167 ],
-        [ exv:hasGuest ex:larainenewmanas ],
-        [ exv:hasGuest ex:incidental167 ] ;
+    
+    exv:hasGuests [ exv:hasGuest ex:larainenewman ;
+            exv:playedAs ex:incidental167 ];
     exv:hasPremierTime "7:00 pm" ;
     exv:hasProductionCodes "325-1142" ;
     exv:hasRunningTime "10 minutes, 58 seconds" ;
