@@ -24,9 +24,10 @@ class RDFManager:
             for key, value in params.items():
                 # Sanitize value
 
-                sparql_query = sparql_query.replace(f"?{key}", "\'{value}\'")
+                sparql_query = sparql_query.replace(f"?{key}", f"\'{value}\'")
         
         # Configure SPARQLWrapper
+        # print(sparql_query)
         self.sparql.setQuery(sparql_query)
         self.sparql.setReturnFormat(JSON)
         response = self.sparql.query()
