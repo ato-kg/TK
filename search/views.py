@@ -1,15 +1,15 @@
-import requests
 import re
+from urllib.parse import quote
 
+import requests
 from bs4 import BeautifulSoup
+from django.core.paginator import Paginator
 from django.http import HttpResponseNotFound, JsonResponse
 from django.shortcuts import render
-from urllib.parse import quote
-from django.core.paginator import Paginator
+from SPARQLWrapper import JSON
 
 from rdfapp.rdf_manager import RDFManager
 from rdfapp.wikidata_manager import WikidataManager
-from SPARQLWrapper import JSON
 
 rdf_manager = RDFManager()
 wikidata_manager = WikidataManager()
