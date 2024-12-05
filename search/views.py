@@ -35,6 +35,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
 def search(request):
     query = request.GET.get("q", "")
+    query = query.replace('\\', '\\\\').replace('"', '\\"')  # Escape backslashes and double quote
     more_results = False
     if request.headers.get("x-requested-with") == "XMLHttpRequest":
         results = []
@@ -89,14 +90,15 @@ WHERE {{
     }}
 }}
 """
-            sparql_wrapper = rdf_manager.sparql
-            sparql_wrapper.setQuery(sparql_query)
-            sparql_wrapper.setReturnFormat(JSON)
-            response = sparql_wrapper.query()
+            # sparql_wrapper = rdf_manager.sparql
+            # sparql_wrapper.setQuery(sparql_query)
+            # sparql_wrapper.setReturnFormat(JSON)
+            # response = sparql_wrapper.query()
             # print("gyatt")
             # print(response)
             # print("gyatt")
-            bindings = response.convert()["results"]["bindings"]
+            bindings = rdf_manager.query(sparql_query)
+            # bindings = response.convert()["results"]["bindings"]
             # print("gyatt")
             # print(bindings)
             # print("gyatt")
@@ -249,6 +251,7 @@ def natural_sort_key(episode_number, reverse=False):
 
 def episodes(request):
     query = request.GET.get("q", "")
+    query = query.replace('\\', '\\\\').replace('"', '\\"')  # Escape backslashes and double quote
     season = request.GET.get("season", "")
     sort = request.GET.get("sort", "title-asc")
     page = int(request.GET.get("page", 1))
@@ -299,6 +302,7 @@ def episodes(request):
 
 def characters_view(request):
     query = request.GET.get("q", "")
+    query = query.replace('\\', '\\\\').replace('"', '\\"')  # Escape backslashes and double quote
     page = int(request.GET.get("page", 1))
     page_size = int(request.GET.get("page_size", 18))
 

@@ -103,6 +103,7 @@ def get_atrributes_bn(s_uri, atr, atr1, atr2):
 
 def character_view(request, nama_character : str):
     print(nama_character)
+    nama_character = nama_character.replace('\\', '\\\\').replace('"', '\\"')
     sparql_query = f"""
     PREFIX exv: <http://example.org/vocab#>
     
