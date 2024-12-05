@@ -9805,7 +9805,7 @@ ex:gameshowhost_robotgameshowhost exv:occupations ex:gameshowhost .
 ex:gangboss_bullysnail exv:occupations ex:gangboss .
 
 <http://example.org/data/gangplankgus/barnaclebaby> a exv:Character ;
-    exv:name "Gangplank Gus/Barnacle Baby" .
+    exv:name "Gangplank Gus (Barnacle Baby)" .
 
 ex:garage a exv:Residence ;
     rdfs:label "Garage" .
@@ -24413,8 +24413,7 @@ ex:snookiems a exv:Character,
         [ exv:hasPortrayer ex:tomkenny ;
             exv:infoPortrayer "\"Mandatory Music\" and \"SpongeChovy\"" ] ;
     exv:hasUrl "https://spongebob.fandom.com/wiki/Snookiems" ;
-    exv:name "Snookiems",
-        "Snookiems/Raymond the Worm/Fifi" .
+    exv:name "Snookiems".
 
 ex:snootytang a exv:Character,
         exv:zebrasomaxanthurum ;
@@ -29517,8 +29516,7 @@ ex:appraiserandpawnshopowner a exv:Character,
             exv:infoPortrayer "\"Hello Bikini Bottom!\"" ] ;
     exv:hasResidences [ exv:hasResidence ex:bikinibottom%2Cpacificocean ] ;
     exv:hasUrl "https://spongebob.fandom.com/wiki/Appraiser_and_Pawn_Shop_owner" ;
-    exv:name "Appraiser and Pawn Shop owner",
-        "Appraiser/Pawn Shop owner" .
+    exv:name "Appraiser and Pawn Shop owner".
 
 ex:armyofthelivingdead a exv:Character,
         exv:fishskeletons ;
@@ -32298,8 +32296,7 @@ ex:misterweiner a exv:Character,
             exv:infoPortrayer "\"Captain Pipsqueak\"" ] ;
     exv:hasResidences [ exv:hasResidence ex:bikinibottom%2Cpacificocean ] ;
     exv:hasUrl "https://spongebob.fandom.com/wiki/Mister_Weiner" ;
-    exv:name "Mister Weiner",
-        "Mister Weiner/Mr. Weenie Jr." .
+    exv:name "Mister Weiner".
 
 ex:motherseawhelk a exv:Character,
         exv:whelk ;
@@ -37187,7 +37184,7 @@ ex:kid1 a exv:Character,
         "Male skier" .
 
 <http://example.org/data/kidw/beanie> a exv:Character ;
-    exv:name "Kid w/ beanie" .
+    exv:name "Kid with beanie" .
 
 ex:king a exv:Character,
         exv:fish ;
@@ -43069,7 +43066,7 @@ ex:gloveworldofficer a exv:Character ;
     exv:name "Glove World Officer" .
 
 <http://example.org/data/goofymanager/thegoobfather> a exv:Character ;
-    exv:name "Goofy Manager/The Goobfather" .
+    exv:name "Goofy manager" .
 
 ex:gramma%27ssecretrecipe a exv:Episode ;
     exv:hasAirDate "2010-04-29"^^xsd:date,
@@ -43244,7 +43241,7 @@ ex:healthinspector a exv:Character ;
     exv:name "Health inspector" .
 
 <http://example.org/data/herbstar/cecilstar> a exv:Character ;
-    exv:name "Herb Star/Cecil Star" .
+    exv:name "Herb Star" .
 
 ex:histrailer%2Cbikinibottom%2Cpacificocean a exv:Residence ;
     rdfs:label "His trailer, Bikini Bottom, Pacific Ocean" .
@@ -43854,7 +43851,7 @@ ex:keithdickens a exv:Guest ;
     exv:name "Keith Dickens" .
 
 <http://example.org/data/kid/boyfish> a exv:Character ;
-    exv:name "Kid/Boy Fish" .
+    exv:name "Boy Fish" .
 
 ex:kingamoeba a exv:Character,
         exv:Spouse,
@@ -61393,8 +61390,7 @@ ex:gramma a exv:Character,
         [ exv:hasPortrayer ex:lorialan ;
             exv:infoPortrayer "\"Tentacle-Vision\"" ] ;
     exv:hasUrl "https://spongebob.fandom.com/wiki/Gramma" ;
-    exv:name "Gramma",
-        "Gramma/Grandma" .
+    exv:name "Gramma".
 
 ex:granddadplankton a exv:Character,
         exv:plankton ;
@@ -69141,8 +69137,7 @@ ex:mayor a exv:Character,
     exv:hasResidences [ exv:hasResidence ex:bikinibottom ],
         [ exv:hasResidence ex:newkelpcity%2Cpacificocean ] ;
     exv:hasUrl "https://spongebob.fandom.com/wiki/Mayor" ;
-    exv:name "Mayor",
-        "Mayor/Judge" .
+    exv:name "Mayor".
 
 ex:mistakenidentity a exv:Episode .
 
@@ -73312,8 +73307,7 @@ ex:grandma a exv:Character,
             exv:infoPortrayer "\"Choir Boys\"" ] ;
     exv:hasResidences [ exv:hasResidence ex:grandma%27shouse%2Cbikinibottom%2Cpacificocean ] ;
     exv:hasUrl "https://spongebob.fandom.com/wiki/Grandma" ;
-    exv:name "Grandma",
-        "Grandma/Gramma/Granny" .
+    exv:name "Grandma".
 
 ex:grandpatstar a exv:Character,
         exv:Spouse,
