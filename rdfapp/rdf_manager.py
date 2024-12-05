@@ -25,7 +25,8 @@ class RDFManager:
             for key, value in params.items():
                 # Sanitize value
 
-                sparql_query = sparql_query.replace(f"?{key}", f"'{value.replace("'","\\'").replace('"','\\"')}'")
+                tmp = value.replace("'","\\'").replace('"','\\"')
+                sparql_query = sparql_query.replace(f"?{key}", f"'{tmp}'")
         
         # Configure SPARQLWrapper
         # print(sparql_query)
