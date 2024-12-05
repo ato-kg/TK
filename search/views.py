@@ -196,6 +196,11 @@ def getQueryEpisodeList(query, season, sort):
         order_by_clause = "ORDER BY DESC(?title)"
     elif sort == "episode-number-asc" or sort == "episode-number-desc":
         order_by_clause = ""
+    elif sort == "imdb-rating-asc":
+        order_by_clause = "ORDER BY ASC(?imdb_rating)"
+    elif sort == "imdb-rating-desc":
+        order_by_clause = "ORDER BY DESC(?imdb_rating)"
+    
 
     season_filter = ""
     if season:
@@ -210,7 +215,7 @@ def getQueryEpisodeList(query, season, sort):
 
     query = f"""
     {SPARQL_PREFIXES}
-    SELECT distinct ?episode ?title ?season ?views ?episode_number ?image_url
+    SELECT distinct ?episode ?title ?season ?views ?episode_number ?image_url ?imdb_rating
     WHERE {{
         ?episode exv:title ?title .
         ?episode a exv:Episode .
@@ -218,6 +223,7 @@ def getQueryEpisodeList(query, season, sort):
         OPTIONAL {{ ?episode exv:hasViewers ?views }} .
         OPTIONAL {{ ?episode exv:isEpisodeNo ?episode_number }} .
         OPTIONAL {{ ?episode exv:hasImageEps ?image_url }} .
+        OPTIONAL {{ ?episode exv:hasRating ?imdb_rating }} .
         FILTER(contains(lcase(?title), lcase("{query}")))
         {season_filter}
     }}
@@ -261,7 +267,7 @@ def episodes(request):
             "season": binding.get("season", {}).get("value", "N/A"),
             "views": binding.get("views", {}).get("value", "N/A"),
             "episode_number": binding.get("episode_number", {}).get("value", "N/A"),
-            # "imdb_rating": get_imdb_rating(binding["title"]["value"]), #TODO
+            "imdb_rating": binding.get("imdb_rating", {}).get("value", "N/A"),
             "url": f"/episode/{quote(binding['title']['value'])}/",
             "image": binding.get("image_url", {}).get("value", "N/A"),
         }
@@ -352,70 +358,3 @@ def characters_view(request):
         "results": paginated_characters,
     }
     return render(request, "characters.html", context)
-
-def get_imdb_rating(nama_episode):
-    sparql_query = f"""
-    PREFIX exv: <http://example.org/vocab#>
-    
-    SELECT ?s
-    WHERE {{
-        ?s a exv:Episode ;
-            exv:title ?o .
-        FILTER(?o = ?title)
-    }}
-    LIMIT 1
-    """
-    params = {"title": nama_episode}
-    results = rdf_manager.query(sparql_query, params)
-    if results:
-        eps_uri = results[0]["s"]["value"]
-        eps_wd = get_attribute(eps_uri, "hasWikidata")
-        if eps_wd:
-            results = wikidata_manager.get_attribute(
-                eps_wd, "http://www.wikidata.org/prop/direct/P345"
-            )
-            if not results:
-                results = wikidata_manager.get_attribute(
-                    eps_wd, "http://www.wikidata.org/prop/direct/P361"
-                )
-                if results:
-                    full_eps_wd = results[0]["object"]["value"]
-                    results = wikidata_manager.get_attribute(
-                        full_eps_wd, "http://www.wikidata.org/prop/direct/P345"
-                    )
-            if results:
-                imdb_id = results[0]["object"]["value"]
-                url = f"https://www.imdb.com/title/{imdb_id}/"
-                return get_imdb_rating_from_url(url)
-    return "Rating not found"
-
-def get_imdb_rating_from_url(url):
-    headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36"
-    }
-    response = requests.get(url, headers=headers)
-    if response.status_code == 200:
-        soup = BeautifulSoup(response.text, "html.parser")
-        rating_tag = soup.find("span", class_="sc-d541859f-1 imUuxf")
-        if rating_tag:
-            return rating_tag.text
-    return "Rating not found"
-
-
-def get_attribute(s_uri, atr):
-    if s_uri is None:
-        return None
-    sparql_query = f"""
-    PREFIX exv: <http://example.org/vocab#>
-
-    SELECT ?o
-    WHERE {{
-        <{s_uri}> exv:{atr} ?o .
-    }}
-    LIMIT 1
-    """
-    results = rdf_manager.query(sparql_query)
-    if results:
-        return results[0]["o"]["value"]
-    else:
-        return None

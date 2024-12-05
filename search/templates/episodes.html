@@ -71,6 +71,7 @@
                     if (data.episodes.length > 0) {
                         data.episodes.forEach((episode) => {
                             const viewsText = (episode.views.includes("TBD") || episode.views.includes("N/A")) ? `No views (${episode.views})` : `${episode.views}m views`;
+                            const imdbRatingText = episode.imdb_rating ? `IMDb Rating: ${episode.imdb_rating}` : "IMDb Rating: N/A";
                             const card = `
                                 <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg">
                                     ${episode.image !== "N/A" ? `
@@ -89,12 +90,13 @@
                                         <h3 class="text-lg font-semibold text-yellow-700">${episode.title}</h3>
                                         <p class="text-sm text-gray-500">Season ${episode.season}</p>
                                         <p class="text-sm text-gray-600 mt-1">${viewsText}</p>
-                                        <p class="text-sm text-gray-600 mt-1">Episode Number: ${episode.episode_number}</p> 
+                                        <p class="text-sm text-gray-600 mt-1">Episode Number: ${episode.episode_number}</p>
+                                        <p class="text-sm text-gray-600 mt-1">${imdbRatingText}</p>
                                         <a href="${episode.url}" class="text-blue-600 font-semibold mt-3 block">Details</a>
                                     </div>
                                 </div>
                             `;
-                            episodesList.append(card); // TODO: add imdb
+                            episodesList.append(card);
                         });
                     } else {
                         episodesList.append('<p class="text-gray-600 mt-2">No episodes found.</p>');
