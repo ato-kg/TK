@@ -450,30 +450,30 @@ def get_biography(nama_episode):
         return ""
 
 def find_episodes_by_character(character_uri):
-    # print(f"Processing URI: {character_uri}")
-    
-    # Encode hanya bagian nama karakter, bukan seluruh URI
-    base_uri = "http://example.org/data/"  # Bagian base dari URI
-    character_name = character_uri.replace(base_uri, "")  # Mengambil nama karakter dari URI
-    encoded_character_name = urllib.parse.quote(character_name)  # Encode hanya nama karakter
+    base_uri = "http://example.org/data/"  # Base URI
+    # Extract the character name and encode it
+    character_name = character_uri.replace(base_uri, "")  # Extract the character name
+    encoded_character_name = urllib.parse.quote(character_name)  # Encode the name
 
-    # Buat query SPARQL dengan menggantikan encoded_character_name
+    # Construct the full encoded URI
+    full_encoded_uri = f"<{base_uri}{encoded_character_name}>"
+
+    # Correctly build the SPARQL query
     query = f"""
     PREFIX ex: <http://example.org/data/>
     PREFIX exv: <http://example.org/vocab#>
     SELECT ?episode
     WHERE {{
         ?episode a exv:Episode;
-                 exv:hasCharacters ex:{encoded_character_name}.
+                 exv:hasCharacters {full_encoded_uri}.
     }}
     """
-    
-    # Mengeksekusi query menggunakan RDFManager
-    results = rdf_manager.query(query)
-    
-    # Mengambil hanya URI episode
-    episodes = [row.get("episode").get("value") for row in results if row.get("episode")]
 
+    # Execute the query
+    results = rdf_manager.query(query)
+
+    # Extract and return episode URIs
+    episodes = [row.get("episode").get("value") for row in results if row.get("episode")]
     return episodes
 
 
