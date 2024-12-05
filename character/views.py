@@ -216,7 +216,7 @@ def character_view(request, nama_character : str):
             portrayers.append({
                 "name" : portrayer_name,
                 "infos" : infos,
-                "redirect" : portrayer_uri.split('/')[-1]
+                "uri" : portrayer_uri
             })
         context['portrayers'] = portrayers
 
@@ -448,7 +448,6 @@ def get_biography(nama_episode):
     except Exception as e:
         print(e)
         return ""
-
 
 def find_episodes_by_character(character_uri):
     # print(f"Processing URI: {character_uri}")
