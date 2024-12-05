@@ -305,26 +305,34 @@ def characters_view(request):
     sparql_query = f"""
     {SPARQL_PREFIXES}
 
-    SELECT DISTINCT ?subject ?name ?image_url
+    SELECT DISTINCT ?character ?name ?image_url
     WHERE {{
         {{
-            SELECT ?subject ?name ?image_url
+            SELECT ?character ?name ?image_url
             WHERE {{
-                ?subject exv:name ?name .
-                ?subject a exv:Character .
-                OPTIONAL {{ ?subject exv:hasImageChar ?image_url }} .
+                ?character exv:name ?name .
+                ?character a exv:Character .
+                OPTIONAL {{ ?character exv:hasImageChar ?image_url }} .
                 FILTER(strStarts(lcase(?name), lcase("{query}")))
+                FILTER NOT EXISTS {{
+                    ?character rdf:type ?teamRole .
+                    ?teamRole rdfs:subClassOf exv:TeamProduction .
+                }}
             }}
             ORDER BY ?name
         }}
         UNION
         {{
-            SELECT ?subject ?name ?image_url
+            SELECT ?character ?name ?image_url
             WHERE {{
-                ?subject exv:name ?name .
-                ?subject a exv:Character .
-                OPTIONAL {{ ?subject exv:hasImageChar ?image_url }} .
+                ?character exv:name ?name .
+                ?character a exv:Character .
+                OPTIONAL {{ ?character exv:hasImageChar ?image_url }} .
                 FILTER(contains(lcase(?name), lcase("{query}")) && !strStarts(lcase(?name), lcase("{query}")))
+                FILTER NOT EXISTS {{
+                    ?character rdf:type ?teamRole .
+                    ?teamRole rdfs:subClassOf exv:TeamProduction .
+                }}
             }}
             ORDER BY ?name
         }}
