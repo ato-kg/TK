@@ -4,72 +4,26 @@
 {% block content %}
 <div class="bg-blue-50 text-gray-800 min-h-screen flex flex-col items-center">
 
-    <!-- Search Section -->
+    <!-- Main Section -->
     <main class="flex-grow flex flex-col justify-center items-center">
         <h1 class="text-4xl font-extrabold text-gray-900 text-center mb-6">
             Dive into the SpongeBob Universe!
         </h1>
+        <p class="text-lg text-gray-700 text-center mb-6">
+            Explore characters and episodes from the beloved SpongeBob SquarePants series.
+        </p>
 
-        <div class="max-w-xl w-full">
-            <div class="relative">
-                <input type="text" id="search-input" placeholder="Search for characters, episodes..."
-                    class="w-full py-3 px-5 rounded-full border border-gray-300 shadow-md focus:outline-none focus:ring-2 focus:ring-yellow-300">
-            </div>
-            <div id="results" class="mt-4">
-
-            </div>
+        <div class="flex space-x-6">
+            <!-- Button to Character List -->
+            <a href="{% url 'characters' %}" class="py-3 px-6 bg-yellow-300 text-gray-800 text-lg font-semibold rounded-full hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-500 shadow-md">
+                View Characters
+            </a>
+            
+            <!-- Button to Episode List -->
+            <a href="{% url 'episodes' %}" class="py-3 px-6 bg-yellow-300 text-gray-800 text-lg font-semibold rounded-full hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-500 shadow-md">
+                View Episodes
+            </a>
         </div>
     </main>
 </div>
-{% endblock %}
-
-{% block extra_scripts %}
-<!-- AJAX Search Script -->
-<script>
-    $(document).ready(function () {
-
-        let debounceTimer;
-        $('#search-input').on('input', function () {
-            clearTimeout(debounceTimer);
-            var query = $(this).val();
-            debounceTimer = setTimeout(function () {
-                $.ajax({
-                    url: "{% url 'search' %}",
-                    data: { 'q': query },
-                    dataType: 'json',
-                    success: function (data) {
-                        var resultsDiv = $('#results');
-                        resultsDiv.empty();
-                        if (data.results.length > 0) {
-                            var ul = $('<ul class="bg-white rounded-md shadow-md divide-y divide-gray-200"></ul>');
-                            data.results.forEach(function (item) {
-                                var li = $('<li class="p-3 hover:bg-yellow-100"></li>');
-                                var a = $('<a></a>')
-                                    .attr('href', item.url)
-                                    .addClass('text-blue-600 font-semibold')
-                                    .text(item.name);
-                                var p = $('<p></p>')
-                                    .addClass('text-gray-600')
-                                    .text(item.type);
-                                li.append(a);
-                                li.append(p);
-                                ul.append(li);
-                            });
-                            resultsDiv.append(ul);
-                            if (data.more_results) {
-                                var seeMoreLink = $('<a></a>')
-                                    .attr('href', '#')
-                                    .addClass('text-blue-600 font-semibold mt-4 block text-center')
-                                    .text('See more results');
-                                resultsDiv.append(seeMoreLink);
-                            }
-                        } else if (query) {
-                            resultsDiv.append('<p class="text-gray-600 mt-2">No results found.</p>');
-                        }
-                    }
-                });
-            }, 300); // Debounce delay
-        });
-    });
-</script>
 {% endblock %}
