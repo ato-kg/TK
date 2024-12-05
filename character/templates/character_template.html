@@ -17,9 +17,17 @@
                 {% endif %}
             </h1>
             <hr class="border-t-2 border-gray-300 mb-6">  <!-- Pembatas -->
-            <p class="text-gray-700 mb-6">
-                {{ summary }}
-            </p>
+            <div id="summary-container">
+                <p class="text-center text-gray-500 col-span-full" id="summary-display">
+                    Loading summary...
+                </p>
+            </div>
+            <h2 class="text-2xl font-bold text-gray-700 border-b pb-2 mb-4">Biography</h2>
+            <div id="biography-container">
+                <p class="text-center text-gray-500 col-span-full" id="biography-display">
+                    Loading biography...
+                </p>
+            </div>
             <div class="mt-6">
                 <h2 class="text-xl font-semibold text-gray-700 border-b pb-2 mb-4">Episodes</h2>
                 <ul class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 text-gray-600">
@@ -286,9 +294,7 @@
                                     <ul class="ml-6 list-disc">
                                         {% for portrayer in portrayers %}
                                             <li>
-                                                <a href="../{{ portrayer.name }}" class="text-blue-500 hover:text-blue-700">
-                                                    {{ portrayer.name }}
-                                                </a>
+                                                {{ portrayer.name }}
                                                 {% if portrayer.infos %}
                                                     {% with first_info=portrayer.infos|first %}
                                                         {% if first_info != "No additional information" %}
@@ -305,4 +311,74 @@
                     </div>
                 {% endif %}
             
+<script>
+    async function getSummary() {
+        const url = window.location.pathname;
+        const characterName = url.split('/character/')[1].split('/')[0]; // Ambil teks setelah /character/
+
+        // Decode URL untuk mengembalikan karakter yang di-encode (misalnya '%20' menjadi spasi)
+        const pageTitle = decodeURIComponent(characterName);
+        console.log(pageTitle)
+        return fetch(`/character/get-summary/${pageTitle}/`).then((res) => res.json())
+        // alert(decodedTitle)
+    }
+    async function refreshSummary() {
+        // Panggil getSummary untuk mendapatkan summary terbaru
+        const summaryContent = await getSummary();
+
+        // Ambil nilai summary dari dictionary (misalnya summaryContent.summary)
+        const summaryText = summaryContent?.summary || "";  // Jika summaryContent tidak ada atau summary kosong, set menjadi ""
+
+        // Dapatkan elemen #summary-display
+        const summaryElement = document.getElementById("summary-display");
+
+        // Ganti konten elemen berdasarkan apakah ada summary atau tidak
+        if (summaryText) {
+        // Tampilkan summary jika ada
+        summaryElement.classList.remove("text-center", "text-gray-500");
+        summaryElement.classList.add("text-gray-700", "mb-6");
+        summaryElement.innerHTML = summaryText;
+        } else {
+        // Tampilkan pesan "No Summary available." jika kosong
+        summaryElement.classList.remove("text-gray-700", "mb-6");
+        summaryElement.classList.add("text-center", "text-gray-500", "col-span-full");
+        summaryElement.innerHTML = "No Summary available.";
+        }
+    }
+    async function getBiography() {
+        const url = window.location.pathname;
+        const characterTitle = url.split('/character/')[1].split('/')[0]; // Ambil teks setelah /character/
+
+        // Decode URL untuk mengembalikan karakter yang di-encode (misalnya '%20' menjadi spasi)
+        const pageTitle = decodeURIComponent(characterTitle);
+        console.log(pageTitle)
+        return fetch(`/character/get-biography/${pageTitle}/`).then((res) => res.json())
+        // alert(decodedTitle)
+    }
+    async function refreshBiography() {
+        // Panggil getBiography untuk mendapatkan biography terbaru
+        const biographyContent = await getSynopsis();
+
+        // Ambil nilai biography dari dictionary (misalnya biographyContent.biography)
+        const biographyText = biographyContent?.biography || "";  // Jika biographyContent tidak ada atau biography kosong, set menjadi ""
+
+        // Dapatkan elemen #biography-display
+        const biographyElement = document.getElementById("biography-display");
+
+        // Ganti konten elemen berdasarkan apakah ada biography atau tidak
+        if (biographyText) {
+        // Tampilkan biography jika ada
+        biographyElement.classList.remove("text-center", "text-gray-500");
+        biographyElement.classList.add("text-gray-700", "mb-6");
+        biographyElement.innerHTML = biographyText;
+        } else {
+        // Tampilkan pesan "No Biography available." jika kosong
+        biographyElement.classList.remove("text-gray-700", "mb-6");
+        biographyElement.classList.add("text-center", "text-gray-500", "col-span-full");
+        biographyElement.innerHTML = "No Biography available.";
+        }
+    }
+    refreshSummary()
+    refreshBiography()
+</script>
 {% endblock %}

@@ -214,7 +214,7 @@ def character_view(request, nama_character : str):
             portrayers.append({
                 "name" : portrayer_name,
                 "infos" : infos,
-                "uri" : portrayer_uri
+                "redirect" : portrayer_uri.split('/')[-1]
             })
         context['portrayers'] = portrayers
 
@@ -403,12 +403,10 @@ def get_best_summary(page_title):
 
     return best_summary
 
-def get_biography(page_title):
+def get_biography(nama_episode):
     try:
-        print(page_title)
-        page = fandom.page(page_title)
+        page = fandom.page(nama_episode)
         data = page.content
-    
         def dfs(section):
             html = ""
             
@@ -433,11 +431,17 @@ def get_biography(page_title):
         if data.get('sections',None):
             for section in data['sections']:
                 if section['title'] in ('Biography'):
-                    print(section)
-                    html_content += dfs(section)  # Mulai DFS untuk bagian biography 
+                    html_content += dfs(section)  # Mulai DFS untuk bagian Synopsis 
         return html_content
     except:
         return ""
+
+def get_biography_view(request, page_title):
+    try:
+        biography = get_biography(page_title)
+        return JsonResponse({'biography': biography})
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=500)
 
 def find_episodes_by_character(character_uri):
     # print(f"Processing URI: {character_uri}")
@@ -466,3 +470,9 @@ def find_episodes_by_character(character_uri):
 
     return episodes
 
+def get_summary_view(request, page_title):
+    try:
+        summary = get_best_summary(page_title)
+        return JsonResponse({'summary': summary})
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=500)
