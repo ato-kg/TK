@@ -216,7 +216,7 @@ def character_view(request, nama_character : str):
             portrayers.append({
                 "name" : portrayer_name,
                 "infos" : infos,
-                "uri" : portrayer_uri
+                "redirect" : portrayer_uri.split('/')[-1]
             })
         context['portrayers'] = portrayers
 
@@ -416,13 +416,9 @@ def get_best_summary(page_title):
     return best_summary
 
 def get_biography(nama_episode):
-    print("nama:",nama_episode)
-    # nama_episode = "Ripped Pants"
     try:
         page = fandom.page(nama_episode)
         data = page.content
-        print(data)
-        print(data['sections'])
         def dfs(section):
             html = ""
             
@@ -447,12 +443,12 @@ def get_biography(nama_episode):
         if data.get('sections',None):
             for section in data['sections']:
                 if section['title'] in ('Biography'):
-                    html_content += dfs(section)  # Mulai DFS untuk bagian Synopsis 
-        print(html_content)
+                    html_content += dfs(section)  # Mulai DFS untuk bagian Biography 
         return html_content
     except Exception as e:
         print(e)
         return ""
+
 
 def find_episodes_by_character(character_uri):
     # print(f"Processing URI: {character_uri}")
@@ -512,9 +508,9 @@ def get_summary_view(request, page_title):
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=500)
     
-def get_synopsis_view(request, page_title):
+def get_biography_view(request, page_title):
     try:
-        synopsis = ""
+        biography = ""
         sparql_query = f"""
         PREFIX exv: <http://example.org/vocab#>
         
@@ -537,7 +533,7 @@ def get_synopsis_view(request, page_title):
             print(char_uri)
             fandom_url = get_attribute(char_uri, "hasUrl")
             page_title = fandom_url.split("https://spongebob.fandom.com/wiki/")[-1]
-            synopsis = get_biography(page_title)
-        return JsonResponse({'synopsis': synopsis})
+            biography = get_biography(page_title)
+        return JsonResponse({'biography': biography})
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=500)

@@ -22,10 +22,9 @@
                     Loading summary...
                 </p>
             </div>
-
             <h2 class="text-2xl font-bold text-gray-700 border-b pb-2 mb-4">Biography</h2>
-            <div id="synopsis-container">
-                <p class="text-center text-gray-500 col-span-full" id="synopsis-display">
+            <div id="biography-container">
+                <p class="text-center text-gray-500 col-span-full" id="biography-display">
                     Loading biography...
                 </p>
             </div>
@@ -286,9 +285,7 @@
                                     <ul class="ml-6 list-disc">
                                         {% for portrayer in portrayers %}
                                             <li>
-                                                <a href="../{{ portrayer.name }}" class="text-blue-500 hover:text-blue-700">
-                                                    {{ portrayer.name }}
-                                                </a>
+                                                {{ portrayer.name }}
                                                 {% if portrayer.infos %}
                                                     {% with first_info=portrayer.infos|first %}
                                                         {% if first_info != "No additional information" %}
@@ -304,13 +301,14 @@
                         </ul>
                     </div>
                 {% endif %}
+            
 <script>
     async function getSummary() {
         const url = window.location.pathname;
-        const characterTitle = url.split('/character/')[1].split('/')[0]; // Ambil teks setelah /character/
+        const characterName = url.split('/character/')[1].split('/')[0]; // Ambil teks setelah /character/
 
         // Decode URL untuk mengembalikan karakter yang di-encode (misalnya '%20' menjadi spasi)
-        const pageTitle = decodeURIComponent(characterTitle);
+        const pageTitle = decodeURIComponent(characterName);
         console.log(pageTitle)
         return fetch(`/character/get-summary/${pageTitle}/`).then((res) => res.json())
         // alert(decodedTitle)
@@ -338,40 +336,41 @@
         summaryElement.innerHTML = "No Summary available.";
         }
     }
-    async function getSynopsis() {
+    async function getBiography() {
         const url = window.location.pathname;
         const characterTitle = url.split('/character/')[1].split('/')[0]; // Ambil teks setelah /character/
 
         // Decode URL untuk mengembalikan karakter yang di-encode (misalnya '%20' menjadi spasi)
         const pageTitle = decodeURIComponent(characterTitle);
-        console.log(pageTitle)
-        return fetch(`/character/get-synopsis/${pageTitle}/`).then((res) => res.json())
+        console.log(`/character/get-biography/${pageTitle}/`)
+        
+        return fetch(`/character/get-biography/${pageTitle}/`).then((res) => res.json())
         // alert(decodedTitle)
     }
-    async function refreshSynopsis() {
-        // Panggil getSynopsis untuk mendapatkan synopsis terbaru
-        const synopsisContent = await getSynopsis();
+    async function refreshBiography() {
+        // Panggil getBiography untuk mendapatkan biography terbaru
+        const biographyContent = await getBiography();
 
-        // Ambil nilai synopsis dari dictionary (misalnya synopsisContent.synopsis)
-        const synopsisText = synopsisContent?.synopsis || "";  // Jika synopsisContent tidak ada atau synopsis kosong, set menjadi ""
+        // Ambil nilai biography dari dictionary (misalnya biographyContent.biography)
+        const biographyText = biographyContent?.biography || "";  // Jika biographyContent tidak ada atau biography kosong, set menjadi ""
 
-        // Dapatkan elemen #synopsis-display
-        const synopsisElement = document.getElementById("synopsis-display");
+        // Dapatkan elemen #biography-display
+        const biographyElement = document.getElementById("biography-display");
 
-        // Ganti konten elemen berdasarkan apakah ada synopsis atau tidak
-        if (synopsisText) {
-        // Tampilkan synopsis jika ada
-        synopsisElement.classList.remove("text-center", "text-gray-500");
-        synopsisElement.classList.add("text-gray-700", "mb-6");
-        synopsisElement.innerHTML = synopsisText;
+        // Ganti konten elemen berdasarkan apakah ada biography atau tidak
+        if (biographyText) {
+        // Tampilkan biography jika ada
+        biographyElement.classList.remove("text-center", "text-gray-500");
+        biographyElement.classList.add("text-gray-700", "mb-6");
+        biographyElement.innerHTML = biographyText;
         } else {
-        // Tampilkan pesan "No Synopsis available." jika kosong
-        synopsisElement.classList.remove("text-gray-700", "mb-6");
-        synopsisElement.classList.add("text-center", "text-gray-500", "col-span-full");
-        synopsisElement.innerHTML = "No Biography available.";
+        // Tampilkan pesan "No Biography available." jika kosong
+        biographyElement.classList.remove("text-gray-700", "mb-6");
+        biographyElement.classList.add("text-center", "text-gray-500", "col-span-full");
+        biographyElement.innerHTML = "No Biography available.";
         }
     }
     refreshSummary()
-    refreshSynopsis()
+    refreshBiography()
 </script>
 {% endblock %}
