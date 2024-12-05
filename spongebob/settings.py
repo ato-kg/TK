@@ -23,7 +23,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-p6_rz^%ddks&z0xm0a8iow-ymu790a=j4&*gqqg)a($)d-kkmr'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+PRODUCTION = os.getenv("PRODUCTION", False)
+DEBUG = not PRODUCTION
 
 ALLOWED_HOSTS = ["localhost","127.0.0.1","muhammad-irfan25-kage.pbp.cs.ui.ac.id"]
 CSRF_TRUSTED_ORIGINS = ["http://localhost","http://127.0.0.1","http://muhammad-irfan25-kage.pbp.cs.ui.ac.id", "https://muhammad-irfan25-kage.pbp.cs.ui.ac.id"]
@@ -55,6 +56,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'spongebob.urls'
