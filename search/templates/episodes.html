@@ -34,8 +34,8 @@
                 <option value="title-desc">Title (Z-A)</option>
                 <option value="episode-number-desc">Episode Number (Highest First)</option>
                 <option value="episode-number-asc">Episode Number (Lowest First)</option>
-                <option value="imdb-rating-desc">IMDb Rating (Highest First)</option>
-                <option value="imdb-rating-asc">IMDb Rating (Lowest First)</option>
+                <!-- <option value="imdb-rating-desc">IMDb Rating (Highest First)</option>
+                <option value="imdb-rating-asc">IMDb Rating (Lowest First)</option> -->
             </select>
         </div>
 
@@ -89,13 +89,12 @@
                                         <h3 class="text-lg font-semibold text-yellow-700">${episode.title}</h3>
                                         <p class="text-sm text-gray-500">Season ${episode.season}</p>
                                         <p class="text-sm text-gray-600 mt-1">${viewsText}</p>
-                                        <p class="text-sm text-gray-600 mt-1">Episode Number: ${episode.episode_number}</p>
-                                        <p class="text-sm text-gray-600 mt-1">IMDb Rating: ${episode.imdb_rating}</p>
+                                        <p class="text-sm text-gray-600 mt-1">Episode Number: ${episode.episode_number}</p> 
                                         <a href="${episode.url}" class="text-blue-600 font-semibold mt-3 block">Details</a>
                                     </div>
                                 </div>
                             `;
-                            episodesList.append(card);
+                            episodesList.append(card); // TODO: add imdb
                         });
                     } else {
                         episodesList.append('<p class="text-gray-600 mt-2">No episodes found.</p>');

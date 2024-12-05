@@ -170,7 +170,7 @@ def getQueryEpisodeList(query, season, sort, page, page_size, total: bool):
         column = "(COUNT(?episode) as ?total)"
         limitpage = ""
     else:
-        column = "?episode ?title ?season ?views ?episode_number ?image_url"
+        column = "distinct ?episode ?title ?season ?views ?episode_number ?image_url"
         limitpage = ""
     
     order_by_clause = ""
@@ -274,6 +274,7 @@ def episodes(request):
 
     episodes = [
         {
+            "episode_uri": binding["episode"]["value"],
             "title": binding["title"]["value"],
             "season": binding.get("season", {}).get("value", "N/A"),
             "views": binding.get("views", {}).get("value", "N/A"),
@@ -371,3 +372,4 @@ def get_attribute(s_uri, atr):
         return results[0]["o"]["value"]
     else:
         return None
+    

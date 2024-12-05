@@ -380,30 +380,34 @@ def get_best_summary(page_title):
     return best_summary
 
 def get_synopsis(page_title):
-    page = fandom.page(page_title)
-    data = page.content
-    def dfs(section):
-        html = ""
-        
-        # Jika ada content, kita pisahkan berdasarkan paragraf
-        if section['content']:
-            # Pisahkan konten berdasarkan paragraf yang dipisahkan dengan '\n'
-            paragraphs = section['content'].split('\n')
-            for paragraph in paragraphs:
-                if paragraph.strip():  # Memastikan paragraf tidak kosong
-                    html += f"<p class='mb-4'>{paragraph.strip()}</p>"
-        
-        # Jika ada subsections, lakukan rekursi
-        if 'sections' in section:
-            for sub_section in section['sections']:
-                html += f"<div class='ml-4'>"
-                html += f"<h4 class='text-xl font-semibold'>{sub_section['title']}</h4>"
-                html += dfs(sub_section)  # DFS ke sub-section
-                html += "</div>"
-        
-        return html
-    html_content = ""
-    for section in data['sections']:
-        if section['title'] == 'Synopsis':
-            html_content += dfs(section)  # Mulai DFS untuk bagian Synopsis 
-    return html_content
+    try:
+        page = fandom.page(page_title)
+        data = page.content
+        def dfs(section):
+            html = ""
+            
+            # Jika ada content, kita pisahkan berdasarkan paragraf
+            if section['content']:
+                # Pisahkan konten berdasarkan paragraf yang dipisahkan dengan '\n'
+                paragraphs = section['content'].split('\n')
+                for paragraph in paragraphs:
+                    if paragraph.strip():  # Memastikan paragraf tidak kosong
+                        html += f"<p class='mb-4'>{paragraph.strip()}</p>"
+            
+            # Jika ada subsections, lakukan rekursi
+            if 'sections' in section:
+                for sub_section in section['sections']:
+                    html += f"<div class='ml-4'>"
+                    html += f"<h4 class='text-xl font-semibold'>{sub_section['title']}</h4>"
+                    html += dfs(sub_section)  # DFS ke sub-section
+                    html += "</div>"
+            
+            return html
+        html_content = ""
+        for section in data['sections']:
+            if section['title'] == 'Synopsis':
+                html_content += dfs(section)  # Mulai DFS untuk bagian Synopsis 
+        return html_content
+
+    except:
+        return ""
