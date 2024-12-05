@@ -431,6 +431,8 @@ def get_summary_view(request, page_title):
         return JsonResponse({'error': str(e)}, status=500)
 
 def get_synopsis(nama_episode):
+    print("nama:",nama_episode)
+    # nama_episode = "Ripped Pants"
     try:
         page = fandom.page(nama_episode)
         data = page.content
@@ -459,8 +461,10 @@ def get_synopsis(nama_episode):
             for section in data['sections']:
                 if section['title'] in ('Synopsis','Plot'):
                     html_content += dfs(section)  # Mulai DFS untuk bagian Synopsis 
+        print(html_content)
         return html_content
-    except:
+    except Exception as e:
+        print(e)
         return ""
 
 def get_synopsis_view(request, page_title):
