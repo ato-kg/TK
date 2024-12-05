@@ -40,8 +40,10 @@
         </div>
 
         <!-- Episodes List -->
-        <div id="episodes-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            <!-- Episode cards will be populated dynamically -->
+        <div class="mt-6">
+            <ul class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 text-gray-600" id="episodes-list">
+                <!-- Episode cards will be appended here by JavaScript -->
+            </ul>
         </div>
 
         <!-- Pagination Controls -->
@@ -57,7 +59,7 @@
 <script>
     $(document).ready(function () {
         let currentPage = 1;
-        const pageSize = 18;
+        const pageSize = 16;
         let debounceTimeout;
 
         const fetchEpisodes = (query = "", season = "", sort = "title-asc", page = 1) => {
@@ -73,28 +75,35 @@
                             const viewsText = (episode.views.includes("TBD") || episode.views.includes("N/A")) ? `No views (${episode.views})` : `${episode.views}m views`;
                             const imdbRatingText = episode.imdb_rating ? `IMDb Rating: ${episode.imdb_rating}` : "IMDb Rating: N/A";
                             const card = `
-                                <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg">
-                                    ${episode.image !== "N/A" ? `
-                                        <img src="${episode.image}" alt="${episode.title}" class="w-full h-48 object-cover rounded-t-lg">
-                                    ` : `
-                                        <div class="relative">
-                                            <img src="{% static 'images/default.png' %}" alt="Default Image" class="w-full h-48 object-cover rounded-t-lg">
-                                            <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
-                                                <p class="text-white font-semibold text-lg px-4 py-2 rounded">
-                                                    Image not available
-                                                </p>
-                                            </div>
+                                <li class="episode-box h-full">
+                                    <a href="${episode.url}" class="flex flex-col h-full bg-white shadow-lg rounded-lg overflow-hidden border hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+                                        <div class="relative w-full h-64 overflow-hidden">
+                                            ${episode.image !== "N/A" ? `
+                                                <img 
+                                                    src="${episode.image}" 
+                                                    alt="${episode.title}" 
+                                                    class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300 rounded-t-lg"
+                                                >
+                                            ` : `
+                                                <div class="relative">
+                                                    <img src="{% static 'images/default.png' %}" alt="Default Image" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300 rounded-t-lg">
+                                                    <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                                                        <p class="text-white font-semibold text-lg px-4 py-2 rounded">
+                                                            Image not available
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            `}
                                         </div>
-                                    `}
-                                    <div class="p-4">
-                                        <h3 class="text-lg font-semibold text-yellow-700">${episode.title}</h3>
-                                        <p class="text-sm text-gray-500">Season ${episode.season}</p>
-                                        <p class="text-sm text-gray-600 mt-1">${viewsText}</p>
-                                        <p class="text-sm text-gray-600 mt-1">Episode Number: ${episode.episode_number}</p>
-                                        <p class="text-sm text-gray-600 mt-1">${imdbRatingText}</p>
-                                        <a href="${episode.url}" class="text-blue-600 font-semibold mt-3 block">Details</a>
-                                    </div>
-                                </div>
+                                        <div class="p-4 flex-grow flex flex-col items-center justify-center">
+                                            <h3 class="text-lg font-semibold text-yellow-700 text-center">${episode.title}</h3>
+                                            <p class="text-sm text-gray-500 text-center">Season ${episode.season}</p>
+                                            <p class="text-sm text-gray-600 mt-1 text-center">${viewsText}</p>
+                                            <p class="text-sm text-gray-600 mt-1 text-center">Episode Number: ${episode.episode_number}</p>
+                                            <p class="text-sm text-gray-600 mt-1 text-center">${imdbRatingText}</p>
+                                        </div>
+                                    </a>
+                                </li>
                             `;
                             episodesList.append(card);
                         });
