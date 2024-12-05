@@ -1,0 +1,143 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto p-4">
+    <!-- Main Content -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <!-- Left Section: Title and Description -->
+        <div>
+            <h1 class="text-4xl font-bold text-gray-800 mb-4">
+                {% if character_wd %}
+                    <a href="{{ character_wd }}" target="_blank" class="hover:underline">
+                        {{ name }}
+                    </a>
+                {% else %}
+                    {{ name }}
+                {% endif %}
+            </h1>
+            <hr class="border-t-2 border-gray-300 mb-6">  <!-- Pembatas -->
+            <p class="text-gray-700 mb-6">
+                {{ summary }}
+            </p>
+            <div class="mt-6">
+                <h2 class="text-xl font-semibold text-gray-700 border-b pb-2 mb-4">Appeared In</h2>
+                <ul class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 text-gray-600">
+                    {% if appearances %}
+                        {% for episode in appearances %}
+                            <div class="episode-box mb-4 p-4 border rounded-lg">
+                                <a href="{% url 'episode_detail' episode.title %}">
+                                    <p class="text-center font-semibold text-xl">{{ episode.title }}</p>
+                                </a>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <li class="text-center text-gray-500 col-span-full">No appearances available.</li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+
+        <div class="max-w-4xl mx-auto p-4">
+            <div class="bg-white p-6 rounded-lg shadow-xl">
+
+                <!-- Title -->
+                <div class="text-center mb-5">
+                    {% if character_wd %}
+                        <a href="{{ character_wd }}" target="_blank" class="text-3xl font-bold text-gray-800 hover:underline">
+                            {{ name }}
+                        </a>
+                    {% else %}
+                        <h1 class="text-3xl font-bold text-gray-800">
+                            {{ name }}
+                        </h1>
+                    {% endif %}
+                </div>
+                
+                <!-- Image Section -->
+                {% if image_url %}
+                    <img src="{{ image_url }}" alt="{{ name }}" class="w-full h-auto rounded-lg">
+                {% else %}
+                    <div class="relative">
+                        <img src="{% static 'images/default.png' %}" alt="Default Image" class="w-full h-auto rounded-lg">
+                        <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                            <p class="text-white font-semibold text-lg px-4 py-2 rounded">
+                                Image not available
+                            </p>
+                        </div>
+                    </div>
+                {% endif %}
+
+                <div class="mt-6 text-center">
+                    <a href="{{ fandom }}"
+                        class="text-xl font-semibold text-blue-600 hover:text-blue-700 hover:underline"
+                        target="_blank">
+                        Fandom
+                    </a>
+                    <span class="mx-2 text-gray-500 text-3xl font-bold">-</span> <!-- Dot Separator -->
+                    <a href="{{ character_wd }}"
+                        class="text-xl font-semibold text-blue-600 hover:text-blue-700 hover:underline"
+                        target="_blank">
+                        Wikidata
+                    </a>
+                </div>
+
+                <!-- Character Info -->
+                <div class="mt-6">
+                    <h2 class="text-xl font-semibold text-gray-700 border-b pb-2 mb-4">Character Info</h2>
+                    <ul class="space-y-2 text-gray-600">
+                        {% if gender %}<li><strong class="font-medium">Gender:</strong> <span class="ml-2">{{ gender }}</span></li>{% endif %}
+                        {% if birth_date %}<li><strong class="font-medium">Birth Date:</strong> <span class="ml-2">{{ birth_date }}</span></li>{% endif %}
+                        {% if occupation %}<li><strong class="font-medium">Occupation:</strong> <span class="ml-2">{{ occupation }}</span></li>{% endif %}
+                        {% if first_appearance %}<li><strong class="font-medium">First Appearance:</strong> <span class="ml-2">{{ first_appearance }}</span></li>{% endif %}
+                        {% if last_appearance %}<li><strong class="font-medium">Last Appearance:</strong> <span class="ml-2">{{ last_appearance }}</span></li>{% endif %}
+                    </ul>
+                </div>
+
+                <!-- Portrayers Section -->
+                <div class="mt-6">
+                    <h2 class="text-xl font-semibold text-gray-700 border-b pb-2 mb-4">Portrayers</h2>
+                    <ul class="space-y-2 text-gray-600">
+                        {% if portrayers %}
+                            {% for portrayer in portrayers %}
+                                <li>
+                                    <strong>{{ portrayer.name }}</strong> 
+                                    {% if portrayer.roles %}
+                                        <ul class="list-disc pl-6">
+                                            {% for role in portrayer.roles %}
+                                                <li>{{ role }}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    {% endif %}
+                                </li>
+                            {% endfor %}
+                        {% else %}
+                            <li class="text-center text-gray-500">No portrayers available.</li>
+                        {% endif %}
+                    </ul>
+                </div>
+                
+                <!-- Credits Section -->
+                <div class="mt-6">
+                    <h2 class="text-xl font-semibold text-gray-700 border-b pb-2 mb-4">Credits</h2>
+                    <ul class="space-y-2 text-gray-600">
+                        {% if contributors %}
+                            <li><strong class="font-medium">Main Contributors:</strong>
+                                {% if contributors|length == 1 %}
+                                    <span class="ml-2">{{ contributors.0 }}</span>
+                                {% else %}
+                                    <ul class="list-disc pl-6 space-y-1">
+                                        {% for contributor in contributors %}
+                                            <li>{{ contributor }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                {% endif %}
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

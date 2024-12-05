@@ -1,5 +1,5 @@
-import requests
 import fandom
+import requests
 from bs4 import BeautifulSoup
 from django.http import HttpResponseNotFound, JsonResponse
 from django.shortcuts import render
@@ -23,6 +23,8 @@ def get_attribute(s_uri, atr):
     }}
     LIMIT 1
     """
+    if s_uri in ("http://example.org/data/bubblebuddy", "http://example.org/data/stanleys.squarepants") and atr == "hasWikidata":
+        sparql_query += "\nOFFSET 1"
     results = rdf_manager.query(sparql_query)
     if results:
         return results[0]['o']['value']
@@ -55,20 +57,27 @@ def get_atrributes_bn(s_uri, atr, atr1, atr2):
     SELECT ?o1 ?o2
     WHERE {{
         <{s_uri}> exv:{atr} ?bn .
-        ?bn exv:{atr1} ?o1 ;
-            exv:{atr2} ?o2 .
+        OPTIONAL {{
+            ?bn exv:{atr1} ?o1 .
+        }}
+        OPTIONAL {{
+            ?bn exv:{atr2} ?o2 .
+        }}
     }}
-    """
+"""
+
     atr_main = []
     atr_info = {}
     results = rdf_manager.query(sparql_query)
     for result in results:
         o1 = result['o1']['value']
-        o2 = result['o2']['value']
+        o2 = None
+        if 'o2' in result:
+            o2 = result['o2']['value']
         if o1 not in atr_main:
             atr_main.append(o1)
             atr_info[o1] = []
-        if o2 not in atr_info[o1]:
+        if o2 not in atr_info[o1] and o2:
             atr_info[o1].append(o2)
 
     return atr_main, atr_info
@@ -91,27 +100,26 @@ def episode_view(request, nama_episode : str):
         "title": nama_episode
     }
     context = {'title' : nama_episode}
+
     results = rdf_manager.query(sparql_query, params)
+    print(5,"l")
     if results:
         eps_uri = results[0]['s']['value']
         # WD FOR IMDB
         eps_wd = get_attribute(eps_uri, "hasWikidata")
         context['eps_wd'] = eps_wd
-        imdb_id = None
         imdb_url = None
-        rating = None
-        if eps_wd:
-            results = wikidata_manager.get_attribute(eps_wd, "http://www.wikidata.org/prop/direct/P345")
-            if not results:
-                results = wikidata_manager.get_attribute(eps_wd, "http://www.wikidata.org/prop/direct/P361")
-                if results:
-                    full_eps_wd = results[0]['object']['value']
-                    results = wikidata_manager.get_attribute(full_eps_wd, "http://www.wikidata.org/prop/direct/P345")
-            if results:
-                imdb_id = results[0]['object']['value']
-                imdb_url = f"https://www.imdb.com/title/{imdb_id}/"
-                
-            rating = get_imdb_rating(imdb_id)
+        imdb_id = get_attribute(eps_uri, "hasIMDB")
+        # if not results:
+        #     results = wikidata_manager.get_attribute(eps_wd, "http://www.wikidata.org/prop/direct/P361")
+        #     if results:
+        #         full_eps_wd = results[0]['object']['value']
+        #         results = wikidata_manager.get_attribute(full_eps_wd, "http://www.wikidata.org/prop/direct/P345")
+        print(5,"b4")
+        if imdb_id:
+            imdb_url = f"https://www.imdb.com/title/{imdb_id}/"
+        rating = get_attribute(eps_uri, "hasRating")
+        print(5,"af")
         context['imdb_url'] = imdb_url
         context['rating'] = rating
 
@@ -170,7 +178,7 @@ def episode_view(request, nama_episode : str):
         characters = []
         for uri in character_uris:
             character = get_attribute(uri, "name")
-            character_image = get_attribute(uri, "hasImage")
+            character_image = get_attribute(uri, "hasImageChar")
             characters.append({
                 'name': character,
                 'image': character_image  # Menyimpan URL gambar
@@ -242,6 +250,10 @@ def episode_view(request, nama_episode : str):
         premier_time = get_attributes(eps_uri, "hasPremierTime")
         context['premier_time'] = premier_time
 
+        # Location
+        location = get_attributes(eps_uri, "hasLocation")
+        context['location'] = location
+
         # Viewers
         viewers = get_attributes(eps_uri, "hasViewers")
         context['viewers'] = viewers
@@ -268,20 +280,33 @@ def episode_view(request, nama_episode : str):
                 "roles" : roles
             })
         context['guests'] = guests
-        
+        print(1,"k")
         # IMAGE
-        fandom_url = "https://spongebob.fandom.com/wiki/" + nama_episode.replace(" ", "_")
-        image_url = get_image(fandom_url)
-        
+        image_url = get_attribute(eps_uri, "hasImageEps")
+        fandom_url = get_attribute(eps_uri, "hasUrlEps")
+        print(5,"k")
+
+        if not fandom_url:
+            fandom_url = "https://spongebob.fandom.com/wiki/" + nama_episode.replace(" ", "_")
+            response = requests.get(fandom_url)
+            print(5.5)
+            if "There is currently no text in this page" in response.text:
+                fandom_url = None
+
+            if fandom_url:
+                image_url = get_image(fandom_url)
+
+
         context['fandom'] = fandom_url
         context['image_url'] = image_url
-
-        context['summary'] = get_best_summary(nama_episode)
-        
+        # Desc
+        # context['summary'] = get_best_summary(nama_episode)
+        # context['synopsis'] = get_synopsis(nama_episode)
         ############################################################
         return render(request, 'template.html', context)
     else:
         return HttpResponseNotFound(f"Episode '{nama_episode}' tidak ditemukan.")
+
 
 def get_image(fandom_url):
     try:
@@ -296,27 +321,30 @@ def get_image(fandom_url):
             return None
     except:
         return None
-
+    
 def get_imdb_rating(imdb_id):
-    url = f'https://www.imdb.com/title/{imdb_id}/'
-    
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36'
-    }
-    
-    response = requests.get(url, headers=headers)
-    
-    if response.status_code == 200:
-        soup = BeautifulSoup(response.text, 'html.parser')
+    try:
+        url = f'https://www.imdb.com/title/{imdb_id}/'
         
-        rating_tag = soup.find('span', class_='sc-d541859f-1 imUuxf')
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36'
+        }
         
-        if rating_tag:
-            return rating_tag.text
+        response = requests.get(url, headers=headers)
+        
+        if response.status_code == 200:
+            soup = BeautifulSoup(response.text, 'html.parser')
+            
+            rating_tag = soup.find('span', class_='sc-d541859f-1 imUuxf')
+            
+            if rating_tag:
+                return rating_tag.text
+            else:
+                return "Rating not found"
         else:
-            return "Rating not found"
-    else:
-        return f"Error fetching page. Status code: {response.status_code}"
+            return f"Error fetching page. Status code: {response.status_code}"
+    except:
+        return None
 
 def get_summary_bs4(url):
     headers = {
@@ -339,14 +367,39 @@ def get_summary_bs4(url):
                     sup.decompose()
                 summary = p.get_text(strip=False)
                 return summary
-    return "Summary not found."
+    return ""
 
 def get_summary_fandom(page_title):
+    BASE_URL = "https://spongebob.fandom.com/wiki"
+    url = f"{BASE_URL}/{page_title}"
+    
     try:
         page_data = fandom.page(page_title)
-        return page_data.summary
+        summary = page_data.summary
+        return summary
+    except IndexError:
+        print("error, using bs4")
+        headers = {
+            "User-Agent": (
+                "Mozilla/5.0 (iPhone; CPU iPhone OS 13_5_1 like Mac OS X) "
+                "AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1.1 Mobile/15E148 Safari/604.1"
+            )
+        }
+        response = requests.get(url, headers=headers)
+        soup = BeautifulSoup(response.text, "html.parser")
+
+        tab_line_div = soup.select_one(".mw-parser-output")
+        if tab_line_div:
+            paragraphs = tab_line_div.find_all("p")
+            for p in paragraphs:
+                if p.get_text(strip=True):
+                    # Remove all <sup> tags
+                    for sup in p.find_all("sup"):
+                        sup.decompose()
+                    summary = p.get_text(strip=False)
+                    return summary
     except fandom.error.PageError:
-        return "Summary not found."
+        return ""
     
 def get_best_summary(page_title):
     BASE_URL = "https://spongebob.fandom.com/wiki"
@@ -363,3 +416,50 @@ def get_best_summary(page_title):
         best_summary = get_summary_fandom(page_title)
 
     return best_summary
+
+def get_summary_view(request, page_title):
+    try:
+        summary = get_best_summary(page_title)
+        return JsonResponse({'summary': summary})
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=500)
+
+def get_synopsis(nama_episode):
+    try:
+        page = fandom.page(nama_episode)
+        data = page.content
+        def dfs(section):
+            html = ""
+            
+            # Jika ada content, kita pisahkan berdasarkan paragraf
+            if section['content']:
+                # Pisahkan konten berdasarkan paragraf yang dipisahkan dengan '\n'
+                paragraphs = section['content'].split('\n')
+                for paragraph in paragraphs:
+                    if paragraph.strip():  # Memastikan paragraf tidak kosong
+                        html += f"<p class='mb-4'>{paragraph.strip()}</p>"
+            
+            # Jika ada subsections, lakukan rekursi
+            if 'sections' in section:
+                for sub_section in section['sections']:
+                    html += f"<div class='ml-4'>"
+                    html += f"<h4 class='text-xl font-semibold'>{sub_section['title']}</h4>"
+                    html += dfs(sub_section)  # DFS ke sub-section
+                    html += "</div>"
+            
+            return html
+        html_content = ""
+        if data.get('sections',None):
+            for section in data['sections']:
+                if section['title'] in ('Synopsis','Plot'):
+                    html_content += dfs(section)  # Mulai DFS untuk bagian Synopsis 
+        return html_content
+    except:
+        return ""
+
+def get_synopsis_view(request, page_title):
+    try:
+        synopsis = get_synopsis(page_title)
+        return JsonResponse({'synopsis': synopsis})
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=500)

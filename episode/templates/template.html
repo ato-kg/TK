@@ -1,12 +1,15 @@
 {% extends "base.html" %}
 {% load static %}
+{% block title %}{{ title }}{% endblock %}
+{% block extra_head %}
 
+{% endblock %}
 {% block content %}
 <div class="max-w-7xl mx-auto p-4">
     <!-- Main Content -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <!-- Left Section: Title and Description -->
-        <div>
+        <div class="description lg:order-first order-last">
             <h1 class="text-4xl font-bold text-gray-800 mb-4">
                 {% if eps_wd %}
                     <a href="{{ eps_wd }}" target="_blank" class="hover:underline">
@@ -17,30 +20,54 @@
                 {% endif %}
             </h1>
             <hr class="border-t-2 border-gray-300 mb-6">  <!-- Pembatas -->
-            <p class="text-gray-700 mb-6">
-                {{ summary }}
-            </p>
+            
+            <div id="summary-container">
+                <p class="text-center text-gray-500 col-span-full" id="summary-display">
+                    Loading summary...
+                </p>
+            </div>
+
+            <h2 class="text-2xl font-bold text-gray-700 border-b pb-2 mb-4">Synopsis</h2>
+            <div id="synopsis-container">
+                <p class="text-center text-gray-500 col-span-full" id="synopsis-display">
+                    Loading synopsis...
+                </p>
+            </div>
+
+                
             <div class="mt-6">
-                <h2 class="text-xl font-semibold text-gray-700 border-b pb-2 mb-4">Characters</h2>
+                <h2 class="text-2xl font-bold text-gray-700 border-b pb-2 mb-4">Characters</h2>
                 <ul class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 text-gray-600">
                     {% if characters  %}
                         {% for character in characters %}
                             {% if character.image %}
-                            <div class="character-box mb-4 p-4 border rounded-lg">
-                                
-                                    <img src="{{ character.image }}" alt="{{ character.name }}" class="character-image mb-2 w-full h-auto object-cover rounded">
-                                
-                                <p class="text-center font-semibold text-xl">{{ character.name }}</p>
-                            </div>
+                            <li class="character-box h-full">
+                                <a href="{% url 'character_detail' nama_character=character.name %}" class="flex flex-col h-full bg-white shadow-lg rounded-lg overflow-hidden border hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+                                    <div class="relative w-full h-64 overflow-hidden">
+                                        <img 
+                                            src="{{ character.image }}" 
+                                            alt="{{ character.name }}" 
+                                            class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300 rounded-t-lg"
+                                        >
+                                    </div>
+                                    <div class="p-4 flex-grow flex items-center justify-center">
+                                        <p class="text-center font-semibold text-lg text-gray-800 group-hover:text-blue-500 transition-colors duration-200 line-clamp-2">
+                                            {{ character.name }}
+                                        </p>
+                                    </div>
+                                </a>
+                            </li>
                             {% endif %}
                         {% endfor %}
+                
                     {% else %}
                         <li class="text-center text-gray-500 col-span-full">No characters available.</li>
                     {% endif %}
                 </ul>
             </div>
+            
         </div>
-        <div class="max-w-4xl mx-auto p-4">
+        <div class="max-w-4xl mx-auto p-4 infobox lg:order-last order-first">
             <div class="bg-white p-6 rounded-lg shadow-xl">
 
                 <!-- Title -->
@@ -69,17 +96,29 @@
                     </div>
                 {% endif %}
                 <div class="mt-6 text-center">
+                    {% if fandom %}
                     <a href="{{ fandom }}"
                         class="text-xl font-semibold text-blue-600 hover:text-blue-700 hover:underline"
                         target="_blank">
                         Fandom
                     </a>
+                    {% else %}
+                    <span class="text-xl font-semibold">
+                        Fandom
+                    </span>
+                    {% endif %}
                     <span class="mx-2 text-gray-500 text-3xl font-bold">-</span> <!-- Dot Separator -->
+                    {% if eps_wd %}
                     <a href="{{ eps_wd }}"
                         class="text-xl font-semibold text-blue-600 hover:text-blue-700 hover:underline"
                         target="_blank">
                         Wikidata
                     </a>
+                    {% else %}
+                    <span class="text-xl font-semibold">
+                        Wikidata
+                    </span>
+                    {% endif %}
                     <span class="mx-2 text-gray-500 text-3xl font-bold">-</span> <!-- Dot Separator -->
                     <a href="{% url 'gallery_episode' title %}"
                         class="text-xl font-semibold text-blue-600 hover:text-blue-700 hover:underline">
@@ -209,6 +248,20 @@
                             </a>
                         </li>
                         {% endif %}
+
+                        {% if location %}
+                            <li><strong class="font-medium">Takes Place in:</strong>
+                                {% if location|length == 1 %}
+                                    <span class="ml-2">{{ location.0 }}</span>
+                                {% else %}
+                                    <ul class="list-disc pl-6 space-y-1">
+                                        {% for loc in location %}
+                                            <li>{{ loc }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                {% endif %}
+                            </li>
+                        {% endif %}
                     </ul>
                 </div>
 
@@ -221,7 +274,10 @@
                             <li><strong class="font-medium">Guests:</strong>
                                 {% if guests|length == 1 %}
                                     <span class="ml-2">
-                                        {{ guests.0.name }} as 
+                                        {{ guests.0.name }}
+                                        {% if guests.0.roles %}
+                                        as
+                                        {% endif %}
                                         {% for role in guests.0.roles %}
                                             {% if forloop.last and not forloop.first %}
                                                 and {{ role }}
@@ -238,7 +294,10 @@
                                     <ul class="list-disc pl-6 space-y-1">
                                         {% for guest in guests %}
                                             <li>
-                                                {{ guest.name }} as 
+                                                {{ guest.name }} 
+                                                {% if guest.roles %}
+                                                as
+                                                {% endif %}
                                                 {% for role in guest.roles %}
                                                     {% if forloop.last and not forloop.first %}
                                                         and {{ role }}
@@ -345,4 +404,75 @@
         </div>
     </div>
 </div>
+
+<script>
+    async function getSummary() {
+        const url = window.location.pathname;
+        const episodeTitle = url.split('/episode/')[1].split('/')[0]; // Ambil teks setelah /episode/
+
+        // Decode URL untuk mengembalikan karakter yang di-encode (misalnya '%20' menjadi spasi)
+        const pageTitle = decodeURIComponent(episodeTitle);
+        console.log(pageTitle)
+        return fetch(`/episode/get-summary/${pageTitle}/`).then((res) => res.json())
+        // alert(decodedTitle)
+    }
+    async function refreshSummary() {
+        // Panggil getSummary untuk mendapatkan summary terbaru
+        const summaryContent = await getSummary();
+
+        // Ambil nilai summary dari dictionary (misalnya summaryContent.summary)
+        const summaryText = summaryContent?.summary || "";  // Jika summaryContent tidak ada atau summary kosong, set menjadi ""
+
+        // Dapatkan elemen #summary-display
+        const summaryElement = document.getElementById("summary-display");
+
+        // Ganti konten elemen berdasarkan apakah ada summary atau tidak
+        if (summaryText) {
+        // Tampilkan summary jika ada
+        summaryElement.classList.remove("text-center", "text-gray-500");
+        summaryElement.classList.add("text-gray-700", "mb-6");
+        summaryElement.innerHTML = summaryText;
+        } else {
+        // Tampilkan pesan "No Summary available." jika kosong
+        summaryElement.classList.remove("text-gray-700", "mb-6");
+        summaryElement.classList.add("text-center", "text-gray-500", "col-span-full");
+        summaryElement.innerHTML = "No Summary available.";
+        }
+    }
+    async function getSynopsis() {
+        const url = window.location.pathname;
+        const episodeTitle = url.split('/episode/')[1].split('/')[0]; // Ambil teks setelah /episode/
+
+        // Decode URL untuk mengembalikan karakter yang di-encode (misalnya '%20' menjadi spasi)
+        const pageTitle = decodeURIComponent(episodeTitle);
+        console.log(pageTitle)
+        return fetch(`/episode/get-synopsis/${pageTitle}/`).then((res) => res.json())
+        // alert(decodedTitle)
+    }
+    async function refreshSynopsis() {
+        // Panggil getSynopsis untuk mendapatkan synopsis terbaru
+        const synopsisContent = await getSynopsis();
+
+        // Ambil nilai synopsis dari dictionary (misalnya synopsisContent.synopsis)
+        const synopsisText = synopsisContent?.synopsis || "";  // Jika synopsisContent tidak ada atau synopsis kosong, set menjadi ""
+
+        // Dapatkan elemen #synopsis-display
+        const synopsisElement = document.getElementById("synopsis-display");
+
+        // Ganti konten elemen berdasarkan apakah ada synopsis atau tidak
+        if (synopsisText) {
+        // Tampilkan synopsis jika ada
+        synopsisElement.classList.remove("text-center", "text-gray-500");
+        synopsisElement.classList.add("text-gray-700", "mb-6");
+        synopsisElement.innerHTML = synopsisText;
+        } else {
+        // Tampilkan pesan "No Synopsis available." jika kosong
+        synopsisElement.classList.remove("text-gray-700", "mb-6");
+        synopsisElement.classList.add("text-center", "text-gray-500", "col-span-full");
+        synopsisElement.innerHTML = "No Synopsis available.";
+        }
+    }
+    refreshSummary()
+    refreshSynopsis()
+</script>
 {% endblock %}

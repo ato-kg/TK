@@ -1,0 +1,1173 @@
+@base <http://example.org/data/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ex: <http://example.org/data/> .
+@prefix exv: <http://example.org/vocab#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix wd: <http://www.wikidata.org/entity/> .
+
+ex:helpwanted exv:hasUrl "https://spongebob.fandom.com/wiki/Help_Wanted" .
+
+ex:reefblower exv:hasUrl "https://spongebob.fandom.com/wiki/Reef_Blower" .
+
+ex:teaatthetreedome exv:hasUrl "https://spongebob.fandom.com/wiki/Tea_at_the_Treedome" .
+
+ex:bubblestand exv:hasUrl "https://spongebob.fandom.com/wiki/Bubblestand" .
+
+ex:rippedpants exv:hasUrl "https://spongebob.fandom.com/wiki/Ripped_Pants" .
+
+ex:jellyfishing exv:hasUrl "https://spongebob.fandom.com/wiki/Jellyfishing" .
+
+ex:plankton%21 exv:hasUrl "https://spongebob.fandom.com/wiki/Plankton!" .
+
+ex:naughtynauticalneighbors exv:hasUrl "https://spongebob.fandom.com/wiki/Naughty_Nautical_Neighbors" .
+
+ex:boatingschool exv:hasUrl "https://spongebob.fandom.com/wiki/Boating_School" .
+
+ex:pizzadelivery exv:hasUrl "https://spongebob.fandom.com/wiki/Pizza_Delivery" .
+
+ex:homesweetpineapple exv:hasUrl "https://spongebob.fandom.com/wiki/Home_Sweet_Pineapple" .
+
+ex:mermaidmanandbarnacleboy exv:hasUrl "https://spongebob.fandom.com/wiki/Mermaid_Man_and_Barnacle_Boy" .
+
+ex:pickles exv:hasUrl "https://spongebob.fandom.com/wiki/Pickles" .
+
+ex:hallmonitor exv:hasUrl "https://spongebob.fandom.com/wiki/Hall_Monitor" .
+
+ex:jellyfishjam exv:hasUrl "https://spongebob.fandom.com/wiki/Jellyfish_Jam" .
+
+ex:sandy%27srocket exv:hasUrl "https://spongebob.fandom.com/wiki/Sandy's_Rocket" .
+
+ex:squeakyboots exv:hasUrl "https://spongebob.fandom.com/wiki/Squeaky_Boots" .
+
+ex:naturepants exv:hasUrl "https://spongebob.fandom.com/wiki/Nature_Pants" .
+
+ex:oppositeday exv:hasUrl "https://spongebob.fandom.com/wiki/Opposite_Day" .
+
+ex:cultureshock exv:hasUrl "https://spongebob.fandom.com/wiki/Culture_Shock" .
+
+<f.u.n.> exv:hasUrl "https://spongebob.fandom.com/wiki/F.U.N." .
+
+ex:musclebobbuffpants exv:hasUrl "https://spongebob.fandom.com/wiki/MuscleBob_BuffPants" .
+
+ex:squidwardtheunfriendlyghost exv:hasUrl "https://spongebob.fandom.com/wiki/Squidward_the_Unfriendly_Ghost" .
+
+ex:thechaperone exv:hasUrl "https://spongebob.fandom.com/wiki/The_Chaperone" .
+
+ex:employeeofthemonth exv:hasUrl "https://spongebob.fandom.com/wiki/Employee_of_the_Month" .
+
+ex:scaredypants exv:hasUrl "https://spongebob.fandom.com/wiki/Scaredy_Pants" .
+
+ex:iwasateenagegary exv:hasUrl "https://spongebob.fandom.com/wiki/I_Was_a_Teenage_Gary" .
+
+ex:sb-129 exv:hasUrl "https://spongebob.fandom.com/wiki/SB-129" .
+
+ex:karatechoppers exv:hasUrl "https://spongebob.fandom.com/wiki/Karate_Choppers" .
+
+ex:sleepytime exv:hasUrl "https://spongebob.fandom.com/wiki/Sleepy_Time" .
+
+ex:suds exv:hasUrl "https://spongebob.fandom.com/wiki/Suds" .
+
+ex:valentine%27sday exv:hasUrl "https://spongebob.fandom.com/wiki/Valentine's_Day" .
+
+ex:thepaper exv:hasUrl "https://spongebob.fandom.com/wiki/The_Paper" .
+
+ex:arrgh%21 exv:hasUrl "https://spongebob.fandom.com/wiki/Arrgh!" .
+
+ex:rockbottom exv:hasUrl "https://spongebob.fandom.com/wiki/Rock_Bottom" .
+
+ex:texas exv:hasUrl "https://spongebob.fandom.com/wiki/Texas" .
+
+ex:walkingsmall exv:hasUrl "https://spongebob.fandom.com/wiki/Walking_Small" .
+
+ex:foolsinapril exv:hasUrl "https://spongebob.fandom.com/wiki/Fools_in_April" .
+
+ex:neptune%27sspatula exv:hasUrl "https://spongebob.fandom.com/wiki/Neptune's_Spatula" .
+
+ex:hooky exv:hasUrl "https://spongebob.fandom.com/wiki/Hooky" .
+
+ex:mermaidmanandbarnacleboyii exv:hasUrl "https://spongebob.fandom.com/wiki/Mermaid_Man_and_Barnacle_Boy_II" .
+
+ex:yourshoe%27suntied exv:hasUrl "https://spongebob.fandom.com/wiki/Your_Shoe's_Untied" .
+
+ex:squid%27sdayoff exv:hasUrl "https://spongebob.fandom.com/wiki/Squid's_Day_Off" .
+
+ex:somethingsmells exv:hasUrl "https://spongebob.fandom.com/wiki/Something_Smells" .
+
+ex:bossyboots exv:hasUrl "https://spongebob.fandom.com/wiki/Bossy_Boots" .
+
+ex:bigpinkloser exv:hasUrl "https://spongebob.fandom.com/wiki/Big_Pink_Loser" .
+
+ex:bubblebuddy exv:hasUrl "https://spongebob.fandom.com/wiki/Bubble_Buddy" .
+
+ex:dyingforpie exv:hasUrl "https://spongebob.fandom.com/wiki/Dying_for_Pie" .
+
+ex:imitationkrabs exv:hasUrl "https://spongebob.fandom.com/wiki/Imitation_Krabs" .
+
+ex:wormy exv:hasUrl "https://spongebob.fandom.com/wiki/Wormy" .
+
+ex:pattyhype exv:hasUrl "https://spongebob.fandom.com/wiki/Patty_Hype" .
+
+ex:grandma%27skisses exv:hasUrl "https://spongebob.fandom.com/wiki/Grandma's_Kisses" .
+
+ex:squidville exv:hasUrl "https://spongebob.fandom.com/wiki/Squidville" .
+
+ex:prehibernationweek exv:hasUrl "https://spongebob.fandom.com/wiki/Prehibernation_Week" .
+
+ex:lifeofcrime exv:hasUrl "https://spongebob.fandom.com/wiki/Life_of_Crime" .
+
+ex:christmaswho%3F exv:hasUrl "https://spongebob.fandom.com/wiki/Christmas_Who?" .
+
+ex:survivaloftheidiots exv:hasUrl "https://spongebob.fandom.com/wiki/Survival_of_the_Idiots" .
+
+ex:dumped exv:hasUrl "https://spongebob.fandom.com/wiki/Dumped" .
+
+ex:nofreerides exv:hasUrl "https://spongebob.fandom.com/wiki/No_Free_Rides" .
+
+ex:i%27myourbiggestfanatic exv:hasUrl "https://spongebob.fandom.com/wiki/I'm_Your_Biggest_Fanatic" .
+
+ex:mermaidmanandbarnacleboyiii exv:hasUrl "https://spongebob.fandom.com/wiki/Mermaid_Man_and_Barnacle_Boy_III" .
+
+ex:squirreljokes exv:hasUrl "https://spongebob.fandom.com/wiki/Squirrel_Jokes" .
+
+ex:pressure exv:hasUrl "https://spongebob.fandom.com/wiki/Pressure" .
+
+ex:thesmokingpeanut exv:hasUrl "https://spongebob.fandom.com/wiki/The_Smoking_Peanut" .
+
+ex:shanghaied exv:hasUrl "https://spongebob.fandom.com/wiki/Shanghaied" .
+
+ex:garytakesabath exv:hasUrl "https://spongebob.fandom.com/wiki/Gary_Takes_a_Bath" .
+
+ex:welcometothechumbucket exv:hasUrl "https://spongebob.fandom.com/wiki/Welcome_to_the_Chum_Bucket" .
+
+ex:frankendoodle exv:hasUrl "https://spongebob.fandom.com/wiki/Frankendoodle" .
+
+ex:thesecretbox exv:hasUrl "https://spongebob.fandom.com/wiki/The_Secret_Box" .
+
+ex:bandgeeks exv:hasUrl "https://spongebob.fandom.com/wiki/Band_Geeks" .
+
+ex:graveyardshift exv:hasUrl "https://spongebob.fandom.com/wiki/Graveyard_Shift" .
+
+ex:krustylove exv:hasUrl "https://spongebob.fandom.com/wiki/Krusty_Love" .
+
+ex:procrastination exv:hasUrl "https://spongebob.fandom.com/wiki/Procrastination" .
+
+ex:i%27mwithstupid exv:hasUrl "https://spongebob.fandom.com/wiki/I'm_with_Stupid" .
+
+ex:sailormouth exv:hasUrl "https://spongebob.fandom.com/wiki/Sailor_Mouth" .
+
+ex:artistunknown exv:hasUrl "https://spongebob.fandom.com/wiki/Artist_Unknown" .
+
+ex:jellyfishhunter exv:hasUrl "https://spongebob.fandom.com/wiki/Jellyfish_Hunter" .
+
+ex:thefrycookgames exv:hasUrl "https://spongebob.fandom.com/wiki/The_Fry_Cook_Games" .
+
+ex:squidonstrike exv:hasUrl "https://spongebob.fandom.com/wiki/Squid_on_Strike" .
+
+ex:sandy%2Cspongebob%2Candtheworm exv:hasUrl "https://spongebob.fandom.com/wiki/Sandy,_SpongeBob,_and_the_Worm" .
+
+ex:thealgae%27salwaysgreener exv:hasUrl "https://spongebob.fandom.com/wiki/The_Algae's_Always_Greener" .
+
+ex:spongeguardonduty exv:hasUrl "https://spongebob.fandom.com/wiki/SpongeGuard_on_Duty" .
+
+ex:clubspongebob exv:hasUrl "https://spongebob.fandom.com/wiki/Club_SpongeBob" .
+
+ex:myprettyseahorse exv:hasUrl "https://spongebob.fandom.com/wiki/My_Pretty_Seahorse" .
+
+ex:justonebite exv:hasUrl "https://spongebob.fandom.com/wiki/Just_One_Bite" .
+
+ex:thebully exv:hasUrl "https://spongebob.fandom.com/wiki/The_Bully" .
+
+ex:nastypatty exv:hasUrl "https://spongebob.fandom.com/wiki/Nasty_Patty" .
+
+ex:idiotbox exv:hasUrl "https://spongebob.fandom.com/wiki/Idiot_Box" .
+
+ex:mermaidmanandbarnacleboyiv exv:hasUrl "https://spongebob.fandom.com/wiki/Mermaid_Man_and_Barnacle_Boy_IV" .
+
+ex:doingtime exv:hasUrl "https://spongebob.fandom.com/wiki/Doing_Time" .
+
+ex:snowballeffect exv:hasUrl "https://spongebob.fandom.com/wiki/Snowball_Effect" .
+
+ex:onekrabstrash exv:hasUrl "https://spongebob.fandom.com/wiki/One_Krabs_Trash" .
+
+ex:asseenontv exv:hasUrl "https://spongebob.fandom.com/wiki/As_Seen_on_TV" .
+
+ex:canyouspareadime%3F exv:hasUrl "https://spongebob.fandom.com/wiki/Can_You_Spare_a_Dime?" .
+
+ex:noweeniesallowed exv:hasUrl "https://spongebob.fandom.com/wiki/No_Weenies_Allowed" .
+
+ex:squilliamreturns exv:hasUrl "https://spongebob.fandom.com/wiki/Squilliam_Returns" .
+
+ex:krabborg exv:hasUrl "https://spongebob.fandom.com/wiki/Krab_Borg" .
+
+ex:rock-a-byebivalve exv:hasUrl "https://spongebob.fandom.com/wiki/Rock-a-Bye_Bivalve" .
+
+ex:wetpainters exv:hasUrl "https://spongebob.fandom.com/wiki/Wet_Painters" .
+
+ex:krustykrabtrainingvideo exv:hasUrl "https://spongebob.fandom.com/wiki/Krusty_Krab_Training_Video" .
+
+ex:partypooperpants exv:hasUrl "https://spongebob.fandom.com/wiki/Party_Pooper_Pants" .
+
+ex:chocolatewithnuts exv:hasUrl "https://spongebob.fandom.com/wiki/Chocolate_with_Nuts" .
+
+ex:mermaidmanandbarnacleboyv exv:hasUrl "https://spongebob.fandom.com/wiki/Mermaid_Man_and_Barnacle_Boy_V" .
+
+ex:newstudentstarfish exv:hasUrl "https://spongebob.fandom.com/wiki/New_Student_Starfish" .
+
+ex:clams exv:hasUrl "https://spongebob.fandom.com/wiki/Clams" .
+
+ex:ugh exv:hasUrl "https://spongebob.fandom.com/wiki/Ugh" .
+
+ex:thegreatsnailrace exv:hasUrl "https://spongebob.fandom.com/wiki/The_Great_Snail_Race" .
+
+ex:mid-lifecrustacean exv:hasUrl "https://spongebob.fandom.com/wiki/Mid-Life_Crustacean" .
+
+ex:bornagainkrabs exv:hasUrl "https://spongebob.fandom.com/wiki/Born_Again_Krabs" .
+
+ex:ihadanaccident exv:hasUrl "https://spongebob.fandom.com/wiki/I_Had_an_Accident" .
+
+ex:krabbyland exv:hasUrl "https://spongebob.fandom.com/wiki/Krabby_Land" .
+
+ex:thecampingepisode exv:hasUrl "https://spongebob.fandom.com/wiki/The_Camping_Episode" .
+
+ex:missingidentity exv:hasUrl "https://spongebob.fandom.com/wiki/Missing_Identity" .
+
+ex:plankton%27sarmy exv:hasUrl "https://spongebob.fandom.com/wiki/Plankton's_Army" .
+
+ex:thespongewhocouldfly exv:hasUrl "https://spongebob.fandom.com/wiki/The_Sponge_Who_Could_Fly" .
+
+ex:spongebobmeetsthestrangler exv:hasUrl "https://spongebob.fandom.com/wiki/SpongeBob_Meets_the_Strangler" .
+
+ex:pranksalot exv:hasUrl "https://spongebob.fandom.com/wiki/Pranks_a_Lot" .
+
+ex:fearofakrabbypatty exv:hasUrl "https://spongebob.fandom.com/wiki/Fear_of_a_Krabby_Patty" .
+
+ex:shellofaman exv:hasUrl "https://spongebob.fandom.com/wiki/Shell_of_a_Man" .
+
+ex:thelostmattress exv:hasUrl "https://spongebob.fandom.com/wiki/The_Lost_Mattress" .
+
+ex:krabsvs.plankton exv:hasUrl "https://spongebob.fandom.com/wiki/Krabs_vs._Plankton" .
+
+ex:haveyouseenthissnail%3F exv:hasUrl "https://spongebob.fandom.com/wiki/Have_You_Seen_This_Snail?" .
+
+ex:skillcrane exv:hasUrl "https://spongebob.fandom.com/wiki/Skill_Crane" .
+
+ex:goodneighbors exv:hasUrl "https://spongebob.fandom.com/wiki/Good_Neighbors" .
+
+ex:sellingout exv:hasUrl "https://spongebob.fandom.com/wiki/Selling_Out" .
+
+ex:funnypants exv:hasUrl "https://spongebob.fandom.com/wiki/Funny_Pants" .
+
+ex:duncesanddragons exv:hasUrl "https://spongebob.fandom.com/wiki/Dunces_and_Dragons" .
+
+ex:enemyin-law exv:hasUrl "https://spongebob.fandom.com/wiki/Enemy_In-Law" .
+
+ex:mermaidman%26barnacleboyvi%3Athemotionpicture exv:hasUrl "https://spongebob.fandom.com/wiki/Mermaid_Man_&_Barnacle_Boy_VI:_The_Motion_Picture" .
+
+ex:patricksmartpants exv:hasUrl "https://spongebob.fandom.com/wiki/Patrick_SmartPants" .
+
+ex:squidbobtentaclepants exv:hasUrl "https://spongebob.fandom.com/wiki/SquidBob_TentaclePants" .
+
+ex:krustytowers exv:hasUrl "https://spongebob.fandom.com/wiki/Krusty_Towers" .
+
+ex:mrs.puff%2Cyou%27refired exv:hasUrl "https://spongebob.fandom.com/wiki/Mrs._Puff,_You're_Fired" .
+
+ex:chimpsahoy exv:hasUrl "https://spongebob.fandom.com/wiki/Chimps_Ahoy" .
+
+ex:ghosthost exv:hasUrl "https://spongebob.fandom.com/wiki/Ghost_Host" .
+
+ex:whaleofabirthday exv:hasUrl "https://spongebob.fandom.com/wiki/Whale_of_a_Birthday" .
+
+ex:karateisland exv:hasUrl "https://spongebob.fandom.com/wiki/Karate_Island" .
+
+ex:allthatglitters exv:hasUrl "https://spongebob.fandom.com/wiki/All_That_Glitters" .
+
+ex:wishingyouwell exv:hasUrl "https://spongebob.fandom.com/wiki/Wishing_You_Well" .
+
+ex:newleaf exv:hasUrl "https://spongebob.fandom.com/wiki/New_Leaf" .
+
+ex:oncebitten exv:hasUrl "https://spongebob.fandom.com/wiki/Once_Bitten" .
+
+ex:bummervacation exv:hasUrl "https://spongebob.fandom.com/wiki/Bummer_Vacation" .
+
+ex:wigstruck exv:hasUrl "https://spongebob.fandom.com/wiki/Wigstruck" .
+
+ex:squidtasticvoyage exv:hasUrl "https://spongebob.fandom.com/wiki/Squidtastic_Voyage" .
+
+ex:that%27snolady exv:hasUrl "https://spongebob.fandom.com/wiki/That's_No_Lady" .
+
+ex:thething exv:hasUrl "https://spongebob.fandom.com/wiki/The_Thing" .
+
+ex:hocuspocus exv:hasUrl "https://spongebob.fandom.com/wiki/Hocus_Pocus" .
+
+ex:driventotears exv:hasUrl "https://spongebob.fandom.com/wiki/Driven_to_Tears" .
+
+ex:ruleofdumb exv:hasUrl "https://spongebob.fandom.com/wiki/Rule_of_Dumb" .
+
+ex:borntobewild exv:hasUrl "https://spongebob.fandom.com/wiki/Born_to_Be_Wild" .
+
+ex:bestfrenemies exv:hasUrl "https://spongebob.fandom.com/wiki/Best_Frenemies" .
+
+ex:thepinkpurloiner exv:hasUrl "https://spongebob.fandom.com/wiki/The_Pink_Purloiner" .
+
+ex:squidwood exv:hasUrl "https://spongebob.fandom.com/wiki/Squid_Wood" .
+
+ex:bestdayever exv:hasUrl "https://spongebob.fandom.com/wiki/Best_Day_Ever" .
+
+ex:thegiftofgum exv:hasUrl "https://spongebob.fandom.com/wiki/The_Gift_of_Gum" .
+
+ex:friendorfoe exv:hasUrl "https://spongebob.fandom.com/wiki/Friend_or_Foe" .
+
+ex:theoriginalfrycook exv:hasUrl "https://spongebob.fandom.com/wiki/The_Original_Fry_Cook" .
+
+ex:nightlight exv:hasUrl "https://spongebob.fandom.com/wiki/Night_Light" .
+
+ex:riseandshine exv:hasUrl "https://spongebob.fandom.com/wiki/Rise_and_Shine" .
+
+ex:waiting exv:hasUrl "https://spongebob.fandom.com/wiki/Waiting" .
+
+ex:fungusamongus exv:hasUrl "https://spongebob.fandom.com/wiki/Fungus_Among_Us" .
+
+ex:spybuddies exv:hasUrl "https://spongebob.fandom.com/wiki/Spy_Buddies" .
+
+ex:boatsmarts exv:hasUrl "https://spongebob.fandom.com/wiki/Boat_Smarts" .
+
+ex:goodol%27whatshisname exv:hasUrl "https://spongebob.fandom.com/wiki/Good_Ol'_Whatshisname" .
+
+ex:newdigs exv:hasUrl "https://spongebob.fandom.com/wiki/New_Digs" .
+
+ex:krabsàlamode exv:hasUrl "https://spongebob.fandom.com/wiki/Krabs_à_la_Mode" .
+
+ex:rollercowards exv:hasUrl "https://spongebob.fandom.com/wiki/Roller_Cowards" .
+
+ex:bucketsweetbucket exv:hasUrl "https://spongebob.fandom.com/wiki/Bucket_Sweet_Bucket" .
+
+ex:toloveapatty exv:hasUrl "https://spongebob.fandom.com/wiki/To_Love_a_Patty" .
+
+ex:breathoffreshsquidward exv:hasUrl "https://spongebob.fandom.com/wiki/Breath_of_Fresh_Squidward" .
+
+ex:moneytalks exv:hasUrl "https://spongebob.fandom.com/wiki/Money_Talks" .
+
+ex:spongebobvs.thepattygadget exv:hasUrl "https://spongebob.fandom.com/wiki/SpongeBob_vs._The_Patty_Gadget" .
+
+ex:slimydancing exv:hasUrl "https://spongebob.fandom.com/wiki/Slimy_Dancing" .
+
+ex:thekrustysponge exv:hasUrl "https://spongebob.fandom.com/wiki/The_Krusty_Sponge" .
+
+ex:singasongofpatrick exv:hasUrl "https://spongebob.fandom.com/wiki/Sing_a_Song_of_Patrick" .
+
+ex:afleainherdome exv:hasUrl "https://spongebob.fandom.com/wiki/A_Flea_in_Her_Dome" .
+
+ex:thedonutofshame exv:hasUrl "https://spongebob.fandom.com/wiki/The_Donut_of_Shame" .
+
+ex:thekrustyplate exv:hasUrl "https://spongebob.fandom.com/wiki/The_Krusty_Plate" .
+
+ex:googoogas exv:hasUrl "https://spongebob.fandom.com/wiki/Goo_Goo_Gas" .
+
+ex:lebigswitch exv:hasUrl "https://spongebob.fandom.com/wiki/Le_Big_Switch" .
+
+ex:atlantissquarepantis exv:hasUrl "https://spongebob.fandom.com/wiki/Atlantis_SquarePantis" .
+
+ex:pictureday exv:hasUrl "https://spongebob.fandom.com/wiki/Picture_Day" .
+
+ex:patnopay exv:hasUrl "https://spongebob.fandom.com/wiki/Pat_No_Pay" .
+
+ex:blackjack exv:hasUrl "https://spongebob.fandom.com/wiki/BlackJack" .
+
+ex:blackenedsponge exv:hasUrl "https://spongebob.fandom.com/wiki/Blackened_Sponge" .
+
+ex:mermaidmanvs.spongebob exv:hasUrl "https://spongebob.fandom.com/wiki/Mermaid_Man_vs._SpongeBob" .
+
+ex:theinmatesofsummer exv:hasUrl "https://spongebob.fandom.com/wiki/The_Inmates_of_Summer" .
+
+ex:tosaveasquirrel exv:hasUrl "https://spongebob.fandom.com/wiki/To_Save_a_Squirrel" .
+
+ex:pestofthewest exv:hasUrl "https://spongebob.fandom.com/wiki/Pest_of_the_West" .
+
+ex:20%2C000pattiesunderthesea exv:hasUrl "https://spongebob.fandom.com/wiki/20,000_Patties_Under_the_Sea" .
+
+ex:thebattleofbikinibottom exv:hasUrl "https://spongebob.fandom.com/wiki/The_Battle_of_Bikini_Bottom" .
+
+ex:whateverhappenedtospongebob%3F exv:hasUrl "https://spongebob.fandom.com/wiki/What_Ever_Happened_to_SpongeBob?" .
+
+ex:thetwofacesofsquidward exv:hasUrl "https://spongebob.fandom.com/wiki/The_Two_Faces_of_Squidward" .
+
+ex:spongehenge exv:hasUrl "https://spongebob.fandom.com/wiki/SpongeHenge" .
+
+ex:bannedinbikinibottom exv:hasUrl "https://spongebob.fandom.com/wiki/Banned_in_Bikini_Bottom" .
+
+ex:stanleys.squarepants exv:hasUrl "https://spongebob.fandom.com/wiki/Stanley_S._SquarePants" .
+
+ex:housefancy exv:hasUrl "https://spongebob.fandom.com/wiki/House_Fancy" .
+
+ex:krabbyroad exv:hasUrl "https://spongebob.fandom.com/wiki/Krabby_Road" .
+
+ex:pennyfoolish exv:hasUrl "https://spongebob.fandom.com/wiki/Penny_Foolish" .
+
+ex:nauticalnovice exv:hasUrl "https://spongebob.fandom.com/wiki/Nautical_Novice" .
+
+ex:spongicus exv:hasUrl "https://spongebob.fandom.com/wiki/Spongicus" .
+
+ex:suctioncupsymphony exv:hasUrl "https://spongebob.fandom.com/wiki/Suction_Cup_Symphony" .
+
+ex:notnormal exv:hasUrl "https://spongebob.fandom.com/wiki/Not_Normal" .
+
+ex:gone exv:hasUrl "https://spongebob.fandom.com/wiki/Gone" .
+
+ex:thesplinter exv:hasUrl "https://spongebob.fandom.com/wiki/The_Splinter" .
+
+ex:slidewhistlestooges exv:hasUrl "https://spongebob.fandom.com/wiki/Slide_Whistle_Stooges" .
+
+ex:alifeinaday exv:hasUrl "https://spongebob.fandom.com/wiki/A_Life_in_a_Day" .
+
+ex:sunbleached exv:hasUrl "https://spongebob.fandom.com/wiki/Sun_Bleached" .
+
+ex:giantsquidward exv:hasUrl "https://spongebob.fandom.com/wiki/Giant_Squidward" .
+
+ex:nonoseknows exv:hasUrl "https://spongebob.fandom.com/wiki/No_Nose_Knows" .
+
+ex:pattycaper exv:hasUrl "https://spongebob.fandom.com/wiki/Patty_Caper" .
+
+ex:plankton%27sregular exv:hasUrl "https://spongebob.fandom.com/wiki/Plankton's_Regular" .
+
+ex:boatingbuddies exv:hasUrl "https://spongebob.fandom.com/wiki/Boating_Buddies" .
+
+ex:thekrabbykronicle exv:hasUrl "https://spongebob.fandom.com/wiki/The_Krabby_Kronicle" .
+
+ex:theslumberparty exv:hasUrl "https://spongebob.fandom.com/wiki/The_Slumber_Party" .
+
+ex:groominggary exv:hasUrl "https://spongebob.fandom.com/wiki/Grooming_Gary" .
+
+ex:spongebobsquarepantsvs.thebigone exv:hasUrl "https://spongebob.fandom.com/wiki/SpongeBob_SquarePants_vs._The_Big_One" .
+
+ex:porouspockets exv:hasUrl "https://spongebob.fandom.com/wiki/Porous_Pockets" .
+
+ex:choirboys exv:hasUrl "https://spongebob.fandom.com/wiki/Choir_Boys" .
+
+ex:krustykrushers exv:hasUrl "https://spongebob.fandom.com/wiki/Krusty_Krushers" .
+
+ex:thecard exv:hasUrl "https://spongebob.fandom.com/wiki/The_Card" .
+
+ex:dearvikings exv:hasUrl "https://spongebob.fandom.com/wiki/Dear_Vikings" .
+
+ex:ditchin%27 exv:hasUrl "https://spongebob.fandom.com/wiki/Ditchin'" .
+
+ex:grandpappythepirate exv:hasUrl "https://spongebob.fandom.com/wiki/Grandpappy_the_Pirate" .
+
+ex:cephalopodlodge exv:hasUrl "https://spongebob.fandom.com/wiki/Cephalopod_Lodge" .
+
+ex:squid%27svisit exv:hasUrl "https://spongebob.fandom.com/wiki/Squid's_Visit" .
+
+ex:tosquarepantsornottosquarepants exv:hasUrl "https://spongebob.fandom.com/wiki/To_SquarePants_or_Not_to_SquarePants" .
+
+ex:shuffleboarding exv:hasUrl "https://spongebob.fandom.com/wiki/Shuffleboarding" .
+
+ex:professorsquidward exv:hasUrl "https://spongebob.fandom.com/wiki/Professor_Squidward" .
+
+ex:petorpests exv:hasUrl "https://spongebob.fandom.com/wiki/Pet_or_Pests" .
+
+ex:komputeroverload exv:hasUrl "https://spongebob.fandom.com/wiki/Komputer_Overload" .
+
+ex:gulliblepants exv:hasUrl "https://spongebob.fandom.com/wiki/Gullible_Pants" .
+
+ex:overbooked exv:hasUrl "https://spongebob.fandom.com/wiki/Overbooked" .
+
+ex:nohatforpat exv:hasUrl "https://spongebob.fandom.com/wiki/No_Hat_for_Pat" .
+
+ex:toystoreofdoom exv:hasUrl "https://spongebob.fandom.com/wiki/Toy_Store_of_Doom" .
+
+ex:sandcastlesinthesand exv:hasUrl "https://spongebob.fandom.com/wiki/Sand_Castles_in_the_Sand" .
+
+ex:shellshocked exv:hasUrl "https://spongebob.fandom.com/wiki/Shell_Shocked" .
+
+ex:chumbucketsupreme exv:hasUrl "https://spongebob.fandom.com/wiki/Chum_Bucket_Supreme" .
+
+ex:singlecellanniversary exv:hasUrl "https://spongebob.fandom.com/wiki/Single_Cell_Anniversary" .
+
+ex:truthorsquare exv:hasUrl "https://spongebob.fandom.com/wiki/Truth_or_Square" .
+
+ex:pineapplefever exv:hasUrl "https://spongebob.fandom.com/wiki/Pineapple_Fever" .
+
+ex:chumcaverns exv:hasUrl "https://spongebob.fandom.com/wiki/Chum_Caverns" .
+
+ex:theclashoftriton exv:hasUrl "https://spongebob.fandom.com/wiki/The_Clash_of_Triton" .
+
+ex:tentacle-vision exv:hasUrl "https://spongebob.fandom.com/wiki/Tentacle-Vision" .
+
+<i♥dancing> exv:hasUrl "https://spongebob.fandom.com/wiki/I_♥_Dancing" .
+
+ex:growthspout exv:hasUrl "https://spongebob.fandom.com/wiki/Growth_Spout" .
+
+ex:stuckinthewringer exv:hasUrl "https://spongebob.fandom.com/wiki/Stuck_in_the_Wringer" .
+
+ex:someone%27sinthekitchenwithsandy exv:hasUrl "https://spongebob.fandom.com/wiki/Someone's_in_the_Kitchen_with_Sandy" .
+
+ex:theinsidejob exv:hasUrl "https://spongebob.fandom.com/wiki/The_Inside_Job" .
+
+ex:greasybuffoons exv:hasUrl "https://spongebob.fandom.com/wiki/Greasy_Buffoons" .
+
+ex:modelsponge exv:hasUrl "https://spongebob.fandom.com/wiki/Model_Sponge" .
+
+ex:keepbikinibottombeautiful exv:hasUrl "https://spongebob.fandom.com/wiki/Keep_Bikini_Bottom_Beautiful" .
+
+ex:apalforgary exv:hasUrl "https://spongebob.fandom.com/wiki/A_Pal_for_Gary" .
+
+ex:yours%2Cmineandmine exv:hasUrl "https://spongebob.fandom.com/wiki/Yours,_Mine_and_Mine" .
+
+ex:krackedkrabs exv:hasUrl "https://spongebob.fandom.com/wiki/Kracked_Krabs" .
+
+ex:thecurseofbikinibottom exv:hasUrl "https://spongebob.fandom.com/wiki/The_Curse_of_Bikini_Bottom" .
+
+ex:squidwardinclarinetland exv:hasUrl "https://spongebob.fandom.com/wiki/Squidward_in_Clarinetland" .
+
+ex:spongebob%27slaststand exv:hasUrl "https://spongebob.fandom.com/wiki/SpongeBob's_Last_Stand" .
+
+ex:backtothepast exv:hasUrl "https://spongebob.fandom.com/wiki/Back_to_the_Past" .
+
+ex:thebadguyclubforvillains exv:hasUrl "https://spongebob.fandom.com/wiki/The_Bad_Guy_Club_for_Villains" .
+
+ex:adaywithouttears exv:hasUrl "https://spongebob.fandom.com/wiki/A_Day_Without_Tears" .
+
+ex:summerjob exv:hasUrl "https://spongebob.fandom.com/wiki/Summer_Job" .
+
+ex:onecoarsemeal exv:hasUrl "https://spongebob.fandom.com/wiki/One_Coarse_Meal" .
+
+ex:garyinlove exv:hasUrl "https://spongebob.fandom.com/wiki/Gary_in_Love" .
+
+ex:theplay%27sthething exv:hasUrl "https://spongebob.fandom.com/wiki/The_Play's_the_Thing" .
+
+ex:rodeodaze exv:hasUrl "https://spongebob.fandom.com/wiki/Rodeo_Daze" .
+
+ex:gramma%27ssecretrecipe exv:hasUrl "https://spongebob.fandom.com/wiki/Gramma's_Secret_Recipe" .
+
+ex:thecentofmoney exv:hasUrl "https://spongebob.fandom.com/wiki/The_Cent_of_Money" .
+
+ex:themonsterwhocametobikinibottom exv:hasUrl "https://spongebob.fandom.com/wiki/The_Monster_Who_Came_to_Bikini_Bottom" .
+
+ex:welcometothebikinibottomtriangle exv:hasUrl "https://spongebob.fandom.com/wiki/Welcome_to_the_Bikini_Bottom_Triangle" .
+
+ex:thecurseofthehex exv:hasUrl "https://spongebob.fandom.com/wiki/The_Curse_of_the_Hex" .
+
+ex:themaindrain exv:hasUrl "https://spongebob.fandom.com/wiki/The_Main_Drain" .
+
+ex:trenchbillies exv:hasUrl "https://spongebob.fandom.com/wiki/Trenchbillies" .
+
+ex:sponge-cano%21 exv:hasUrl "https://spongebob.fandom.com/wiki/Sponge-Cano!" .
+
+ex:thegreatpattycaper exv:hasUrl "https://spongebob.fandom.com/wiki/The_Great_Patty_Caper" .
+
+ex:thatsinkingfeeling exv:hasUrl "https://spongebob.fandom.com/wiki/That_Sinking_Feeling" .
+
+ex:karatestar exv:hasUrl "https://spongebob.fandom.com/wiki/Karate_Star" .
+
+ex:buriedintime exv:hasUrl "https://spongebob.fandom.com/wiki/Buried_in_Time" .
+
+ex:enchantedtikidreams exv:hasUrl "https://spongebob.fandom.com/wiki/Enchanted_Tiki_Dreams" .
+
+ex:theabrasiveside exv:hasUrl "https://spongebob.fandom.com/wiki/The_Abrasive_Side" .
+
+ex:earworm exv:hasUrl "https://spongebob.fandom.com/wiki/Earworm" .
+
+ex:hideandthenwhathappens%3F exv:hasUrl "https://spongebob.fandom.com/wiki/Hide_and_Then_What_Happens?" .
+
+ex:shellbackshenanigans exv:hasUrl "https://spongebob.fandom.com/wiki/Shellback_Shenanigans" .
+
+ex:themasterpiece exv:hasUrl "https://spongebob.fandom.com/wiki/The_Masterpiece" .
+
+ex:whelkattack exv:hasUrl "https://spongebob.fandom.com/wiki/Whelk_Attack" .
+
+ex:youdon%27tknowsponge exv:hasUrl "https://spongebob.fandom.com/wiki/You_Don't_Know_Sponge" .
+
+ex:tunnelofglove exv:hasUrl "https://spongebob.fandom.com/wiki/Tunnel_of_Glove" .
+
+ex:krustydogs exv:hasUrl "https://spongebob.fandom.com/wiki/Krusty_Dogs" .
+
+ex:thewreckofthemaunaloa exv:hasUrl "https://spongebob.fandom.com/wiki/The_Wreck_of_the_Mauna_Loa" .
+
+ex:newfishintown exv:hasUrl "https://spongebob.fandom.com/wiki/New_Fish_in_Town" .
+
+ex:lovethatsquid exv:hasUrl "https://spongebob.fandom.com/wiki/Love_That_Squid" .
+
+ex:bigsistersam exv:hasUrl "https://spongebob.fandom.com/wiki/Big_Sister_Sam" .
+
+ex:perfectchemistry exv:hasUrl "https://spongebob.fandom.com/wiki/Perfect_Chemistry" .
+
+ex:accidentswillhappen exv:hasUrl "https://spongebob.fandom.com/wiki/Accidents_Will_Happen" .
+
+ex:theotherpatty exv:hasUrl "https://spongebob.fandom.com/wiki/The_Other_Patty" .
+
+ex:drivethru exv:hasUrl "https://spongebob.fandom.com/wiki/Drive_Thru" .
+
+ex:thehotshot exv:hasUrl "https://spongebob.fandom.com/wiki/The_Hot_Shot" .
+
+ex:afriendlygame exv:hasUrl "https://spongebob.fandom.com/wiki/A_Friendly_Game" .
+
+ex:sentimentalsponge exv:hasUrl "https://spongebob.fandom.com/wiki/Sentimental_Sponge" .
+
+ex:frozenface-off exv:hasUrl "https://spongebob.fandom.com/wiki/Frozen_Face-Off" .
+
+ex:squidward%27sschoolforgrown-ups exv:hasUrl "https://spongebob.fandom.com/wiki/Squidward's_School_for_Grown-Ups" .
+
+ex:oralreport exv:hasUrl "https://spongebob.fandom.com/wiki/Oral_Report" .
+
+ex:sweetandsoursquid exv:hasUrl "https://spongebob.fandom.com/wiki/Sweet_and_Sour_Squid" .
+
+ex:thegooglyartiste exv:hasUrl "https://spongebob.fandom.com/wiki/The_Googly_Artiste" .
+
+ex:asquarepantsfamilyvacation exv:hasUrl "https://spongebob.fandom.com/wiki/A_SquarePants_Family_Vacation" .
+
+ex:patrick%27sstaycation exv:hasUrl "https://spongebob.fandom.com/wiki/Patrick's_Staycation" .
+
+ex:walkingtheplankton exv:hasUrl "https://spongebob.fandom.com/wiki/Walking_the_Plankton" .
+
+ex:mooncation exv:hasUrl "https://spongebob.fandom.com/wiki/Mooncation" .
+
+ex:mr.krabstakesavacation exv:hasUrl "https://spongebob.fandom.com/wiki/Mr._Krabs_Takes_a_Vacation" .
+
+ex:ghoulfools exv:hasUrl "https://spongebob.fandom.com/wiki/Ghoul_Fools" .
+
+ex:mermaidmanbegins exv:hasUrl "https://spongebob.fandom.com/wiki/Mermaid_Man_Begins" .
+
+ex:plankton%27sgoodeye exv:hasUrl "https://spongebob.fandom.com/wiki/Plankton's_Good_Eye" .
+
+ex:barnacleface exv:hasUrl "https://spongebob.fandom.com/wiki/Barnacle_Face" .
+
+ex:petsitterpat exv:hasUrl "https://spongebob.fandom.com/wiki/Pet_Sitter_Pat" .
+
+ex:housesittin%27forsandy exv:hasUrl "https://spongebob.fandom.com/wiki/House_Sittin'_for_Sandy" .
+
+ex:smoothejazzatbikinibottom exv:hasUrl "https://spongebob.fandom.com/wiki/Smoothe_Jazz_at_Bikini_Bottom" .
+
+ex:bubbletroubles exv:hasUrl "https://spongebob.fandom.com/wiki/Bubble_Troubles" .
+
+ex:thewayofthesponge exv:hasUrl "https://spongebob.fandom.com/wiki/The_Way_of_the_Sponge" .
+
+ex:thekrabbypattythatatebikinibottom exv:hasUrl "https://spongebob.fandom.com/wiki/The_Krabby_Patty_That_Ate_Bikini_Bottom" .
+
+ex:bubblebuddyreturns exv:hasUrl "https://spongebob.fandom.com/wiki/Bubble_Buddy_Returns" .
+
+ex:restrainingspongebob exv:hasUrl "https://spongebob.fandom.com/wiki/Restraining_SpongeBob" .
+
+ex:fiasco%21 exv:hasUrl "https://spongebob.fandom.com/wiki/Fiasco!" .
+
+ex:areyouhappynow%3F exv:hasUrl "https://spongebob.fandom.com/wiki/Are_You_Happy_Now?" .
+
+ex:planetofthejellyfish exv:hasUrl "https://spongebob.fandom.com/wiki/Planet_of_the_Jellyfish" .
+
+ex:freesamples exv:hasUrl "https://spongebob.fandom.com/wiki/Free_Samples" .
+
+ex:homesweetrubble exv:hasUrl "https://spongebob.fandom.com/wiki/Home_Sweet_Rubble" .
+
+ex:karen2.0 exv:hasUrl "https://spongebob.fandom.com/wiki/Karen_2.0" .
+
+ex:inspongeiac exv:hasUrl "https://spongebob.fandom.com/wiki/InSPONGEiac" .
+
+ex:facefreeze%21 exv:hasUrl "https://spongebob.fandom.com/wiki/Face_Freeze!" .
+
+<gloveworldr.i.p.> exv:hasUrl "https://spongebob.fandom.com/wiki/Glove_World_R.I.P." .
+
+ex:squiditis exv:hasUrl "https://spongebob.fandom.com/wiki/Squiditis" .
+
+ex:demolitiondoofus exv:hasUrl "https://spongebob.fandom.com/wiki/Demolition_Doofus" .
+
+ex:treats%21 exv:hasUrl "https://spongebob.fandom.com/wiki/Treats!" .
+
+ex:forhereortogo exv:hasUrl "https://spongebob.fandom.com/wiki/For_Here_or_to_Go" .
+
+ex:it%27saspongebobchristmas%21 exv:hasUrl "https://spongebob.fandom.com/wiki/It's_a_SpongeBob_Christmas!" .
+
+ex:superevilaquaticvillainteamupisgo%21 exv:hasUrl "https://spongebob.fandom.com/wiki/Super_Evil_Aquatic_Villain_Team_Up_is_Go!" .
+
+ex:chumfricassee exv:hasUrl "https://spongebob.fandom.com/wiki/Chum_Fricassee" .
+
+ex:thegoodkrabbyname exv:hasUrl "https://spongebob.fandom.com/wiki/The_Good_Krabby_Name" .
+
+ex:moveitorloseit exv:hasUrl "https://spongebob.fandom.com/wiki/Move_It_or_Lose_It" .
+
+ex:hellobikinibottom%21 exv:hasUrl "https://spongebob.fandom.com/wiki/Hello_Bikini_Bottom!" .
+
+ex:extremespots exv:hasUrl "https://spongebob.fandom.com/wiki/Extreme_Spots" .
+
+ex:squirrelrecord exv:hasUrl "https://spongebob.fandom.com/wiki/Squirrel_Record" .
+
+ex:patrick-man%21 exv:hasUrl "https://spongebob.fandom.com/wiki/Patrick-Man!" .
+
+ex:gary%27snewtoy exv:hasUrl "https://spongebob.fandom.com/wiki/Gary's_New_Toy" .
+
+ex:licensetomilkshake exv:hasUrl "https://spongebob.fandom.com/wiki/License_to_Milkshake" .
+
+ex:squidbaby exv:hasUrl "https://spongebob.fandom.com/wiki/Squid_Baby" .
+
+ex:littleyellowbook exv:hasUrl "https://spongebob.fandom.com/wiki/Little_Yellow_Book" .
+
+ex:bumpertobumper exv:hasUrl "https://spongebob.fandom.com/wiki/Bumper_to_Bumper" .
+
+ex:eek%2Canurchin%21 exv:hasUrl "https://spongebob.fandom.com/wiki/Eek,_an_Urchin!" .
+
+ex:squiddefense exv:hasUrl "https://spongebob.fandom.com/wiki/Squid_Defense" .
+
+ex:jailbreak%21 exv:hasUrl "https://spongebob.fandom.com/wiki/Jailbreak!" .
+
+ex:evilspatula exv:hasUrl "https://spongebob.fandom.com/wiki/Evil_Spatula" .
+
+ex:itcamefromgoolagoon exv:hasUrl "https://spongebob.fandom.com/wiki/It_Came_from_Goo_Lagoon" .
+
+ex:safedepositkrabs exv:hasUrl "https://spongebob.fandom.com/wiki/Safe_Deposit_Krabs" .
+
+ex:plankton%27spet exv:hasUrl "https://spongebob.fandom.com/wiki/Plankton's_Pet" .
+
+ex:don%27tlooknow exv:hasUrl "https://spongebob.fandom.com/wiki/Don't_Look_Now" .
+
+ex:séanceshméance exv:hasUrl "https://spongebob.fandom.com/wiki/Séance_Shméance" .
+
+ex:kennythecat exv:hasUrl "https://spongebob.fandom.com/wiki/Kenny_the_Cat" .
+
+ex:yetikrabs exv:hasUrl "https://spongebob.fandom.com/wiki/Yeti_Krabs" .
+
+ex:spongebobyou%27refired exv:hasUrl "https://spongebob.fandom.com/wiki/SpongeBob_You're_Fired" .
+
+ex:lostinbikinibottom exv:hasUrl "https://spongebob.fandom.com/wiki/Lost_in_Bikini_Bottom" .
+
+ex:tutorsauce exv:hasUrl "https://spongebob.fandom.com/wiki/Tutor_Sauce" .
+
+ex:squidplusone exv:hasUrl "https://spongebob.fandom.com/wiki/Squid_Plus_One" .
+
+ex:theexecutivetreatment exv:hasUrl "https://spongebob.fandom.com/wiki/The_Executive_Treatment" .
+
+ex:companypicnic exv:hasUrl "https://spongebob.fandom.com/wiki/Company_Picnic" .
+
+ex:pullupabarrel exv:hasUrl "https://spongebob.fandom.com/wiki/Pull_Up_a_Barrel" .
+
+ex:sanctuary%21 exv:hasUrl "https://spongebob.fandom.com/wiki/Sanctuary!" .
+
+ex:what%27seatingpatrick%3F exv:hasUrl "https://spongebob.fandom.com/wiki/What's_Eating_Patrick?" .
+
+ex:patrick%21thegame exv:hasUrl "https://spongebob.fandom.com/wiki/Patrick!_The_Game" .
+
+ex:thesewersofbikinibottom exv:hasUrl "https://spongebob.fandom.com/wiki/The_Sewers_of_Bikini_Bottom" .
+
+ex:spongeboblongpants exv:hasUrl "https://spongebob.fandom.com/wiki/SpongeBob_LongPants" .
+
+ex:larry%27sgym exv:hasUrl "https://spongebob.fandom.com/wiki/Larry's_Gym" .
+
+ex:thefishbowl exv:hasUrl "https://spongebob.fandom.com/wiki/The_Fish_Bowl" .
+
+ex:marriedtomoney exv:hasUrl "https://spongebob.fandom.com/wiki/Married_to_Money" .
+
+ex:mallgirlpearl exv:hasUrl "https://spongebob.fandom.com/wiki/Mall_Girl_Pearl" .
+
+ex:twothumbsdown exv:hasUrl "https://spongebob.fandom.com/wiki/Two_Thumbs_Down" .
+
+ex:sharksvs.pods exv:hasUrl "https://spongebob.fandom.com/wiki/Sharks_vs._Pods" .
+
+ex:copybobdittopants exv:hasUrl "https://spongebob.fandom.com/wiki/CopyBob_DittoPants" .
+
+ex:sold%21 exv:hasUrl "https://spongebob.fandom.com/wiki/Sold!" .
+
+ex:lameandfortune exv:hasUrl "https://spongebob.fandom.com/wiki/Lame_and_Fortune" .
+
+ex:goodbye%2Ckrabbypatty%3F exv:hasUrl "https://spongebob.fandom.com/wiki/Goodbye,_Krabby_Patty?" .
+
+ex:sandy%27snutmare exv:hasUrl "https://spongebob.fandom.com/wiki/Sandy's_Nutmare" .
+
+ex:bulletinboard exv:hasUrl "https://spongebob.fandom.com/wiki/Bulletin_Board" .
+
+ex:foodconcastaways exv:hasUrl "https://spongebob.fandom.com/wiki/Food_Con_Castaways" .
+
+ex:snailmail exv:hasUrl "https://spongebob.fandom.com/wiki/Snail_Mail" .
+
+ex:pineappleinvasion exv:hasUrl "https://spongebob.fandom.com/wiki/Pineapple_Invasion" .
+
+ex:salsaimbecilicus exv:hasUrl "https://spongebob.fandom.com/wiki/Salsa_Imbecilicus" .
+
+ex:mutinyonthekrusty exv:hasUrl "https://spongebob.fandom.com/wiki/Mutiny_on_the_Krusty" .
+
+ex:thewholetooth exv:hasUrl "https://spongebob.fandom.com/wiki/The_Whole_Tooth" .
+
+ex:whirlybrains exv:hasUrl "https://spongebob.fandom.com/wiki/Whirly_Brains" .
+
+ex:mermaidpants exv:hasUrl "https://spongebob.fandom.com/wiki/Mermaid_Pants" .
+
+ex:unrealestate exv:hasUrl "https://spongebob.fandom.com/wiki/Unreal_Estate" .
+
+ex:codeyellow exv:hasUrl "https://spongebob.fandom.com/wiki/Code_Yellow" .
+
+ex:mimicmadness exv:hasUrl "https://spongebob.fandom.com/wiki/Mimic_Madness" .
+
+ex:houseworming exv:hasUrl "https://spongebob.fandom.com/wiki/House_Worming" .
+
+ex:snoozeyoulose exv:hasUrl "https://spongebob.fandom.com/wiki/Snooze_You_Lose" .
+
+ex:krustykatering exv:hasUrl "https://spongebob.fandom.com/wiki/Krusty_Katering" .
+
+ex:spongebob%27splace exv:hasUrl "https://spongebob.fandom.com/wiki/SpongeBob's_Place" .
+
+ex:planktongetstheboot exv:hasUrl "https://spongebob.fandom.com/wiki/Plankton_Gets_the_Boot" .
+
+ex:lifeinsurance exv:hasUrl "https://spongebob.fandom.com/wiki/Life_Insurance" .
+
+ex:burstyourbubble exv:hasUrl "https://spongebob.fandom.com/wiki/Burst_Your_Bubble" .
+
+ex:planktonretires exv:hasUrl "https://spongebob.fandom.com/wiki/Plankton_Retires" .
+
+ex:tridenttrouble exv:hasUrl "https://spongebob.fandom.com/wiki/Trident_Trouble" .
+
+ex:theincredibleshrinkingsponge exv:hasUrl "https://spongebob.fandom.com/wiki/The_Incredible_Shrinking_Sponge" .
+
+ex:sportz%3F exv:hasUrl "https://spongebob.fandom.com/wiki/Sportz?" .
+
+ex:thegetaway exv:hasUrl "https://spongebob.fandom.com/wiki/The_Getaway" .
+
+ex:lostandfound exv:hasUrl "https://spongebob.fandom.com/wiki/Lost_and_Found" .
+
+ex:patrick%27scoupon exv:hasUrl "https://spongebob.fandom.com/wiki/Patrick's_Coupon" .
+
+ex:outofthepicture exv:hasUrl "https://spongebob.fandom.com/wiki/Out_of_the_Picture" .
+
+ex:feralfriends exv:hasUrl "https://spongebob.fandom.com/wiki/Feral_Friends" .
+
+ex:don%27twakepatrick exv:hasUrl "https://spongebob.fandom.com/wiki/Don't_Wake_Patrick" .
+
+ex:cavedwellingsponge exv:hasUrl "https://spongebob.fandom.com/wiki/Cave_Dwelling_Sponge" .
+
+ex:theclamwhisperer exv:hasUrl "https://spongebob.fandom.com/wiki/The_Clam_Whisperer" .
+
+ex:spotreturns exv:hasUrl "https://spongebob.fandom.com/wiki/Spot_Returns" .
+
+ex:thecheck-up exv:hasUrl "https://spongebob.fandom.com/wiki/The_Check-Up" .
+
+ex:spinthebottle exv:hasUrl "https://spongebob.fandom.com/wiki/Spin_the_Bottle" .
+
+ex:there%27saspongeinmysoup exv:hasUrl "https://spongebob.fandom.com/wiki/There's_a_Sponge_in_My_Soup" .
+
+ex:manrayreturns exv:hasUrl "https://spongebob.fandom.com/wiki/Man_Ray_Returns" .
+
+ex:larrythefloormanager exv:hasUrl "https://spongebob.fandom.com/wiki/Larry_the_Floor_Manager" .
+
+ex:thelegendofboo-kinibottom exv:hasUrl "https://spongebob.fandom.com/wiki/The_Legend_of_Boo-Kini_Bottom" .
+
+ex:nopicturesplease exv:hasUrl "https://spongebob.fandom.com/wiki/No_Pictures_Please" .
+
+ex:stuckontheroof exv:hasUrl "https://spongebob.fandom.com/wiki/Stuck_on_the_Roof" .
+
+ex:krabbypattycreaturefeature exv:hasUrl "https://spongebob.fandom.com/wiki/Krabby_Patty_Creature_Feature" .
+
+ex:teacher%27spests exv:hasUrl "https://spongebob.fandom.com/wiki/Teacher's_Pests" .
+
+ex:sanitationinsanity exv:hasUrl "https://spongebob.fandom.com/wiki/Sanitation_Insanity" .
+
+ex:bunnyhunt exv:hasUrl "https://spongebob.fandom.com/wiki/Bunny_Hunt" .
+
+ex:squidnoir exv:hasUrl "https://spongebob.fandom.com/wiki/Squid_Noir" .
+
+ex:scavengerpants exv:hasUrl "https://spongebob.fandom.com/wiki/Scavenger_Pants" .
+
+ex:cuddlee.hugs exv:hasUrl "https://spongebob.fandom.com/wiki/Cuddle_E._Hugs" .
+
+ex:patthehorse exv:hasUrl "https://spongebob.fandom.com/wiki/Pat_the_Horse" .
+
+ex:chatterboxgary exv:hasUrl "https://spongebob.fandom.com/wiki/Chatterbox_Gary" .
+
+ex:don%27tfeedtheclowns exv:hasUrl "https://spongebob.fandom.com/wiki/Don't_Feed_the_Clowns" .
+
+ex:drivehappy exv:hasUrl "https://spongebob.fandom.com/wiki/Drive_Happy" .
+
+ex:oldmanpatrick exv:hasUrl "https://spongebob.fandom.com/wiki/Old_Man_Patrick" .
+
+ex:fun-sizedfriends exv:hasUrl "https://spongebob.fandom.com/wiki/Fun-Sized_Friends" .
+
+ex:grandmum%27stheword exv:hasUrl "https://spongebob.fandom.com/wiki/Grandmum's_the_Word" .
+
+ex:doodledimension exv:hasUrl "https://spongebob.fandom.com/wiki/Doodle_Dimension" .
+
+ex:movingbubblebass exv:hasUrl "https://spongebob.fandom.com/wiki/Moving_Bubble_Bass" .
+
+ex:highseadiving exv:hasUrl "https://spongebob.fandom.com/wiki/High_Sea_Diving" .
+
+ex:bottleburglars exv:hasUrl "https://spongebob.fandom.com/wiki/Bottle_Burglars" .
+
+ex:myleg%21 exv:hasUrl "https://spongebob.fandom.com/wiki/My_Leg!" .
+
+ex:inklemonade exv:hasUrl "https://spongebob.fandom.com/wiki/Ink_Lemonade" .
+
+ex:mustardo%27mine exv:hasUrl "https://spongebob.fandom.com/wiki/Mustard_O'_Mine" .
+
+ex:shoppinglist exv:hasUrl "https://spongebob.fandom.com/wiki/Shopping_List" .
+
+ex:whalewatching exv:hasUrl "https://spongebob.fandom.com/wiki/Whale_Watching" .
+
+ex:krustykleaners exv:hasUrl "https://spongebob.fandom.com/wiki/Krusty_Kleaners" .
+
+ex:patnocchio exv:hasUrl "https://spongebob.fandom.com/wiki/Patnocchio" .
+
+ex:chefbob exv:hasUrl "https://spongebob.fandom.com/wiki/ChefBob" .
+
+ex:planktonparanoia exv:hasUrl "https://spongebob.fandom.com/wiki/Plankton_Paranoia" .
+
+ex:librarycards exv:hasUrl "https://spongebob.fandom.com/wiki/Library_Cards" .
+
+ex:callthecops exv:hasUrl "https://spongebob.fandom.com/wiki/Call_the_Cops" .
+
+ex:surfn%27turf exv:hasUrl "https://spongebob.fandom.com/wiki/Surf_N'_Turf" .
+
+ex:goonsonthemoon exv:hasUrl "https://spongebob.fandom.com/wiki/Goons_on_the_Moon" .
+
+ex:appointmenttv exv:hasUrl "https://spongebob.fandom.com/wiki/Appointment_TV" .
+
+ex:karen%27svirus exv:hasUrl "https://spongebob.fandom.com/wiki/Karen's_Virus" .
+
+ex:thegrillisgone exv:hasUrl "https://spongebob.fandom.com/wiki/The_Grill_is_Gone" .
+
+ex:thenightpatty exv:hasUrl "https://spongebob.fandom.com/wiki/The_Night_Patty" .
+
+ex:bubbletown exv:hasUrl "https://spongebob.fandom.com/wiki/Bubbletown" .
+
+ex:girls%27nightout exv:hasUrl "https://spongebob.fandom.com/wiki/Girls'_Night_Out" .
+
+ex:squirreljelly exv:hasUrl "https://spongebob.fandom.com/wiki/Squirrel_Jelly" .
+
+ex:thestring exv:hasUrl "https://spongebob.fandom.com/wiki/The_String" .
+
+ex:farmerbob exv:hasUrl "https://spongebob.fandom.com/wiki/FarmerBob" .
+
+ex:gary%26spot exv:hasUrl "https://spongebob.fandom.com/wiki/Gary_&_Spot" .
+
+ex:thenitwitting exv:hasUrl "https://spongebob.fandom.com/wiki/The_Nitwitting" .
+
+ex:theballadoffilthymuck exv:hasUrl "https://spongebob.fandom.com/wiki/The_Ballad_of_Filthy_Muck" .
+
+ex:thekrustyslammer exv:hasUrl "https://spongebob.fandom.com/wiki/The_Krusty_Slammer" .
+
+ex:pineapplerv exv:hasUrl "https://spongebob.fandom.com/wiki/Pineapple_RV" .
+
+ex:gary%27sgotlegs exv:hasUrl "https://spongebob.fandom.com/wiki/Gary's_Got_Legs" .
+
+ex:kingplankton exv:hasUrl "https://spongebob.fandom.com/wiki/King_Plankton" .
+
+ex:plankton%27soldchum exv:hasUrl "https://spongebob.fandom.com/wiki/Plankton's_Old_Chum" .
+
+ex:stormyweather exv:hasUrl "https://spongebob.fandom.com/wiki/Stormy_Weather" .
+
+ex:swampmates exv:hasUrl "https://spongebob.fandom.com/wiki/Swamp_Mates" .
+
+ex:onetricksponge exv:hasUrl "https://spongebob.fandom.com/wiki/One_Trick_Sponge" .
+
+ex:thekrustybucket exv:hasUrl "https://spongebob.fandom.com/wiki/The_Krusty_Bucket" .
+
+ex:squid%27sonabus exv:hasUrl "https://spongebob.fandom.com/wiki/Squid's_on_a_Bus" .
+
+ex:sandy%27snuttynieces exv:hasUrl "https://spongebob.fandom.com/wiki/Sandy's_Nutty_Nieces" .
+
+ex:insecurityguards exv:hasUrl "https://spongebob.fandom.com/wiki/Insecurity_Guards" .
+
+ex:brokenalarm exv:hasUrl "https://spongebob.fandom.com/wiki/Broken_Alarm" .
+
+ex:karen%27sbaby exv:hasUrl "https://spongebob.fandom.com/wiki/Karen's_Baby" .
+
+ex:shellgames exv:hasUrl "https://spongebob.fandom.com/wiki/Shell_Games" .
+
+ex:seniordiscount exv:hasUrl "https://spongebob.fandom.com/wiki/Senior_Discount" .
+
+ex:mindthegap exv:hasUrl "https://spongebob.fandom.com/wiki/Mind_the_Gap" .
+
+ex:dirtybubblereturns exv:hasUrl "https://spongebob.fandom.com/wiki/Dirty_Bubble_Returns" .
+
+ex:jollylodgers exv:hasUrl "https://spongebob.fandom.com/wiki/Jolly_Lodgers" .
+
+ex:biddysitting exv:hasUrl "https://spongebob.fandom.com/wiki/Biddy_Sitting" .
+
+ex:spongebob%27sbigbirthdayblowout exv:hasUrl "https://spongebob.fandom.com/wiki/SpongeBob's_Big_Birthday_Blowout" .
+
+ex:spongebobinrandomland exv:hasUrl "https://spongebob.fandom.com/wiki/SpongeBob_in_RandomLand" .
+
+ex:spongebob%27sbadhabit exv:hasUrl "https://spongebob.fandom.com/wiki/SpongeBob's_Bad_Habit" .
+
+ex:handemonium exv:hasUrl "https://spongebob.fandom.com/wiki/Handemonium" .
+
+ex:breakin%27 exv:hasUrl "https://spongebob.fandom.com/wiki/Breakin'" .
+
+ex:bossforaday exv:hasUrl "https://spongebob.fandom.com/wiki/Boss_for_a_Day" .
+
+ex:thegoofynewbie exv:hasUrl "https://spongebob.fandom.com/wiki/The_Goofy_Newbie" .
+
+ex:theghostofplankton exv:hasUrl "https://spongebob.fandom.com/wiki/The_Ghost_of_Plankton" .
+
+ex:mytwokrabses exv:hasUrl "https://spongebob.fandom.com/wiki/My_Two_Krabses" .
+
+ex:knockknock%2Cwho%27sthere%3F exv:hasUrl "https://spongebob.fandom.com/wiki/Knock_Knock,_Who's_There?" .
+
+ex:patheartssquid exv:hasUrl "https://spongebob.fandom.com/wiki/Pat_Hearts_Squid" .
+
+ex:lighthouselouie exv:hasUrl "https://spongebob.fandom.com/wiki/Lighthouse_Louie" .
+
+ex:hiccupplague exv:hasUrl "https://spongebob.fandom.com/wiki/Hiccup_Plague" .
+
+ex:acabininthekelp exv:hasUrl "https://spongebob.fandom.com/wiki/A_Cabin_in_the_Kelp" .
+
+ex:thehankering exv:hasUrl "https://spongebob.fandom.com/wiki/The_Hankering" .
+
+ex:whorzoo%3F exv:hasUrl "https://spongebob.fandom.com/wiki/Who_R_Zoo?" .
+
+ex:kwarantinedkrab exv:hasUrl "https://spongebob.fandom.com/wiki/Kwarantined_Krab" .
+
+ex:plankton%27sintern exv:hasUrl "https://spongebob.fandom.com/wiki/Plankton's_Intern" .
+
+ex:patrick%27stantrum exv:hasUrl "https://spongebob.fandom.com/wiki/Patrick's_Tantrum" .
+
+ex:bubblebass%27stab exv:hasUrl "https://spongebob.fandom.com/wiki/Bubble_Bass's_Tab" .
+
+ex:kookycooks exv:hasUrl "https://spongebob.fandom.com/wiki/Kooky_Cooks" .
+
+ex:escapefrombeneathgloveworld exv:hasUrl "https://spongebob.fandom.com/wiki/Escape_from_Beneath_Glove_World" .
+
+ex:krustykoncessionaires exv:hasUrl "https://spongebob.fandom.com/wiki/Krusty_Koncessionaires" .
+
+ex:dreamhoppers exv:hasUrl "https://spongebob.fandom.com/wiki/Dream_Hoppers" .
+
+ex:aplaceforpets exv:hasUrl "https://spongebob.fandom.com/wiki/A_Place_for_Pets" .
+
+ex:lockdownforlove exv:hasUrl "https://spongebob.fandom.com/wiki/Lockdown_for_Love" .
+
+ex:underthesmalltop exv:hasUrl "https://spongebob.fandom.com/wiki/Under_the_Small_Top" .
+
+ex:squidward%27ssickdaze exv:hasUrl "https://spongebob.fandom.com/wiki/Squidward's_Sick_Daze" .
+
+ex:goofyscoopers exv:hasUrl "https://spongebob.fandom.com/wiki/Goofy_Scoopers" .
+
+ex:patthedog exv:hasUrl "https://spongebob.fandom.com/wiki/Pat_the_Dog" .
+
+ex:somethingnarwhalthiswaycomes exv:hasUrl "https://spongebob.fandom.com/wiki/Something_Narwhal_This_Way_Comes" .
+
+ex:c.h.u.m.s exv:hasUrl "https://spongebob.fandom.com/wiki/C.H.U.M.S" .
+
+ex:spongebob%27sroadtochristmas exv:hasUrl "https://spongebob.fandom.com/wiki/SpongeBob's_Road_to_Christmas" .
+
+ex:potatopuff exv:hasUrl "https://spongebob.fandom.com/wiki/Potato_Puff" .
+
+ex:therewillbegrease exv:hasUrl "https://spongebob.fandom.com/wiki/There_Will_Be_Grease" .
+
+ex:thebigbadbubblebass exv:hasUrl "https://spongebob.fandom.com/wiki/The_Big_Bad_Bubble_Bass" .
+
+ex:sea-manspongehatersclub exv:hasUrl "https://spongebob.fandom.com/wiki/Sea-Man_Sponge_Haters_Club" .
+
+ex:foodpbfft%21truck exv:hasUrl "https://spongebob.fandom.com/wiki/Food_PBFFT!_Truck" .
+
+ex:upturngirls exv:hasUrl "https://spongebob.fandom.com/wiki/Upturn_Girls" .
+
+ex:sayawww%21 exv:hasUrl "https://spongebob.fandom.com/wiki/Say_Awww!" .
+
+ex:patrickthemailman exv:hasUrl "https://spongebob.fandom.com/wiki/Patrick_the_Mailman" .
+
+ex:captainpipsqueak exv:hasUrl "https://spongebob.fandom.com/wiki/Captain_Pipsqueak" .
+
+ex:planetosea exv:hasUrl "https://spongebob.fandom.com/wiki/Plane_to_Sea" .
+
+ex:squidferatu exv:hasUrl "https://spongebob.fandom.com/wiki/Squidferatu" .
+
+ex:slappydaze exv:hasUrl "https://spongebob.fandom.com/wiki/Slappy_Daze" .
+
+ex:welcometobinarybottom exv:hasUrl "https://spongebob.fandom.com/wiki/Welcome_to_Binary_Bottom" .
+
+ex:you%27regoingtopay...phone exv:hasUrl "https://spongebob.fandom.com/wiki/You're_Going_to_Pay...Phone" .
+
+ex:askinwrinkleintime exv:hasUrl "https://spongebob.fandom.com/wiki/A_Skin_Wrinkle_in_Time" .
+
+ex:abandontwits exv:hasUrl "https://spongebob.fandom.com/wiki/Abandon_Twits" .
+
+ex:wallhalla exv:hasUrl "https://spongebob.fandom.com/wiki/Wallhalla" .
+
+ex:saltysponge exv:hasUrl "https://spongebob.fandom.com/wiki/Salty_Sponge" .
+
+ex:karenforspot exv:hasUrl "https://spongebob.fandom.com/wiki/Karen_for_Spot" .
+
+ex:arbordaydisarray exv:hasUrl "https://spongebob.fandom.com/wiki/Arbor_Day_Disarray" .
+
+ex:ain%27tthatthetooth exv:hasUrl "https://spongebob.fandom.com/wiki/Ain't_That_the_Tooth" .
+
+ex:maandpa%27sbighurrah exv:hasUrl "https://spongebob.fandom.com/wiki/Ma_and_Pa's_Big_Hurrah" .
+
+ex:yellowpavement exv:hasUrl "https://spongebob.fandom.com/wiki/Yellow_Pavement" .
+
+ex:theflowerplot exv:hasUrl "https://spongebob.fandom.com/wiki/The_Flower_Plot" .
+
+ex:spongebobonparade exv:hasUrl "https://spongebob.fandom.com/wiki/SpongeBob_on_Parade" .
+
+ex:deliverytomonsterisland exv:hasUrl "https://spongebob.fandom.com/wiki/Delivery_to_Monster_Island" .
+
+ex:ridepatrickride exv:hasUrl "https://spongebob.fandom.com/wiki/Ride_Patrick_Ride" .
+
+ex:hotcrossednuts exv:hasUrl "https://spongebob.fandom.com/wiki/Hot_Crossed_Nuts" .
+
+ex:sirurchinandsnailfail exv:hasUrl "https://spongebob.fandom.com/wiki/Sir_Urchin_and_Snail_Fail" .
+
+ex:friendiversary exv:hasUrl "https://spongebob.fandom.com/wiki/Friendiversary" .
+
+ex:mandatorymusic exv:hasUrl "https://spongebob.fandom.com/wiki/Mandatory_Music" .
+
+ex:dopeydick exv:hasUrl "https://spongebob.fandom.com/wiki/Dopey_Dick" .
+
+ex:planktonandthebeanstalk exv:hasUrl "https://spongebob.fandom.com/wiki/Plankton_and_the_Beanstalk" .
+
+ex:myfriendpatty exv:hasUrl "https://spongebob.fandom.com/wiki/My_Friend_Patty" .
+
+ex:fun-believable exv:hasUrl "https://spongebob.fandom.com/wiki/FUN-Believable" .
+
+ex:spatulaoftheheavens exv:hasUrl "https://spongebob.fandom.com/wiki/Spatula_of_the_Heavens" .
+
+ex:gary%27splayhouse exv:hasUrl "https://spongebob.fandom.com/wiki/Gary's_Playhouse" .
+
+ex:swimmingfools exv:hasUrl "https://spongebob.fandom.com/wiki/Swimming_Fools" .
+
+ex:thegoobfather exv:hasUrl "https://spongebob.fandom.com/wiki/The_Goobfather" .
+
+ex:squidbird exv:hasUrl "https://spongebob.fandom.com/wiki/SquidBird" .
+
+ex:allergyattack%21 exv:hasUrl "https://spongebob.fandom.com/wiki/Allergy_Attack!" .
+
+ex:bigtopflop exv:hasUrl "https://spongebob.fandom.com/wiki/Big_Top_Flop" .
+
+ex:sandy%2Chelpus%21 exv:hasUrl "https://spongebob.fandom.com/wiki/Sandy,_Help_Us!" .
+
+ex:single-celleddefense exv:hasUrl "https://spongebob.fandom.com/wiki/Single-Celled_Defense" .
+
+ex:buffforpuff exv:hasUrl "https://spongebob.fandom.com/wiki/Buff_for_Puff" .
+
+<we♥hoops> exv:hasUrl "https://spongebob.fandom.com/wiki/We_♥_Hoops" .
+
+ex:spongechovy exv:hasUrl "https://spongebob.fandom.com/wiki/SpongeChovy" .
+
+ex:bassward exv:hasUrl "https://spongebob.fandom.com/wiki/BassWard" .
+
+ex:squidiotbox exv:hasUrl "https://spongebob.fandom.com/wiki/Squidiot_Box" .
+
+ex:bloodisthickerthangrease exv:hasUrl "https://spongebob.fandom.com/wiki/Blood_is_Thicker_Than_Grease" .
+
+ex:don%27tmakemelaugh exv:hasUrl "https://spongebob.fandom.com/wiki/Don't_Make_Me_Laugh" .
+
+ex:momageddon exv:hasUrl "https://spongebob.fandom.com/wiki/Momageddon" .
+
+ex:pettherock exv:hasUrl "https://spongebob.fandom.com/wiki/Pet_the_Rock" .
+
+ex:tangotangle exv:hasUrl "https://spongebob.fandom.com/wiki/Tango_Tangle" .
+
+ex:necro-nom-nom-nom-i-con exv:hasUrl "https://spongebob.fandom.com/wiki/Necro-Nom-Nom-Nom-I-Con" .
+
+ex:pl-1413 exv:hasUrl "https://spongebob.fandom.com/wiki/PL-1413" .
+
+ex:inthemoodtofeud exv:hasUrl "https://spongebob.fandom.com/wiki/In_the_Mood_to_Feud" .
+
+ex:mooned%21 exv:hasUrl "https://spongebob.fandom.com/wiki/Mooned!" .
+
+ex:hystericalhistory exv:hasUrl "https://spongebob.fandom.com/wiki/Hysterical_History" .
+
+ex:kreepawaykamp exv:hasUrl "https://spongebob.fandom.com/wiki/Kreepaway_Kamp" .
+
+ex:thedirtybubblebass exv:hasUrl "https://spongebob.fandom.com/wiki/The_Dirty_Bubble_Bass" .
+
+ex:sheldonsquarepants exv:hasUrl "https://spongebob.fandom.com/wiki/Sheldon_SquarePants" .
+
+ex:sammysuckerfish exv:hasUrl "https://spongebob.fandom.com/wiki/Sammy_Suckerfish" .
+
+ex:bigleaguebob exv:hasUrl "https://spongebob.fandom.com/wiki/Big_League_Bob" .
+
+ex:snowyellowandthesevenjellies exv:hasUrl "https://spongebob.fandom.com/wiki/Snow_Yellow_and_the_Seven_Jellies" .
