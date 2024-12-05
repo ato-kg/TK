@@ -1,13 +1,15 @@
 {% extends "base.html" %}
 {% load static %}
 {% block title %}{{ title }}{% endblock %}
+{% block extra_head %}
 
+{% endblock %}
 {% block content %}
 <div class="max-w-7xl mx-auto p-4">
     <!-- Main Content -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <!-- Left Section: Title and Description -->
-        <div>
+        <div class="description lg:order-first order-last">
             <h1 class="text-4xl font-bold text-gray-800 mb-4">
                 {% if eps_wd %}
                     <a href="{{ eps_wd }}" target="_blank" class="hover:underline">
@@ -65,7 +67,7 @@
             </div>
             
         </div>
-        <div class="max-w-4xl mx-auto p-4">
+        <div class="max-w-4xl mx-auto p-4 infobox lg:order-last order-first">
             <div class="bg-white p-6 rounded-lg shadow-xl">
 
                 <!-- Title -->
@@ -245,6 +247,20 @@
                                 {{ rating }}
                             </a>
                         </li>
+                        {% endif %}
+
+                        {% if location %}
+                            <li><strong class="font-medium">Takes Place in:</strong>
+                                {% if location|length == 1 %}
+                                    <span class="ml-2">{{ location.0 }}</span>
+                                {% else %}
+                                    <ul class="list-disc pl-6 space-y-1">
+                                        {% for loc in location %}
+                                            <li>{{ loc }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                {% endif %}
+                            </li>
                         {% endif %}
                     </ul>
                 </div>
