@@ -23,6 +23,14 @@ prefix_mapping = {
     "http://www.w3.org/2001/XMLSchema#": "xsd:",
 }
 
+SPARQL_PREFIXES = """
+PREFIX ex: <http://example.org/data/>
+PREFIX exv: <http://example.org/vocab#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+"""
 
 
 def search(request):
@@ -32,12 +40,7 @@ def search(request):
         results = []
         if query:
             sparql_query = f"""
-PREFIX ex: <http://example.org/data/>
-PREFIX exv: <http://example.org/vocab#>
-PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX wd: <http://www.wikidata.org/entity/>
-PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+{SPARQL_PREFIXES}
 
 SELECT DISTINCT ?subject ?name ?type
 WHERE {{
@@ -152,27 +155,20 @@ WHERE {{
 
     return render(request, "home.html", context)
 
-def getUniqueSeasonsQuery():
-    query = """
-    PREFIX ex: <http://example.org/data/>
-    PREFIX exv: <http://example.org/vocab#>
 
+def getUniqueSeasonsQuery():
+    query = f"""
+    {SPARQL_PREFIXES}
     SELECT DISTINCT ?season
-    WHERE {
-        OPTIONAL { ?episode exv:isSeasonNo ?season }
-    }
+    WHERE {{
+        ?episode exv:isSeasonNo ?season
+    }}
     ORDER BY ASC(?season)
     """
     return query
 
-def getQueryEpisodeList(query, season, sort, page, page_size, total: bool):
-    if total:
-        column = "(COUNT(?episode) as ?total)"
-        limitpage = ""
-    else:
-        column = "distinct ?episode ?title ?season ?views ?episode_number ?image_url"
-        limitpage = ""
-    
+
+def getQueryEpisodeList(query, season, sort):
     order_by_clause = ""
     if sort == "views-asc":
         order_by_clause = """
@@ -213,12 +209,11 @@ def getQueryEpisodeList(query, season, sort, page, page_size, total: bool):
                 season_filter = f"FILTER(?season = '{season}')"
 
     query = f"""
-    PREFIX ex: <http://example.org/data/>
-    PREFIX exv: <http://example.org/vocab#>
-
-    SELECT {column}
+    {SPARQL_PREFIXES}
+    SELECT distinct ?episode ?title ?season ?views ?episode_number ?image_url
     WHERE {{
         ?episode exv:title ?title .
+        ?episode a exv:Episode .
         OPTIONAL {{ ?episode exv:isSeasonNo ?season }} .
         OPTIONAL {{ ?episode exv:hasViewers ?views }} .
         OPTIONAL {{ ?episode exv:isEpisodeNo ?episode_number }} .
@@ -227,19 +222,24 @@ def getQueryEpisodeList(query, season, sort, page, page_size, total: bool):
         {season_filter}
     }}
     {order_by_clause}
-    {limitpage}
     """
     return query
 
+
 def natural_sort_key(episode_number, reverse=False):
     if episode_number == "N/A" or episode_number is None:
-        return (float('-inf'), '') if not reverse else (float('inf'), '')  # Treat N/A or missing as smallest for asc, largest for desc
+        return (
+            (float("-inf"), "") if not reverse else (float("inf"), "")
+        )  # Treat N/A or missing as smallest for asc, largest for desc
     match = re.match(r"(\d+)([a-zA-Z\-]*)", episode_number)
     if match:
         number = int(match.group(1))
         suffix = match.group(2)
         return (number, suffix)
-    return (float('-inf'), '') if not reverse else (float('inf'), '')  # Fallback for unexpected formats
+    return (
+        (float("-inf"), "") if not reverse else (float("inf"), "")
+    )  # Fallback for unexpected formats
+
 
 def episodes(request):
     query = request.GET.get("q", "")
@@ -247,31 +247,13 @@ def episodes(request):
     sort = request.GET.get("sort", "title-asc")
     page = int(request.GET.get("page", 1))
     page_size = int(request.GET.get("page_size", 18))
-    # print(type(season))
 
     unique_seasons_query = getUniqueSeasonsQuery()
-    sparql_wrapper = rdf_manager.sparql
-    sparql_wrapper.setQuery(unique_seasons_query)
-    sparql_wrapper.setReturnFormat(JSON)
-    seasons_response = sparql_wrapper.query()
-    seasons_bindings = seasons_response.convert()["results"]["bindings"]
-    unique_seasons = [binding.get("season", {}).get("value", "N/A") for binding in seasons_bindings]
+    seasons_response = rdf_manager.query(unique_seasons_query)
+    unique_seasons = [binding.get("season", {}).get("value", "N/A") for binding in seasons_response]
 
-    count_query = getQueryEpisodeList(query, season, sort, page, page_size, total=True)
-    sparql_wrapper.setQuery(count_query)
-    sparql_wrapper.setReturnFormat(JSON)
-    count_response = sparql_wrapper.query()
-    total_episodes = int(count_response.convert()["results"]["bindings"][0]["total"]["value"])
-    print(total_episodes)
-
-    sparql_query = getQueryEpisodeList(query, season, sort, page, page_size, total=False)
-    sparql_wrapper.setQuery(sparql_query)
-    sparql_wrapper.setReturnFormat(JSON)
-    response = sparql_wrapper.query()
-    bindings = response.convert()["results"]["bindings"]
-    # print(bindings)
-    # print("gyatt")
-
+    sparql_query = getQueryEpisodeList(query, season, sort)
+    response = rdf_manager.query(sparql_query)
     episodes = [
         {
             "episode_uri": binding["episode"]["value"],
@@ -283,27 +265,24 @@ def episodes(request):
             "url": f"/episode/{quote(binding['title']['value'])}/",
             "image": binding.get("image_url", {}).get("value", "N/A"),
         }
-        for binding in bindings
+        for binding in response
     ]
     if "episode-number" in sort:
         reverse_sort = sort == "episode-number-desc"
         episodes.sort(key=lambda ep: natural_sort_key(ep["episode_number"]), reverse=reverse_sort)
-    # print(episodes)
 
-    start_idx = (page - 1) * page_size
-    end_idx = start_idx + page_size
-    paginated_episodes = episodes[start_idx:end_idx]
-
+    paginator = Paginator(episodes, page_size)
+    paginated_episodes = paginator.get_page(page)
+    print(paginator.count)
 
     if request.headers.get("x-requested-with") == "XMLHttpRequest":
         return JsonResponse({
-            "episodes": paginated_episodes,
+            "episodes": list(paginated_episodes),
             "page": page,
             "page_size": page_size,
-            "total_episodes": total_episodes
+            "total_episodes": paginator.count
         })
 
-    # Render the page normally
     context = {
         "query": query,
         "results": paginated_episodes,
@@ -311,6 +290,68 @@ def episodes(request):
     }
     return render(request, "episodes.html", context)
 
+
+def characters_view(request):
+    query = request.GET.get("q", "")
+    page = int(request.GET.get("page", 1))
+    page_size = int(request.GET.get("page_size", 18))
+
+    sparql_query = f"""
+    {SPARQL_PREFIXES}
+
+    SELECT DISTINCT ?subject ?name ?image_url
+    WHERE {{
+        {{
+            SELECT ?subject ?name ?image_url
+            WHERE {{
+                ?subject exv:name ?name .
+                ?subject a exv:Character .
+                OPTIONAL {{ ?subject exv:hasImageChar ?image_url }} .
+                FILTER(strStarts(lcase(?name), lcase("{query}")))
+            }}
+            ORDER BY ?name
+        }}
+        UNION
+        {{
+            SELECT ?subject ?name ?image_url
+            WHERE {{
+                ?subject exv:name ?name .
+                ?subject a exv:Character .
+                OPTIONAL {{ ?subject exv:hasImageChar ?image_url }} .
+                FILTER(contains(lcase(?name), lcase("{query}")) && !strStarts(lcase(?name), lcase("{query}")))
+            }}
+            ORDER BY ?name
+        }}
+    }}
+    """
+
+    results = rdf_manager.query(sparql_query)
+    characters = []
+    for result in results:
+        character = {
+            "name": result["name"]["value"],
+            "image_url": result.get("image_url", {}).get("value", "N/A"),
+            "url": f"/character/{quote(result['name']['value'])}/",
+        }
+        characters.append(character)
+
+    paginator = Paginator(characters, page_size)
+    paginated_characters = paginator.get_page(page)
+    print(paginator.count)
+
+    data = {
+        "characters": list(paginated_characters),
+        "page": page,
+        "total_characters": paginator.count,
+    }
+    if request.headers.get("x-requested-with") == "XMLHttpRequest":
+        return JsonResponse(data)
+
+    context = {
+        "query": query,
+        "results": paginated_characters,
+    }
+    return render(request, "characters.html", context)
 
 def get_imdb_rating(nama_episode):
     sparql_query = f"""
@@ -327,29 +368,35 @@ def get_imdb_rating(nama_episode):
     params = {"title": nama_episode}
     results = rdf_manager.query(sparql_query, params)
     if results:
-        eps_uri = results[0]['s']['value']
+        eps_uri = results[0]["s"]["value"]
         eps_wd = get_attribute(eps_uri, "hasWikidata")
         if eps_wd:
-            results = wikidata_manager.get_attribute(eps_wd, "http://www.wikidata.org/prop/direct/P345")
+            results = wikidata_manager.get_attribute(
+                eps_wd, "http://www.wikidata.org/prop/direct/P345"
+            )
             if not results:
-                results = wikidata_manager.get_attribute(eps_wd, "http://www.wikidata.org/prop/direct/P361")
+                results = wikidata_manager.get_attribute(
+                    eps_wd, "http://www.wikidata.org/prop/direct/P361"
+                )
                 if results:
-                    full_eps_wd = results[0]['object']['value']
-                    results = wikidata_manager.get_attribute(full_eps_wd, "http://www.wikidata.org/prop/direct/P345")
+                    full_eps_wd = results[0]["object"]["value"]
+                    results = wikidata_manager.get_attribute(
+                        full_eps_wd, "http://www.wikidata.org/prop/direct/P345"
+                    )
             if results:
-                imdb_id = results[0]['object']['value']
+                imdb_id = results[0]["object"]["value"]
                 url = f"https://www.imdb.com/title/{imdb_id}/"
                 return get_imdb_rating_from_url(url)
     return "Rating not found"
 
 def get_imdb_rating_from_url(url):
     headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36'
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36"
     }
     response = requests.get(url, headers=headers)
     if response.status_code == 200:
-        soup = BeautifulSoup(response.text, 'html.parser')
-        rating_tag = soup.find('span', class_='sc-d541859f-1 imUuxf')
+        soup = BeautifulSoup(response.text, "html.parser")
+        rating_tag = soup.find("span", class_="sc-d541859f-1 imUuxf")
         if rating_tag:
             return rating_tag.text
     return "Rating not found"
@@ -372,4 +419,3 @@ def get_attribute(s_uri, atr):
         return results[0]["o"]["value"]
     else:
         return None
-    

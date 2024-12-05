@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Characters{% endblock %}
+{% block content %}
+<div class="bg-blue-50 text-gray-800 min-h-screen flex flex-col items-center">
+    <!-- Page Title -->
+    <h1 class="text-4xl font-extrabold text-gray-900 text-center my-6">Characters</h1>
+
+    <!-- Search Section -->
+    <div class="w-full max-w-4xl px-4">
+        <div class="flex flex-wrap items-center gap-4 mb-6">
+            <!-- Search Bar -->
+            <div class="relative w-full sm:w-auto flex-grow">
+                <input type="text" id="search-input" placeholder="Search characters..."
+                    class="w-full py-3 px-5 rounded-full border border-gray-300 shadow-md focus:outline-none focus:ring-2 focus:ring-yellow-300">
+            </div>
+        </div>
+
+        <!-- Characters List -->
+        <div id="characters-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <!-- Character cards will be populated dynamically -->
+        </div>
+
+        <!-- Pagination Controls -->
+        <div class="flex justify-center mt-6">
+            <button id="prev-page" class="py-2 px-4 bg-yellow-300 text-gray-800 rounded-full mr-2 hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-500 disabled:opacity-50 disabled:cursor-not-allowed">Previous</button>
+            <button id="next-page" class="py-2 px-4 bg-yellow-300 text-gray-800 rounded-full hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-500 disabled:opacity-50 disabled:cursor-not-allowed">Next</button>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+    $(document).ready(function () {
+        let currentPage = 1;
+        const pageSize = 18;
+        let debounceTimeout;
+
+        const fetchCharacters = (query = "", page = 1) => {
+            $.ajax({
+                url: "{% url 'characters' %}",
+                data: { q: query, page: page, page_size: pageSize },
+                dataType: 'json',
+                success: function (data) {
+                    const charactersList = $("#characters-list");
+                    charactersList.empty();
+                    if (data.characters.length > 0) {
+                        data.characters.forEach((character) => {
+                            const card = `
+                                <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg">
+                                    ${character.image_url !== "N/A" ? `
+                                        <img src="${character.image_url}" alt="${character.name}" class="w-full h-48 object-cover rounded-t-lg">
+                                    ` : `
+                                        <div class="relative">
+                                            <img src="{% static 'images/default.png' %}" alt="Default Image" class="w-full h-48 object-cover rounded-t-lg">
+                                            <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                                                <p class="text-white font-semibold text-lg px-4 py-2 rounded">
+                                                    Image not available
+                                                </p>
+                                            </div>
+                                        </div>
+                                    `}
+                                    <div class="p-4">
+                                        <h3 class="text-lg font-semibold text-yellow-700">${character.name}</h3>
+                                        <a href="${character.url}" class="text-blue-600 font-semibold mt-3 block">Details</a>
+                                    </div>
+                                </div>
+                            `;
+                            charactersList.append(card);
+                        });
+                    } else {
+                        charactersList.append('<p class="text-gray-600 mt-2">No characters found.</p>');
+                    }
+
+                    // Update pagination controls
+                    $("#prev-page").prop("disabled", data.page <= 1);
+                    $("#next-page").prop("disabled", data.page * pageSize >= data.total_characters);
+                }
+            });
+        };
+
+        const debounce = (func, delay) => {
+            return function(...args) {
+                clearTimeout(debounceTimeout);
+                debounceTimeout = setTimeout(() => func.apply(this, args), delay);
+            };
+        };
+
+        // Initial fetch
+        fetchCharacters();
+
+        // Event listeners
+        $("#search-input").on("input", debounce(function () {
+            const query = $(this).val();
+            currentPage = 1;
+            fetchCharacters(query, currentPage);
+        }, 300));
+
+        $("#prev-page").on("click", function () {
+            if (currentPage > 1) {
+                currentPage--;
+                const query = $("#search-input").val();
+                fetchCharacters(query, currentPage);
+            }
+        });
+
+        $("#next-page").on("click", function () {
+            currentPage++;
+            const query = $("#search-input").val();
+            fetchCharacters(query, currentPage);
+        });
+    });
+</script>
+{% endblock %}
