@@ -115,7 +115,7 @@ def character_view(request, nama_character : str):
     LIMIT 1
     """
     params = {
-        "name": nama_character.replace('\\', '\\\\').replace('"', '\\"')
+        "name": nama_character
     }
     context = {'name' : nama_character}
     results = rdf_manager.query(sparql_query, params)
