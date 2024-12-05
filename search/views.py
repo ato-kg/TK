@@ -255,7 +255,7 @@ def episodes(request):
     season = request.GET.get("season", "")
     sort = request.GET.get("sort", "title-asc")
     page = int(request.GET.get("page", 1))
-    page_size = int(request.GET.get("page_size", 18))
+    page_size = int(request.GET.get("page_size", 16))
 
     unique_seasons_query = getUniqueSeasonsQuery()
     seasons_response = rdf_manager.query(unique_seasons_query)
@@ -303,7 +303,7 @@ def characters_view(request):
     query = request.GET.get("q", "")
     query = query.replace('\\', '\\\\').replace('"', '\\"')  # Escape backslashes and double quote
     page = int(request.GET.get("page", 1))
-    page_size = int(request.GET.get("page_size", 18))
+    page_size = int(request.GET.get("page_size", 16))
 
     sparql_query = f"""
     {SPARQL_PREFIXES}
