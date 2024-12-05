@@ -117,7 +117,7 @@ def episode_view(request, nama_episode : str):
         print(5,"b4")
         if imdb_id:
             imdb_url = f"https://www.imdb.com/title/{imdb_id}/"
-        rating = get_imdb_rating(imdb_id)
+        rating = get_attribute(eps_uri, "hasRating")
         print(5,"af")
         context['imdb_url'] = imdb_url
         context['rating'] = rating
