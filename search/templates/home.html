@@ -4,133 +4,26 @@
 {% block content %}
 <div class="bg-blue-50 text-gray-800 min-h-screen flex flex-col items-center">
 
-    <!-- Search Section -->
+    <!-- Main Section -->
     <main class="flex-grow flex flex-col justify-center items-center">
         <h1 class="text-4xl font-extrabold text-gray-900 text-center mb-6">
             Dive into the SpongeBob Universe!
         </h1>
+        <p class="text-lg text-gray-700 text-center mb-6">
+            Explore characters and episodes from the beloved SpongeBob SquarePants series.
+        </p>
 
-        <div class="w-full max-w-4xl px-4">
-            <div class="relative w-full sm:w-auto flex-grow">
-                <input type="text" id="search-input" placeholder="Search for characters, episodes..."
-                    class="w-full py-3 px-5 rounded-full border border-gray-300 shadow-md focus:outline-none focus:ring-2 focus:ring-yellow-300">
-            </div>
-            <div id="results" class="mt-4">
-                <!-- Search results will be populated here -->
-            </div>
+        <div class="flex space-x-6">
+            <!-- Button to Character List -->
+            <a href="{% url 'characters' %}" class="py-3 px-6 bg-yellow-300 text-gray-800 text-lg font-semibold rounded-full hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-500 shadow-md">
+                View Characters
+            </a>
+            
+            <!-- Button to Episode List -->
+            <a href="{% url 'episodes' %}" class="py-3 px-6 bg-yellow-300 text-gray-800 text-lg font-semibold rounded-full hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-500 shadow-md">
+                View Episodes
+            </a>
         </div>
     </main>
-
-    <!-- Pagination Controls -->
-    <div id="pagination-controls" class="flex justify-center mt-6" style="display: none;">
-        <button id="prev-page" class="py-2 px-4 bg-yellow-300 text-gray-800 rounded-full mr-2 hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-500 disabled:opacity-50 disabled:cursor-not-allowed">Previous</button>
-        <button id="next-page" class="py-2 px-4 bg-yellow-300 text-gray-800 rounded-full hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-500 disabled:opacity-50 disabled:cursor-not-allowed">Next</button>
-    </div>
 </div>
-{% endblock %}
-
-{% block extra_scripts %}
-<!-- AJAX Search Script -->
-<script>
-    $(document).ready(function () {
-        let debounceTimer;
-        let currentPage = 1;
-        const pageSize = 16;
-
-        const fetchResults = (query = "", page = 1) => {
-            if (!query) {
-                $('#results').empty();
-                $('#pagination-controls').hide();
-                return;
-            }
-            $.ajax({
-                url: "{% url 'search' %}",
-                data: { q: query, page: page, page_size: pageSize },
-                dataType: 'json',
-                success: function (data) {
-                    var resultsDiv = $('#results');
-                    resultsDiv.empty();
-                    if (data.results.length > 0) {
-                        var ul = $('<ul class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 text-gray-600"></ul>');
-                        data.results.forEach(function (item) {
-                            const card = `
-                                <li class="character-box h-full">
-                                    <a href="${item.url}" class="flex flex-col h-full bg-white shadow-lg rounded-lg overflow-hidden border hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
-                                        <div class="relative w-full h-64 overflow-hidden">
-                                            ${item.image_url !== "N/A" ? `
-                                                <img 
-                                                    src="${item.image_url}" 
-                                                    alt="${item.name}" 
-                                                    class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300 rounded-t-lg"
-                                                >
-                                            ` : `
-                                                <div class="relative">
-                                                    <img src="{% static 'images/default.png' %}" alt="Default Image" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300 rounded-t-lg">
-                                                    <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
-                                                        <p class="text-white font-semibold text-lg px-4 py-2 rounded">
-                                                            Image not available
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            `}
-                                        </div>
-                                        <div class="p-4 flex-grow flex flex-col items-center justify-center">
-                                            <h3 class="text-lg font-semibold text-yellow-700 text-center">${item.name}</h3>
-                                            <p class="text-sm text-gray-600 text-center">${item.type}</p>
-                                        </div>
-                                    </a>
-                                </li>
-                            `;
-                            ul.append(card);
-                        });
-                        resultsDiv.append(ul);
-                        $('#pagination-controls').show();
-                        if (data.more_results) {
-                            var seeMoreLink = $('<a></a>')
-                                .attr('href', '#')
-                                .addClass('text-blue-600 font-semibold mt-4 block text-center')
-                                .text('See more results');
-                            resultsDiv.append(seeMoreLink);
-                        }
-                    } else if (query) {
-                        resultsDiv.append('<p class="text-gray-600 mt-2">No results found.</p>');
-                        $('#pagination-controls').hide();
-                    }
-
-                    // Update pagination controls
-                    $("#prev-page").prop("disabled", data.page <= 1);
-                    $("#next-page").prop("disabled", data.page * pageSize >= data.total_results);
-                }
-            });
-        };
-
-        const debounce = (func, delay) => {
-            return function(...args) {
-                clearTimeout(debounceTimer);
-                debounceTimer = setTimeout(() => func.apply(this, args), delay);
-            };
-        };
-
-        // Event listeners
-        $('#search-input').on('input', debounce(function () {
-            const query = $(this).val();
-            currentPage = 1;
-            fetchResults(query, currentPage);
-        }, 300));
-
-        $("#prev-page").on("click", function () {
-            if (currentPage > 1) {
-                currentPage--;
-                const query = $("#search-input").val();
-                fetchResults(query, currentPage);
-            }
-        });
-
-        $("#next-page").on("click", function () {
-            currentPage++;
-            const query = $("#search-input").val();
-            fetchResults(query, currentPage);
-        });
-    });
-</script>
 {% endblock %}
