@@ -217,7 +217,7 @@ def getQueryEpisodeList(query, season, sort):
 
     query = f"""
     {SPARQL_PREFIXES}
-    SELECT distinct ?episode ?title ?season ?views ?episode_number ?image_url ?imdb_rating
+    SELECT distinct ?title ?season ?views ?episode_number ?image_url ?imdb_rating
     WHERE {{
         ?episode exv:title ?title .
         ?episode a exv:Episode .
@@ -265,7 +265,6 @@ def episodes(request):
     response = rdf_manager.query(sparql_query)
     episodes = [
         {
-            "episode_uri": binding["episode"]["value"],
             "title": binding["title"]["value"],
             "season": binding.get("season", {}).get("value", "N/A"),
             "views": binding.get("views", {}).get("value", "N/A"),
@@ -309,10 +308,10 @@ def characters_view(request):
     sparql_query = f"""
     {SPARQL_PREFIXES}
 
-    SELECT DISTINCT ?character ?name ?image_url
+    SELECT DISTINCT ?name ?image_url
     WHERE {{
         {{
-            SELECT ?character ?name ?image_url
+            SELECT ?name ?image_url
             WHERE {{
                 ?character exv:name ?name .
                 ?character a exv:Character .
@@ -327,7 +326,7 @@ def characters_view(request):
         }}
         UNION
         {{
-            SELECT ?character ?name ?image_url
+            SELECT ?name ?image_url
             WHERE {{
                 ?character exv:name ?name .
                 ?character a exv:Character .
