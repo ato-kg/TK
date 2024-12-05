@@ -34,126 +34,124 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
 
 def search(request):
-    query = request.GET.get("q", "")
-    query = query.replace('\\', '\\\\').replace('"', '\\"').replace("'", "\\'")
-    more_results = False
-    if request.headers.get("x-requested-with") == "XMLHttpRequest":
-        results = []
-        if query:
-            sparql_query = f"""
+    query = (
+        request.GET.get("q", "")
+        .replace("\\", "\\\\")
+        .replace('"', '\\"')
+        .replace("'", "\\'")
+    )
+    page = int(request.GET.get("page", 1))
+    page_size = int(request.GET.get("page_size", 16))
+    results = []
+    sparql_query = f"""
 {SPARQL_PREFIXES}
 
-SELECT DISTINCT ?subject ?name ?type
+SELECT DISTINCT ?subject ?name ?type ?image_url
 WHERE {{
-    {{
-        SELECT ?subject ?name ?type
-        WHERE {{
-            ?subject exv:name ?name .
-            ?subject rdf:type ?type .
-            FILTER(strStarts(lcase(?name), lcase("{query}")))
-            FILTER(?type = exv:Character)
-        }}
-        ORDER BY ?name
-    }}
-    UNION
-    {{
-        SELECT ?subject ?name ?type
-        WHERE {{
-            ?subject exv:title ?name .
-            ?subject rdf:type ?type .
-            FILTER(strStarts(lcase(?name), lcase("{query}")))
-            FILTER(?type = exv:Episode)
-        }}
-        ORDER BY ?name
-    }}
-    UNION
-    {{
-        SELECT ?subject ?name ?type
-        WHERE {{
-            ?subject exv:name ?name .
-            ?subject rdf:type ?type .
-            FILTER(contains(lcase(?name), lcase("{query}")) && !strStarts(lcase(?name), lcase("{query}")))
-            FILTER(?type = exv:Character)
-        }}
-        ORDER BY ?name
-    }}
-    UNION
-    {{
-        SELECT ?subject ?name ?type
-        WHERE {{
-            ?subject exv:title ?name .
-            ?subject rdf:type ?type .
-            FILTER(contains(lcase(?name), lcase("{query}")) && !strStarts(lcase(?name), lcase("{query}")))
-            FILTER(?type = exv:Episode)
-        }}
-        ORDER BY ?name
-    }}
+{{
+SELECT ?subject ?name ?type ?image_url
+WHERE {{
+    ?subject exv:name ?name .
+    ?subject rdf:type ?type .
+    OPTIONAL {{ ?subject exv:hasImageChar ?image_url }} .
+    FILTER(strStarts(lcase(?name), lcase("{query}")))
+    FILTER(?type = exv:Character)
+}}
+ORDER BY ?name
+}}
+UNION
+{{
+SELECT ?subject ?name ?type ?image_url
+WHERE {{
+    ?subject exv:title ?name .
+    ?subject rdf:type ?type .
+    OPTIONAL {{ ?subject exv:hasImageEps ?image_url }} .
+    FILTER(strStarts(lcase(?name), lcase("{query}")))
+    FILTER(?type = exv:Episode)
+}}
+ORDER BY ?name
+}}
+UNION
+{{
+SELECT ?subject ?name ?type ?image_url
+WHERE {{
+    ?subject exv:name ?name .
+    ?subject rdf:type ?type .
+    OPTIONAL {{ ?subject exv:hasImageChar ?image_url }} .
+    FILTER(contains(lcase(?name), lcase("{query}")) && !strStarts(lcase(?name), lcase("{query}")))
+    FILTER(?type = exv:Character)
+}}
+ORDER BY ?name
+}}
+UNION
+{{
+SELECT ?subject ?name ?type ?image_url
+WHERE {{
+    ?subject exv:title ?name .
+    ?subject rdf:type ?type .
+    OPTIONAL {{ ?subject exv:hasImageEps ?image_url }} .
+    FILTER(contains(lcase(?name), lcase("{query}")) && !strStarts(lcase(?name), lcase("{query}")))
+    FILTER(?type = exv:Episode)
+}}
+ORDER BY ?name
+}}
 }}
 """
-            # sparql_wrapper = rdf_manager.sparql
-            # sparql_wrapper.setQuery(sparql_query)
-            # sparql_wrapper.setReturnFormat(JSON)
-            # response = sparql_wrapper.query()
-            # print("gyatt")
-            # print(response)
-            # print("gyatt")
-            bindings = rdf_manager.query(sparql_query)
-            # bindings = response.convert()["results"]["bindings"]
-            # print("gyatt")
-            # print(bindings)
-            # print("gyatt")
-            # if len(bindings) > 10:
-            #     more_results = True
-            #     bindings = bindings[:10]
-            subject_dict = {}
-            for binding in bindings:
-                subject_uri = binding["subject"]["value"]
-                for uri, prefix in prefix_mapping.items():
-                    if subject_uri.startswith(uri):
-                        subject_prefixed = subject_uri.replace(uri, prefix)
-                        break
-                else:
-                    subject_prefixed = subject_uri
+    bindings = rdf_manager.query(sparql_query)
+    subject_dict = {}
+    for binding in bindings:
+        subject_uri = binding["subject"]["value"]
+        for uri, prefix in prefix_mapping.items():
+            if subject_uri.startswith(uri):
+                subject_prefixed = subject_uri.replace(uri, prefix)
+                break
+        else:
+            subject_prefixed = subject_uri
 
-                result_type = binding["type"]["value"]
-                if result_type.startswith("http://example.org/vocab#"):
-                    result_type = result_type.replace("http://example.org/vocab#", "")
-                name = binding["name"]["value"]
-                # url = binding["url"]["value"]
+        result_type = binding["type"]["value"]
+        if result_type.startswith("http://example.org/vocab#"):
+            result_type = result_type.replace("http://example.org/vocab#", "")
+        name = binding["name"]["value"]
+        image_url = binding.get("image_url", {}).get("value", "N/A")
 
-                if subject_prefixed not in subject_dict:
-                    subject_dict[subject_prefixed] = {}
-                    subject_dict[subject_prefixed][result_type] = [name]
-                else:
-                    if result_type not in subject_dict[subject_prefixed]:
-                        subject_dict[subject_prefixed][result_type] = [name]
-                    else:
-                        subject_dict[subject_prefixed][result_type].append(name)
+        if subject_prefixed not in subject_dict:
+            subject_dict[subject_prefixed] = {}
+            subject_dict[subject_prefixed][result_type] = [(name, image_url)]
+        else:
+            if result_type not in subject_dict[subject_prefixed]:
+                subject_dict[subject_prefixed][result_type] = [(name, image_url)]
+            else:
+                subject_dict[subject_prefixed][result_type].append((name, image_url))
 
-            # print("gyatt")
-            # print(subject_dict)
-            # print("gyatt")
+    for subject, types in subject_dict.items():
+        for result_type, name_image in types.items():
+            for name, image in name_image:
+                encoded_name = quote(name)
+                if result_type == "Character":
+                    relative_url = f"/character/{encoded_name}/"
+                elif result_type == "Episode":
+                    relative_url = f"/episode/{encoded_name}/"
 
-            for subject, types in subject_dict.items():
-                for result_type, names in types.items():
-                    for name in names:
-                        encoded_name = quote(name)
-                        if result_type == "Character":
-                            relative_url = f"/character/{encoded_name}/"
-                        elif result_type == "Episode":
-                            relative_url = f"/episode/{encoded_name}/"
+                results.append(
+                    {
+                        "name": name,
+                        "url": relative_url,
+                        "type": result_type,
+                        "image_url": image,
+                    }
+                )
 
-                        results.append(
-                            {
-                                "subject": subject,
-                                "name": name,
-                                "url": relative_url,
-                                "type": result_type,
-                            }
-                        )
-            # print(results)
-        return JsonResponse({"results": results, "more_results": more_results})
-    context = {"query": query, "results": []}
+    paginator = Paginator(results, page_size)
+    paginated_results = paginator.get_page(page)
+    
+    if request.headers.get("x-requested-with") == "XMLHttpRequest":
+        return JsonResponse({
+            "results": list(paginated_results),
+            "page": page,
+            "total_results": paginator.count,
+        })
+
+    context = {"query": query, "results": paginated_results}
 
     return render(request, "home.html", context)
 
@@ -202,7 +200,6 @@ def getQueryEpisodeList(query, season, sort):
         order_by_clause = "ORDER BY ASC(?imdb_rating)"
     elif sort == "imdb-rating-desc":
         order_by_clause = "ORDER BY DESC(?imdb_rating)"
-    
 
     season_filter = ""
     if season:
@@ -251,7 +248,7 @@ def natural_sort_key(episode_number, reverse=False):
 
 def episodes(request):
     query = request.GET.get("q", "")
-    query = query.replace('\\', '\\\\').replace('"', '\\"').replace("'", "\\'")
+    query = query.replace("\\", "\\\\").replace('"', '\\"').replace("'", "\\'")
     season = request.GET.get("season", "")
     sort = request.GET.get("sort", "title-asc")
     page = int(request.GET.get("page", 1))
@@ -259,7 +256,9 @@ def episodes(request):
 
     unique_seasons_query = getUniqueSeasonsQuery()
     seasons_response = rdf_manager.query(unique_seasons_query)
-    unique_seasons = [binding.get("season", {}).get("value", "N/A") for binding in seasons_response]
+    unique_seasons = [
+        binding.get("season", {}).get("value", "N/A") for binding in seasons_response
+    ]
 
     sparql_query = getQueryEpisodeList(query, season, sort)
     response = rdf_manager.query(sparql_query)
@@ -277,19 +276,23 @@ def episodes(request):
     ]
     if "episode-number" in sort:
         reverse_sort = sort == "episode-number-desc"
-        episodes.sort(key=lambda ep: natural_sort_key(ep["episode_number"]), reverse=reverse_sort)
+        episodes.sort(
+            key=lambda ep: natural_sort_key(ep["episode_number"]), reverse=reverse_sort
+        )
 
     paginator = Paginator(episodes, page_size)
     paginated_episodes = paginator.get_page(page)
     print(paginator.count)
 
     if request.headers.get("x-requested-with") == "XMLHttpRequest":
-        return JsonResponse({
-            "episodes": list(paginated_episodes),
-            "page": page,
-            "page_size": page_size,
-            "total_episodes": paginator.count
-        })
+        return JsonResponse(
+            {
+                "episodes": list(paginated_episodes),
+                "page": page,
+                "page_size": page_size,
+                "total_episodes": paginator.count,
+            }
+        )
 
     context = {
         "query": query,
@@ -301,7 +304,7 @@ def episodes(request):
 
 def characters_view(request):
     query = request.GET.get("q", "")
-    query = query.replace('\\', '\\\\').replace('"', '\\"').replace("'", "\\'")
+    query = query.replace("\\", "\\\\").replace('"', '\\"').replace("'", "\\'")
     page = int(request.GET.get("page", 1))
     page_size = int(request.GET.get("page_size", 16))
 

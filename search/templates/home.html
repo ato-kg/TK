@@ -10,16 +10,22 @@
             Dive into the SpongeBob Universe!
         </h1>
 
-        <div class="max-w-xl w-full">
-            <div class="relative">
+        <div class="w-full max-w-4xl px-4">
+            <div class="relative w-full sm:w-auto flex-grow">
                 <input type="text" id="search-input" placeholder="Search for characters, episodes..."
                     class="w-full py-3 px-5 rounded-full border border-gray-300 shadow-md focus:outline-none focus:ring-2 focus:ring-yellow-300">
             </div>
             <div id="results" class="mt-4">
-
+                <!-- Search results will be populated here -->
             </div>
         </div>
     </main>
+
+    <!-- Pagination Controls -->
+    <div class="flex justify-center mt-6">
+        <button id="prev-page" class="py-2 px-4 bg-yellow-300 text-gray-800 rounded-full mr-2 hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-500 disabled:opacity-50 disabled:cursor-not-allowed">Previous</button>
+        <button id="next-page" class="py-2 px-4 bg-yellow-300 text-gray-800 rounded-full hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-500 disabled:opacity-50 disabled:cursor-not-allowed">Next</button>
+    </div>
 </div>
 {% endblock %}
 
@@ -27,48 +33,100 @@
 <!-- AJAX Search Script -->
 <script>
     $(document).ready(function () {
-
         let debounceTimer;
-        $('#search-input').on('input', function () {
-            clearTimeout(debounceTimer);
-            var query = $(this).val();
-            debounceTimer = setTimeout(function () {
-                $.ajax({
-                    url: "{% url 'search' %}",
-                    data: { 'q': query },
-                    dataType: 'json',
-                    success: function (data) {
-                        var resultsDiv = $('#results');
-                        resultsDiv.empty();
-                        if (data.results.length > 0) {
-                            var ul = $('<ul class="bg-white rounded-md shadow-md divide-y divide-gray-200"></ul>');
-                            data.results.forEach(function (item) {
-                                var li = $('<li class="p-3 hover:bg-yellow-100"></li>');
-                                var a = $('<a></a>')
-                                    .attr('href', item.url)
-                                    .addClass('text-blue-600 font-semibold')
-                                    .text(item.name);
-                                var p = $('<p></p>')
-                                    .addClass('text-gray-600')
-                                    .text(item.type);
-                                li.append(a);
-                                li.append(p);
-                                ul.append(li);
-                            });
-                            resultsDiv.append(ul);
-                            if (data.more_results) {
-                                var seeMoreLink = $('<a></a>')
-                                    .attr('href', '#')
-                                    .addClass('text-blue-600 font-semibold mt-4 block text-center')
-                                    .text('See more results');
-                                resultsDiv.append(seeMoreLink);
-                            }
-                        } else if (query) {
-                            resultsDiv.append('<p class="text-gray-600 mt-2">No results found.</p>');
+        let currentPage = 1;
+        const pageSize = 16;
+
+        const fetchResults = (query = "", page = 1) => {
+            if (!query) {
+                $('#results').empty();
+                return;
+            }
+            $.ajax({
+                url: "{% url 'search' %}",
+                data: { q: query, page: page, page_size: pageSize },
+                dataType: 'json',
+                success: function (data) {
+                    var resultsDiv = $('#results');
+                    resultsDiv.empty();
+                    if (data.results.length > 0) {
+                        var ul = $('<ul class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 text-gray-600"></ul>');
+                        data.results.forEach(function (item) {
+                            const card = `
+                                <li class="character-box h-full">
+                                    <a href="${item.url}" class="flex flex-col h-full bg-white shadow-lg rounded-lg overflow-hidden border hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+                                        <div class="relative w-full h-64 overflow-hidden">
+                                            ${item.image_url !== "N/A" ? `
+                                                <img 
+                                                    src="${item.image_url}" 
+                                                    alt="${item.name}" 
+                                                    class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300 rounded-t-lg"
+                                                >
+                                            ` : `
+                                                <div class="relative">
+                                                    <img src="{% static 'images/default.png' %}" alt="Default Image" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300 rounded-t-lg">
+                                                    <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                                                        <p class="text-white font-semibold text-lg px-4 py-2 rounded">
+                                                            Image not available
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            `}
+                                        </div>
+                                        <div class="p-4 flex-grow flex flex-col items-center justify-center">
+                                            <h3 class="text-lg font-semibold text-yellow-700 text-center">${item.name}</h3>
+                                            <p class="text-sm text-gray-600 text-center">${item.type}</p>
+                                        </div>
+                                    </a>
+                                </li>
+                            `;
+                            ul.append(card);
+                        });
+                        resultsDiv.append(ul);
+                        if (data.more_results) {
+                            var seeMoreLink = $('<a></a>')
+                                .attr('href', '#')
+                                .addClass('text-blue-600 font-semibold mt-4 block text-center')
+                                .text('See more results');
+                            resultsDiv.append(seeMoreLink);
                         }
+                    } else if (query) {
+                        resultsDiv.append('<p class="text-gray-600 mt-2">No results found.</p>');
                     }
-                });
-            }, 300); // Debounce delay
+
+                    // Update pagination controls
+                    $("#prev-page").prop("disabled", data.page <= 1);
+                    $("#next-page").prop("disabled", data.page * pageSize >= data.total_results);
+                }
+            });
+        };
+
+        const debounce = (func, delay) => {
+            return function(...args) {
+                clearTimeout(debounceTimer);
+                debounceTimer = setTimeout(() => func.apply(this, args), delay);
+            };
+        };
+
+        // Event listeners
+        $('#search-input').on('input', debounce(function () {
+            const query = $(this).val();
+            currentPage = 1;
+            fetchResults(query, currentPage);
+        }, 300));
+
+        $("#prev-page").on("click", function () {
+            if (currentPage > 1) {
+                currentPage--;
+                const query = $("#search-input").val();
+                fetchResults(query, currentPage);
+            }
+        });
+
+        $("#next-page").on("click", function () {
+            currentPage++;
+            const query = $("#search-input").val();
+            fetchResults(query, currentPage);
         });
     });
 </script>
