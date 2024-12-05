@@ -22,7 +22,7 @@
     </main>
 
     <!-- Pagination Controls -->
-    <div class="flex justify-center mt-6">
+    <div id="pagination-controls" class="flex justify-center mt-6" style="display: none;">
         <button id="prev-page" class="py-2 px-4 bg-yellow-300 text-gray-800 rounded-full mr-2 hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-500 disabled:opacity-50 disabled:cursor-not-allowed">Previous</button>
         <button id="next-page" class="py-2 px-4 bg-yellow-300 text-gray-800 rounded-full hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-500 disabled:opacity-50 disabled:cursor-not-allowed">Next</button>
     </div>
@@ -40,6 +40,7 @@
         const fetchResults = (query = "", page = 1) => {
             if (!query) {
                 $('#results').empty();
+                $('#pagination-controls').hide();
                 return;
             }
             $.ajax({
@@ -83,6 +84,7 @@
                             ul.append(card);
                         });
                         resultsDiv.append(ul);
+                        $('#pagination-controls').show();
                         if (data.more_results) {
                             var seeMoreLink = $('<a></a>')
                                 .attr('href', '#')
@@ -92,6 +94,7 @@
                         }
                     } else if (query) {
                         resultsDiv.append('<p class="text-gray-600 mt-2">No results found.</p>');
+                        $('#pagination-controls').hide();
                     }
 
                     // Update pagination controls

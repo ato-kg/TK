@@ -33,6 +33,11 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 """
 
 
+from urllib.parse import quote
+from django.core.paginator import Paginator
+from django.http import JsonResponse
+from django.shortcuts import render
+
 def search(request):
     query = (
         request.GET.get("q", "")
@@ -43,13 +48,14 @@ def search(request):
     page = int(request.GET.get("page", 1))
     page_size = int(request.GET.get("page_size", 16))
     results = []
+    seen_entries = set()  # To track distinct combinations of name, type, and image_url
     sparql_query = f"""
 {SPARQL_PREFIXES}
 
-SELECT DISTINCT ?subject ?name ?type ?image_url
+SELECT DISTINCT ?name ?type ?image_url
 WHERE {{
 {{
-SELECT ?subject ?name ?type ?image_url
+SELECT ?name ?type ?image_url
 WHERE {{
     ?subject exv:name ?name .
     ?subject rdf:type ?type .
@@ -61,7 +67,7 @@ ORDER BY ?name
 }}
 UNION
 {{
-SELECT ?subject ?name ?type ?image_url
+SELECT ?name ?type ?image_url
 WHERE {{
     ?subject exv:title ?name .
     ?subject rdf:type ?type .
@@ -73,7 +79,7 @@ ORDER BY ?name
 }}
 UNION
 {{
-SELECT ?subject ?name ?type ?image_url
+SELECT ?name ?type ?image_url
 WHERE {{
     ?subject exv:name ?name .
     ?subject rdf:type ?type .
@@ -85,7 +91,7 @@ ORDER BY ?name
 }}
 UNION
 {{
-SELECT ?subject ?name ?type ?image_url
+SELECT ?name ?type ?image_url
 WHERE {{
     ?subject exv:title ?name .
     ?subject rdf:type ?type .
@@ -98,52 +104,35 @@ ORDER BY ?name
 }}
 """
     bindings = rdf_manager.query(sparql_query)
-    subject_dict = {}
     for binding in bindings:
-        subject_uri = binding["subject"]["value"]
-        for uri, prefix in prefix_mapping.items():
-            if subject_uri.startswith(uri):
-                subject_prefixed = subject_uri.replace(uri, prefix)
-                break
-        else:
-            subject_prefixed = subject_uri
-
         result_type = binding["type"]["value"]
         if result_type.startswith("http://example.org/vocab#"):
             result_type = result_type.replace("http://example.org/vocab#", "")
         name = binding["name"]["value"]
         image_url = binding.get("image_url", {}).get("value", "N/A")
 
-        if subject_prefixed not in subject_dict:
-            subject_dict[subject_prefixed] = {}
-            subject_dict[subject_prefixed][result_type] = [(name, image_url)]
-        else:
-            if result_type not in subject_dict[subject_prefixed]:
-                subject_dict[subject_prefixed][result_type] = [(name, image_url)]
-            else:
-                subject_dict[subject_prefixed][result_type].append((name, image_url))
+        # Create a unique tuple to check for duplicates
+        unique_entry = (name, result_type, image_url)
+        if unique_entry not in seen_entries:
+            seen_entries.add(unique_entry)  # Mark as seen
+            encoded_name = quote(name)
+            if result_type == "Character":
+                relative_url = f"/character/{encoded_name}/"
+            elif result_type == "Episode":
+                relative_url = f"/episode/{encoded_name}/"
 
-    for subject, types in subject_dict.items():
-        for result_type, name_image in types.items():
-            for name, image in name_image:
-                encoded_name = quote(name)
-                if result_type == "Character":
-                    relative_url = f"/character/{encoded_name}/"
-                elif result_type == "Episode":
-                    relative_url = f"/episode/{encoded_name}/"
-
-                results.append(
-                    {
-                        "name": name,
-                        "url": relative_url,
-                        "type": result_type,
-                        "image_url": image,
-                    }
-                )
+            results.append(
+                {
+                    "name": name,
+                    "url": relative_url,
+                    "type": result_type,
+                    "image_url": image_url,
+                }
+            )
 
     paginator = Paginator(results, page_size)
     paginated_results = paginator.get_page(page)
-    
+
     if request.headers.get("x-requested-with") == "XMLHttpRequest":
         return JsonResponse({
             "results": list(paginated_results),
@@ -154,6 +143,7 @@ ORDER BY ?name
     context = {"query": query, "results": paginated_results}
 
     return render(request, "home.html", context)
+
 
 
 def getUniqueSeasonsQuery():
