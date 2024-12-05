@@ -1,4 +1,5 @@
-from SPARQLWrapper import SPARQLWrapper, JSON
+from SPARQLWrapper import JSON, SPARQLWrapper
+
 
 class RDFManager:
     _instance = None
@@ -24,11 +25,14 @@ class RDFManager:
             for key, value in params.items():
                 # Sanitize value
 
-                sparql_query = sparql_query.replace(f"?{key}", f"\'{value}\'")
+                tmp = value.replace("'","\\'").replace('"','\\"')
+                sparql_query = sparql_query.replace(f"?{key}", f"'{tmp}'")
         
         # Configure SPARQLWrapper
+        # print(sparql_query)
         self.sparql.setQuery(sparql_query)
         self.sparql.setReturnFormat(JSON)
+        # print(sparql_query)
         response = self.sparql.query()
         
         # Return JSON results

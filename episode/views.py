@@ -274,11 +274,17 @@ def episode_view(request, nama_episode : str):
             roles = []
             for role_uri in guest_role_uris[guest_uri]:
                 role_name = get_attribute(role_uri, "name")
-                roles.append(role_name)
+                role_url = get_attribute(role_uri, "hasUrl")
+                print(role_url)
+                roles.append({
+                    "name" : role_name,
+                    "url" : role_url
+                })
             guests.append({
                 "name" : guest_name,
                 "roles" : roles
             })
+            print(roles)
         context['guests'] = guests
         print(1,"k")
         # IMAGE
@@ -425,6 +431,8 @@ def get_summary_view(request, page_title):
         return JsonResponse({'error': str(e)}, status=500)
 
 def get_synopsis(nama_episode):
+    print("nama:",nama_episode)
+    # nama_episode = "Ripped Pants"
     try:
         page = fandom.page(nama_episode)
         data = page.content
@@ -453,8 +461,10 @@ def get_synopsis(nama_episode):
             for section in data['sections']:
                 if section['title'] in ('Synopsis','Plot'):
                     html_content += dfs(section)  # Mulai DFS untuk bagian Synopsis 
+        print(html_content)
         return html_content
-    except:
+    except Exception as e:
+        print(e)
         return ""
 
 def get_synopsis_view(request, page_title):
