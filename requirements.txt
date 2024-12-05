@@ -8,3 +8,4 @@ rdflib
 SPARQLWrapper
 beautifulsoup4
 fandom-py
+pytubefix

@@ -1,72 +1,136 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Episode Character</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        .gallery-image {
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-        .gallery-image:hover {
-            transform: scale(1.05);
-        }
-        .modal-image {
-            max-width: 100%;
-            max-height: 80vh;
-            object-fit: contain;
-        }
-    </style>
-</head>
-<body>
-    <div class="container-fluid py-4">
-        <h1 class="text-center mb-4">{{ nama_karakter }} Gallery</h1>
-        
-        <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
-            {% for image in images %}
-            <div class="col">
-                <div class="card h-100">
-                    <img src="{{ image.link }}" 
-                         class="card-img-top gallery-image" 
-                         alt="{{ image.caption }}"
-                         data-bs-toggle="modal" 
-                         data-bs-target="#imageModal{{ forloop.counter }}"
-                    >
-                    <div class="card-body">
-                        <p class="card-text text-center">{{ image.caption }}</p>
-                    </div>
-                </div>
+{% extends 'base.html' %}
 
-                <!-- Modal for each image -->
-                <div class="modal fade" id="imageModal{{ forloop.counter }}" tabindex="-1">
-                    <div class="modal-dialog modal-dialog-centered modal-xl">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">{{ image.caption }}</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                            </div>
-                            <div class="modal-body text-center">
-                                <img src="{{ image.link }}" class="modal-image" alt="{{ image.caption }}">
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold text-center mb-8">{{ nama_karakter }} Gallery</h1>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {% for image in images %}
+        <div class="relative">
+            <div class="bg-white rounded-lg shadow-md overflow-hidden h-full">
+                <img 
+                    src="{{ image.link }}" 
+                    class="w-full h-64 object-cover transform transition duration-300 hover:scale-105 cursor-pointer" 
+                    alt="{{ image.caption }}"
+                    data-bs-toggle="modal" 
+                    data-bs-target="#imageModal{{ forloop.counter }}"
+                >
+                <div class="p-4">
+                    <p class="text-center text-gray-700">{{ image.caption }}</p>
+                </div>
+            </div>
+
+            <!-- Modal for each image -->
+            <div 
+                class="fixed inset-0 z-50 hidden overflow-y-auto" 
+                id="imageModal{{ forloop.counter }}" 
+                tabindex="-1" 
+                aria-labelledby="imageModalLabel{{ forloop.counter }}"
+            >
+                <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center">
+                    <div 
+                        class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" 
+                        data-bs-dismiss="modal"
+                    ></div>
+                    
+                    <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-4xl sm:w-full">
+                        <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                            <div class="sm:flex sm:items-start">
+                                <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
+                                    <h3 
+                                        class="text-lg leading-6 font-medium text-gray-900" 
+                                        id="imageModalLabel{{ forloop.counter }}"
+                                    >
+                                        {{ image.caption }}
+                                    </h3>
+                                    <div class="mt-4 text-center">
+                                        <img 
+                                            src="{{ image.link }}" 
+                                            class="max-w-full max-h-[80vh] mx-auto object-contain" 
+                                            alt="{{ image.caption }}"
+                                        >
+                                    </div>
+                                </div>
+                                <button 
+                                    type="button" 
+                                    class="absolute top-4 right-4 text-gray-400 hover:text-gray-500"
+                                    data-bs-dismiss="modal"
+                                >
+                                    <span class="sr-only">Close</span>
+                                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
+                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            {% empty %}
-            <div class="col-12">
-                <div class="alert alert-info text-center" role="alert">
-                    No images available for this episode.
-                </div>
-            </div>
-            {% endfor %}
         </div>
+        {% empty %}
+        <div class="col-span-full">
+            <div class="bg-blue-100 border border-blue-400 text-blue-700 px-4 py-3 rounded relative text-center" role="alert">
+                No images available for this character.
+            </div>
+        </div>
+        {% endfor %}
     </div>
 
-    <!-- Bootstrap JS and Popper.js -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
-</body>
-</html>
+    <h2 class="text-2xl font-bold text-center mb-6 mt-6">Related Videos</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for video in videos %}
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <div class="relative">
+                <!-- Video Player -->
+                <iframe 
+                    class="w-full h-48 md:h-64 lg:h-72" 
+                    src="{{ video.embed_url }}" 
+                    title="{{ video.caption }}" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+            <div class="p-4">
+                <h3 class="text-center text-gray-700 font-medium">{{ video.caption }}</h3>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-span-full">
+            <div class="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded relative text-center" role="alert">
+                No videos available for this character.
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Modal and Image Interaction Script -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const images = document.querySelectorAll('[data-bs-toggle="modal"]');
+    const modals = document.querySelectorAll('[id^="imageModal"]');
+
+    images.forEach(image => {
+        image.addEventListener('click', function() {
+            const targetModalId = this.getAttribute('data-bs-target');
+            const targetModal = document.querySelector(targetModalId);
+            
+            if (targetModal) {
+                targetModal.classList.remove('hidden');
+            }
+        });
+    });
+
+    modals.forEach(modal => {
+        const closeButtons = modal.querySelectorAll('[data-bs-dismiss="modal"]');
+        
+        closeButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                modal.classList.add('hidden');
+            });
+        });
+    });
+});
+</script>
+{% endblock content %}
