@@ -352,13 +352,13 @@ def character_view(request, nama_character : str):
         context['image_url'] = image_url
         # print(fandom_url)
         nama_character = fandom_url.split("https://spongebob.fandom.com/wiki/")[-1]
-        context['summary'] = get_best_summary(nama_character)
+        # context['summary'] = get_best_summary(nama_character)
 
-        print(context['summary'])
-        context['biography'] = get_biography(nama_character)
-        print(context['biography'])
-        print("wpoy")
-        print(context['biography'])
+        # print(context['summary'])
+        # context['biography'] = get_biography(nama_character)
+        # print(context['biography'])
+        # print("wpoy")
+        # print(context['biography'])
         # # print(context['summary'])
         ############################################################
         return render(request, 'character_template.html', context)
