@@ -23,7 +23,8 @@ class RDFManager:
         if params:
             for key, value in params.items():
                 # Sanitize value
-                sparql_query = sparql_query.replace(f"?{key}", f'"{value}"')
+
+                sparql_query = sparql_query.replace(f"?{key}", f"\'{value}\'")
         
         # Configure SPARQLWrapper
         self.sparql.setQuery(sparql_query)

@@ -100,6 +100,7 @@ def episode_view(request, nama_episode : str):
         "title": nama_episode
     }
     context = {'title' : nama_episode}
+
     results = rdf_manager.query(sparql_query, params)
     print(5,"l")
     if results:
@@ -249,6 +250,10 @@ def episode_view(request, nama_episode : str):
         premier_time = get_attributes(eps_uri, "hasPremierTime")
         context['premier_time'] = premier_time
 
+        # Location
+        location = get_attributes(eps_uri, "hasLocation")
+        context['location'] = location
+
         # Viewers
         viewers = get_attributes(eps_uri, "hasViewers")
         context['viewers'] = viewers
@@ -294,12 +299,9 @@ def episode_view(request, nama_episode : str):
 
         context['fandom'] = fandom_url
         context['image_url'] = image_url
-        print("konz")
         # Desc
-        print("konz")
         # context['summary'] = get_best_summary(nama_episode)
         # context['synopsis'] = get_synopsis(nama_episode)
-        print("konz")
         ############################################################
         return render(request, 'template.html', context)
     else:
