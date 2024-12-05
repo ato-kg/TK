@@ -280,11 +280,29 @@
                                         {% endif %}
                                         {% for role in guests.0.roles %}
                                             {% if forloop.last and not forloop.first %}
-                                                and {{ role }}
+                                                and {% if role.url %}
+                                                <a href="{% url 'character_detail' nama_character=role.name %}" class="text-blue-500 hover:text-blue-700">
+                                                    {{ role.name }}
+                                                </a>
+                                                {% else %}
+                                                    {{ role.name }}
+                                                {% endif %}
                                             {% elif forloop.last %}
-                                                {{ role }}
+                                                {% if role.url %}
+                                                <a href="{% url 'character_detail' nama_character=role.name %}" class="text-blue-500 hover:text-blue-700">
+                                                    {{ role.name }}
+                                                </a>
+                                                {% else %}
+                                                    {{ role.name }}
+                                                {% endif %}
                                             {% else %}
-                                                {{ role }},
+                                                {% if role.url %}
+                                                <a href="{% url 'character_detail' nama_character=role.name %}" class="text-blue-500 hover:text-blue-700">
+                                                    {{ role.name }}
+                                                </a>
+                                                {% else %}
+                                                    {{ role.name }}
+                                                {% endif %}
                                             {% endif %}
                                         {% endfor %}
                                     </span>
@@ -300,11 +318,29 @@
                                                 {% endif %}
                                                 {% for role in guest.roles %}
                                                     {% if forloop.last and not forloop.first %}
-                                                        and {{ role }}
+                                                        and {% if role.url %}
+                                                        <a href="{% url 'character_detail' nama_character=role.name %}" class="text-blue-500 hover:text-blue-700">
+                                                            {{ role.name }}
+                                                        </a>
+                                                        {% else %}
+                                                            {{ role.name }}
+                                                        {% endif %}
                                                     {% elif forloop.last %}
-                                                        {{ role }}
+                                                        {% if role.url %}
+                                                        <a href="{% url 'character_detail' nama_character=role.name %}" class="text-blue-500 hover:text-blue-700">
+                                                            {{ role.name }}
+                                                        </a>
+                                                        {% else %}
+                                                            {{ role.name }}
+                                                        {% endif %}
                                                     {% else %}
-                                                        {{ role }},
+                                                        {% if role.url %}
+                                                        <a href="{% url 'character_detail' nama_character=role.name %}" class="text-blue-500 hover:text-blue-700">
+                                                            {{ role.name }}
+                                                        </a>
+                                                        {% else %}
+                                                            {{ role.name }}
+                                                        {% endif %}
                                                     {% endif %}
                                                 {% endfor %}
                                             </li>

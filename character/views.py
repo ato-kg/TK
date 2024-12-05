@@ -1,10 +1,10 @@
+import urllib.parse
+
 import fandom
 import requests
 from bs4 import BeautifulSoup
 from django.http import HttpResponseNotFound, JsonResponse
 from django.shortcuts import render
-import urllib.parse
-
 
 from rdfapp.rdf_manager import RDFManager
 from rdfapp.wikidata_manager import WikidataManager
@@ -65,7 +65,7 @@ def get_attribute(s_uri, atr):
     LIMIT 1
     """
     
-    # print(f"SPARQL Query: {sparql_query}")  # Debugging output for query
+    # # print(f"SPARQL Query: {sparql_query}")  # Debugging output for query
     
     try:
         results = rdf_manager.query(sparql_query)
@@ -74,7 +74,7 @@ def get_attribute(s_uri, atr):
         else:
             return None
     except Exception as e:
-        # print(f"Error querying SPARQL endpoint: {e}")  # Log the error
+        # # print(f"Error querying SPARQL endpoint: {e}")  # Log the error
         return None
 
 
@@ -159,6 +159,7 @@ def get_exv_classifications(character_uri):
     return exv_types
 
 def character_view(request, nama_character : str):
+    print(1)
     print(nama_character)
     sparql_query = f"""
     PREFIX exv: <http://example.org/vocab#>
@@ -177,6 +178,7 @@ def character_view(request, nama_character : str):
     context = {'name' : nama_character}
     results = rdf_manager.query(sparql_query, params)
     if results:
+        print(2)
         char_uri = results[0]['s']['value']
         
         # WikiData
@@ -196,14 +198,14 @@ def character_view(request, nama_character : str):
         classifications_uri = get_exv_classifications(char_uri)
         classifications = []
         for classification_uri in classifications_uri:
-            # print(f"Processing classification URI: {classification_uri}")
+            # # print(f"Processing classification URI: {classification_uri}")
             classification_uri_value = classification_uri.get("value")
             classification_name = get_attribute_rdfs(classification_uri_value, "label")
             classifications.append({
                 "name": classification_name
             })
         context['classifications'] = classifications
-        # print(classifications)
+        # # print(classifications)
 
         # Portrayers Checked
         portrayers = []
@@ -223,7 +225,7 @@ def character_view(request, nama_character : str):
         residence_uris, residence_info_str = get_atrributes_bn(char_uri, "hasResidences", "hasResidence", "infoResidence")
 
         for residence_uri in residence_uris:
-            print(f"Processing residence URI: {residence_uri}")
+            # print(f"Processing residence URI: {residence_uri}")
             
             residence_name = get_attribute_rdfs(residence_uri, "label")
 
@@ -307,7 +309,7 @@ def character_view(request, nama_character : str):
                 "infos" : infos
             }
             context['latest_appearance'] = latest_appearance
-            # print(latest_appearance)
+            # # print(latest_appearance)
 
         # Gender Checked
         gender_uri = get_attribute(char_uri, "hasGender")
@@ -317,8 +319,8 @@ def character_view(request, nama_character : str):
         # Occupations
         occupations_list = []
         occupations_uris, occupations_info_strs = get_atrributes_bn(char_uri, "hasOccupations", "occupationName", "infoOccupations")
-        # print(occupations_uris)
-        print(occupations_info_strs)
+        # # print(occupations_uris)
+        # # print(occupations_info_strs)
 
         for occupation_uri in occupations_uris:
             infos = occupations_info_strs.get(occupation_uri, [])
@@ -327,7 +329,7 @@ def character_view(request, nama_character : str):
                 "name": occupation_uri,
                 "infos": infos
         })
-        print(occupations_list)
+        # # print(occupations_list)
             
         # Episode
         episodes = []
@@ -342,16 +344,22 @@ def character_view(request, nama_character : str):
         context['episodes'] = episodes
 
         context['occupations'] = occupations_list
+        print(3)
         # IMAGE Checked
         image_url = get_attribute(char_uri, "hasImageChar")
         fandom_url = get_attribute(char_uri, "hasUrl")
         context['fandom'] = fandom_url
         context['image_url'] = image_url
-
+        # print(fandom_url)
+        nama_character = fandom_url.split("https://spongebob.fandom.com/wiki/")[-1]
         context['summary'] = get_best_summary(nama_character)
+
+        print(context['summary'])
         context['biography'] = get_biography(nama_character)
         print(context['biography'])
-        print(context['summary'])
+        print("wpoy")
+        print(context['biography'])
+        # # print(context['summary'])
         ############################################################
         return render(request, 'character_template.html', context)
     else:
@@ -382,7 +390,9 @@ def get_summary_bs4(url):
 
 def get_summary_fandom(page_title):
     try:
+        # print(page_title)
         page_data = fandom.page(page_title)
+        # # print(page_data.content)
         return page_data.summary
     except fandom.error.PageError:
         return "Summary not found."
@@ -390,23 +400,29 @@ def get_summary_fandom(page_title):
 def get_best_summary(page_title):
     BASE_URL = "https://spongebob.fandom.com/wiki"
     url = f"{BASE_URL}/{page_title}"
+    # print(url)
 
     response = requests.get(url)
     soup = BeautifulSoup(response.text, "html.parser")
+    # print(response.text)
 
     if soup.select_one(".mw-parser-output .tab-line > p"):
         print("Using BeautifulSoup approach")
         best_summary = get_summary_bs4(url)
     else:
-        print("Using Fandom API approach")
+        # print("Using Fandom API approach")
         best_summary = get_summary_fandom(page_title)
 
     return best_summary
 
 def get_biography(nama_episode):
+    print("nama:",nama_episode)
+    # nama_episode = "Ripped Pants"
     try:
         page = fandom.page(nama_episode)
         data = page.content
+        print(data)
+        print(data['sections'])
         def dfs(section):
             html = ""
             
@@ -432,8 +448,10 @@ def get_biography(nama_episode):
             for section in data['sections']:
                 if section['title'] in ('Biography'):
                     html_content += dfs(section)  # Mulai DFS untuk bagian Synopsis 
+        print(html_content)
         return html_content
-    except:
+    except Exception as e:
+        print(e)
         return ""
 
 def get_biography_view(request, page_title):
@@ -470,9 +488,63 @@ def find_episodes_by_character(character_uri):
 
     return episodes
 
+
 def get_summary_view(request, page_title):
     try:
-        summary = get_best_summary(page_title)
+        summary = ""
+        sparql_query = f"""
+        PREFIX exv: <http://example.org/vocab#>
+        
+        SELECT ?s
+        WHERE {{
+            ?s a exv:Character ;
+                exv:name ?o .
+            FILTER(?o = ?name)
+        }}
+        LIMIT 1
+        """
+        params = {
+            "name": page_title
+        }
+        context = {'name' : page_title}
+        results = rdf_manager.query(sparql_query, params)
+        if results:
+            print(2)
+            char_uri = results[0]['s']['value']
+            print(char_uri)
+            fandom_url = get_attribute(char_uri, "hasUrl")
+            page_title = fandom_url.split("https://spongebob.fandom.com/wiki/")[-1]
+            summary = get_best_summary(page_title)
         return JsonResponse({'summary': summary})
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=500)
+    
+def get_synopsis_view(request, page_title):
+    try:
+        synopsis = ""
+        sparql_query = f"""
+        PREFIX exv: <http://example.org/vocab#>
+        
+        SELECT ?s
+        WHERE {{
+            ?s a exv:Character ;
+                exv:name ?o .
+            FILTER(?o = ?name)
+        }}
+        LIMIT 1
+        """
+        params = {
+            "name": page_title
+        }
+        context = {'name' : page_title}
+        results = rdf_manager.query(sparql_query, params)
+        if results:
+            print(2)
+            char_uri = results[0]['s']['value']
+            print(char_uri)
+            fandom_url = get_attribute(char_uri, "hasUrl")
+            page_title = fandom_url.split("https://spongebob.fandom.com/wiki/")[-1]
+            synopsis = get_biography(page_title)
+        return JsonResponse({'synopsis': synopsis})
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=500)

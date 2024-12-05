@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -23,6 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-p6_rz^%ddks&z0xm0a8iow-ymu790a=j4&*gqqg)a($)d-kkmr'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+PRODUCTION = os.getenv("PRODUCTION", False)
 DEBUG = True
 
 ALLOWED_HOSTS = ["localhost","127.0.0.1","muhammad-irfan25-kage.pbp.cs.ui.ac.id"]
@@ -55,6 +57,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'spongebob.urls'
