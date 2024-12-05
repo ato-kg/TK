@@ -274,11 +274,17 @@ def episode_view(request, nama_episode : str):
             roles = []
             for role_uri in guest_role_uris[guest_uri]:
                 role_name = get_attribute(role_uri, "name")
-                roles.append(role_name)
+                role_url = get_attribute(role_uri, "hasUrl")
+                print(role_url)
+                roles.append({
+                    "name" : role_name,
+                    "url" : role_url
+                })
             guests.append({
                 "name" : guest_name,
                 "roles" : roles
             })
+            print(roles)
         context['guests'] = guests
         print(1,"k")
         # IMAGE
