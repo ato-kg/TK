@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% block title %}{{ nama_karakter }} Gallery{% endblock %}
 
 {% block content %}
 <div class="container mx-auto px-4 py-8">
@@ -71,6 +72,34 @@
         <div class="col-span-full">
             <div class="bg-blue-100 border border-blue-400 text-blue-700 px-4 py-3 rounded relative text-center" role="alert">
                 No images available for this character.
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <h2 class="text-2xl font-bold text-center mb-6 mt-6">Related Videos</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for video in videos %}
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <div class="relative">
+                <!-- Video Player -->
+                <iframe 
+                    class="w-full h-48 md:h-64 lg:h-72" 
+                    src="{{ video.embed_url }}" 
+                    title="{{ video.caption }}" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+            <div class="p-4">
+                <h3 class="text-center text-gray-700 font-medium">{{ video.caption }}</h3>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-span-full">
+            <div class="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded relative text-center" role="alert">
+                No videos available for this character.
             </div>
         </div>
         {% endfor %}
