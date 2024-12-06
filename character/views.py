@@ -351,7 +351,10 @@ def character_view(request, nama_character : str):
         context['fandom'] = fandom_url
         context['image_url'] = image_url
         # print(fandom_url)
-        nama_character = fandom_url.split("https://spongebob.fandom.com/wiki/")[-1]
+        try:
+            nama_character = fandom_url.split("https://spongebob.fandom.com/wiki/")[-1]
+        except:
+            pass
         # context['summary'] = get_best_summary(nama_character)
 
         # print(context['summary'])
@@ -397,7 +400,7 @@ def get_summary_fandom(page_title):
     except fandom.error.PageError:
         return "Summary not found."
     
-def get_best_summary(page_title):
+def get_best_summary(page_title, tmp):
     BASE_URL = "https://spongebob.fandom.com/wiki"
     url = f"{BASE_URL}/{page_title}"
     # print(url)
@@ -413,12 +416,18 @@ def get_best_summary(page_title):
         # print("Using Fandom API approach")
         best_summary = get_summary_fandom(page_title)
 
-    return best_summary
+    if best_summary != "Summary not found.":
+        return best_summary
+    else:
+        if page_title:
+            return get_best_summary(tmp, "")
+        return best_summary
 
-def get_biography(nama_episode):
+def get_biography(nama_episode, tmp):
     try:
         page = fandom.page(nama_episode)
         data = page.content
+        # print(data)
         def dfs(section):
             html = ""
             
@@ -446,6 +455,8 @@ def get_biography(nama_episode):
                     html_content += dfs(section)  # Mulai DFS untuk bagian Biography 
         return html_content
     except Exception as e:
+        if nama_episode:
+            return get_biography(tmp, "")
         print(e)
         return ""
 
@@ -465,7 +476,7 @@ def find_episodes_by_character(character_uri):
     SELECT ?episode
     WHERE {{
         ?episode a exv:Episode;
-                 exv:hasCharacters {full_encoded_uri}.
+                exv:hasCharacters ex:{encoded_character_name}.
     }}
     """
 
@@ -501,8 +512,12 @@ def get_summary_view(request, page_title):
             char_uri = results[0]['s']['value']
             print(char_uri)
             fandom_url = get_attribute(char_uri, "hasUrl")
-            page_title = fandom_url.split("https://spongebob.fandom.com/wiki/")[-1]
-            summary = get_best_summary(page_title)
+            tmp = page_title
+            try:
+                page_title = fandom_url.split("https://spongebob.fandom.com/wiki/")[-1]
+            except:
+                pass
+            summary = get_best_summary(page_title, tmp)
         return JsonResponse({'summary': summary})
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=500)
@@ -531,8 +546,12 @@ def get_biography_view(request, page_title):
             char_uri = results[0]['s']['value']
             print(char_uri)
             fandom_url = get_attribute(char_uri, "hasUrl")
-            page_title = fandom_url.split("https://spongebob.fandom.com/wiki/")[-1]
-            biography = get_biography(page_title)
+            tmp = page_title
+            try:
+                page_title = fandom_url.split("https://spongebob.fandom.com/wiki/")[-1]
+            except:
+                pass
+            biography = get_biography(page_title, tmp)
         return JsonResponse({'biography': biography})
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=500)
