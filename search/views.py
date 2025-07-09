@@ -252,3 +252,4 @@ def characters_view(request):
         "results": paginated_characters,
     }
     return render(request, "characters.html", context)
+

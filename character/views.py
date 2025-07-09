@@ -555,3 +555,4 @@ def get_biography_view(request, page_title):
         return JsonResponse({'biography': biography})
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=500)
+
